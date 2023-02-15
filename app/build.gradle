@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -25,13 +26,11 @@ android {
     buildTypes {
         debug{
             buildConfigField "String", "BASE_URL", "\"api-football-v1.p.rapidapi.com/\""
-            buildConfigField "String", "API_KEY", "\"4b380e63f9msha27486e41a11980p130e63jsn19363d9ff50f\""
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"api-football-v1.p.rapidapi.com/\""
-            buildConfigField "String", "API_KEY", "\"4b380e63f9msha27486e41a11980p130e63jsn19363d9ff50f\""
         }
     }
     compileOptions {
