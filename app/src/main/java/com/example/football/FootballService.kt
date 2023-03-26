@@ -6,7 +6,7 @@ import retrofit2.http.Query
 
 interface FootballService {
 
-    @GET(value = "/v3/countries?search")
+    @GET("countries")
     suspend fun search(@Query("search") search: String) : Result<SearchResponse>
 
 }

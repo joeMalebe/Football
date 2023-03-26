@@ -7,18 +7,22 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlin.coroutines.CoroutineContext
 
 @Module
 @InstallIn(SingletonComponent::class)
 class FootballModule {
 
     @Provides
-    fun getSearchRepository(footballService: FootballService): SearchRepository {
-        return SearchRepositoryImpl(footballService)
+    fun getSearchRepository(
+        footballService: FootballService,
+        ioContext: CoroutineContext
+    ): SearchRepository {
+        return SearchRepositoryImpl(footballService, ioContext)
     }
 
     @Provides
-    fun getHomeScreenViewModel(): HomeScreenViewModel {
-        return HomeScreenViewModel()
+    fun getHomeScreenViewModel(searchRepository: SearchRepository, ioContext: CoroutineContext): HomeScreenViewModel {
+        return HomeScreenViewModel(searchRepository, ioContext)
     }
 }
