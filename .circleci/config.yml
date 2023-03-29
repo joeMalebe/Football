@@ -15,7 +15,9 @@ jobs:
           command: chmod +x ./gradlew
       - run:
           name: Create local.properties
-          command: touch local.properties
+          command: |
+          touch local.properties
+          echo API_KEY=$API_KEY >> local.properties
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
