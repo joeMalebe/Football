@@ -25,13 +25,19 @@ android {
     }
 
     buildTypes {
-        debug{
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        def api_key = properties.getProperty('API_KEY')
+
+        debug {
             buildConfigField "String", "BASE_URL", "\"api-football-v1.p.rapidapi.com/v3/\""
+            buildConfigField "String", "API_KEY", "\"$api_key\""
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"api-football-v1.p.rapidapi.com/v3/\""
+            buildConfigField "String", "API_KEY", "\"$api_key\""
         }
     }
     compileOptions {
