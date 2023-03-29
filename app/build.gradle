@@ -27,13 +27,11 @@ android {
     buildTypes {
         debug{
             buildConfigField "String", "BASE_URL", "\"api-football-v1.p.rapidapi.com/v3/\""
-            buildConfigField "String", "APK_KEY", "\"ba6ed901c5msh98aaf235e7ed296p1bfa3ajsna106bbc094e0\""
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"api-football-v1.p.rapidapi.com/v3/\""
-            buildConfigField "String", "APK_KEY", "\"ba6ed901c5msh98aaf235e7ed296p1bfa3ajsna106bbc094e0\""
         }
     }
     compileOptions {
