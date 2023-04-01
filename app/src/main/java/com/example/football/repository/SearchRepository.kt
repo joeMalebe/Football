@@ -2,8 +2,8 @@ package com.example.football.repository
 
 import com.example.football.FootballService
 import com.example.football.model.SearchResponse
-import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.withContext
 
 interface SearchRepository {
 
