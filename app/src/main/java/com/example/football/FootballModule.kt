@@ -22,7 +22,10 @@ class FootballModule {
     }
 
     @Provides
-    fun getHomeScreenViewModel(searchRepository: SearchRepository, ioContext: CoroutineContext): HomeScreenViewModel {
+    fun getHomeScreenViewModel(
+        searchRepository: SearchRepository,
+        ioContext: CoroutineContext
+    ): HomeScreenViewModel {
         return HomeScreenViewModel(searchRepository, ioContext)
     }
 }

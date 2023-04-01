@@ -17,7 +17,8 @@ class HomeScreenFragment : Fragment() {
     lateinit var viewModel: HomeScreenViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         return ComposeView(requireContext()).apply {
@@ -32,12 +33,11 @@ class HomeScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.initialise()
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //viewModel = ViewModelProvider(this).get(HomescreenViewModel::class.java)
+        // viewModel = ViewModelProvider(this).get(HomescreenViewModel::class.java)
         // TODO: Use the ViewModel
     }
 }

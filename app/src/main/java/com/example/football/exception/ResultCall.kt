@@ -21,7 +21,8 @@ class ResultCall<T>(private val delegate: Call<T>) : Call<Result<T>> {
                         )
                     } else {
                         callback.onResponse(
-                            this@ResultCall, Response.success(
+                            this@ResultCall,
+                            Response.success(
                                 response.code(),
                                 Result.failure(HttpException(response))
                             )
