@@ -1,7 +1,7 @@
-package com.example.football.repository
+package com.example.football.data.repository
 
 import com.example.football.FootballService
-import com.example.football.model.SearchResponse
+import com.example.football.data.model.SearchResponse
 import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.withContext
 

@@ -1,4 +1,4 @@
-package com.example.football.ui.feature
+package com.example.football.presentation.view
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
@@ -7,7 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.football.ui.theme.FootballTheme
+import com.example.football.presentation.theme.FootballTheme
 
 @Composable
 fun HomeScreen() {

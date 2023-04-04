@@ -1,7 +1,9 @@
 package com.example.football.repository
 
 import com.example.football.FootballService
-import com.example.football.model.SearchResponse
+import com.example.football.data.model.SearchResponse
+import com.example.football.data.repository.SearchRepository
+import com.example.football.data.repository.SearchRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
