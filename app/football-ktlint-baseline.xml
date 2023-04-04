@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<baseline version="1.0">
+    <file name="src/androidTest/java/com/example/football/ExampleInstrumentedTest.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/androidTest/java/com/example/football/FootballTestRunner.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/main/java/com/example/football/FootballApplication.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/main/java/com/example/football/FootballModule.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/main/java/com/example/football/FootballService.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/main/java/com/example/football/NetworkModule.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/main/java/com/example/football/exception/ResultCall.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/main/java/com/example/football/exception/ResultCallAdaptorFactory.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/main/java/com/example/football/repository/SearchRepository.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/main/java/com/example/football/ui/feature/HomeScreenFragment.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/main/java/com/example/football/ui/feature/HomeScreenViewModel.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/main/java/com/example/football/ui/theme/Color.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/main/java/com/example/football/ui/theme/Shape.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/main/java/com/example/football/ui/theme/Theme.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/main/java/com/example/football/ui/theme/Type.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/test/java/com/example/football/ExampleUnitTest.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/test/java/com/example/football/repository/SearchRepositoryImplTest.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+</baseline>
