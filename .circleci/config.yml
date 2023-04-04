@@ -26,14 +26,14 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
       - run:
-          name: Ktlint check
-          command: ./gradlew ktlintCheck
-      - run:
           name: Build app
           command: ./gradlew assembleDebug
       - run:
           name: Run Tests
           command: ./gradlew lint test
+      - run:
+          name: Ktlint check
+          command: ./gradlew ktlintCheck
       - store_artifacts:
           path: app/build/reports
           destination: reports
