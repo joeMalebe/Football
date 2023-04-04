@@ -1,8 +1,8 @@
-package com.example.football.ui.feature
+package com.example.football.presentation.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.football.repository.SearchRepository
+import com.example.football.data.repository.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext

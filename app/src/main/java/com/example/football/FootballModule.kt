@@ -1,8 +1,8 @@
 package com.example.football
 
-import com.example.football.repository.SearchRepository
-import com.example.football.repository.SearchRepositoryImpl
-import com.example.football.ui.feature.HomeScreenViewModel
+import com.example.football.data.repository.SearchRepository
+import com.example.football.data.repository.SearchRepositoryImpl
+import com.example.football.presentation.viewmodel.HomeScreenViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

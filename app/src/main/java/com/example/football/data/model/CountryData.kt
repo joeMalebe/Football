@@ -1,4 +1,4 @@
-package com.example.football.model
+package com.example.football.data.model
 
 import kotlinx.serialization.SerialName
 

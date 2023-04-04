@@ -1,4 +1,4 @@
-package com.example.football.ui.feature
+package com.example.football.presentation.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

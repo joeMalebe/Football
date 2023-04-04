@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/homeScreenFragment"
-        android:name="com.example.football.ui.feature.HomeScreenFragment"
+        android:name="com.example.football.presentation.view.HomeScreenFragment"
         android:label="@string/football">
     </fragment>
 </navigation>
