@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import com.example.football.presentation.viewmodel.HomeScreenViewModel
 import com.example.football.presentation.theme.FootballTheme
+import com.example.football.presentation.viewmodel.HomeScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

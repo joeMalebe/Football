@@ -1,3 +1,3 @@
 package com.example.football.domain
 
-data class CountryViewData(val name: String, val flagUri: String)
+data class CountryViewData(val name: String, val flagUri: String, val code: String)
