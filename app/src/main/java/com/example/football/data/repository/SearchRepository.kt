@@ -6,7 +6,6 @@ import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.withContext
 
 interface SearchRepository {
-
     suspend fun searchCountry(search: String): Result<SearchResponse>
 }
 
