@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Football</string>
     <string name="football">Football</string>
+    <string name="search">Search</string>
 </resources>
