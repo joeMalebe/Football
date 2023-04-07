@@ -2,6 +2,10 @@ package com.example.football
 
 import com.example.football.data.repository.SearchRepository
 import com.example.football.data.repository.SearchRepositoryImpl
+import com.example.football.domain.SearchDataMapper
+import com.example.football.domain.SearchDataMapperImpl
+import com.example.football.domain.usecase.SearchCountryUseCase
+import com.example.football.domain.usecase.SearchCountryUseCaseImpl
 import com.example.football.presentation.viewmodel.HomeScreenViewModel
 import dagger.Module
 import dagger.Provides
@@ -23,9 +27,22 @@ class FootballModule {
 
     @Provides
     fun getHomeScreenViewModel(
-        searchRepository: SearchRepository,
+        searchCountryUseCase: SearchCountryUseCase,
         ioContext: CoroutineContext
     ): HomeScreenViewModel {
-        return HomeScreenViewModel(searchRepository, ioContext)
+        return HomeScreenViewModel(searchCountryUseCase, ioContext)
+    }
+
+    @Provides
+    fun getSearchUseCase(
+        searchRepository: SearchRepository,
+        searchDataMapper: SearchDataMapper
+    ): SearchCountryUseCase {
+        return SearchCountryUseCaseImpl(searchRepository, searchDataMapper)
+    }
+
+    @Provides
+    fun getSearchMapper(): SearchDataMapper {
+        return SearchDataMapperImpl()
     }
 }

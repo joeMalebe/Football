@@ -33,7 +33,6 @@ class HomeScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.initialise()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
