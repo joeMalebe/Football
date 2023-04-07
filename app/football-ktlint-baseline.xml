@@ -18,35 +18,49 @@
     <file name="src/main/java/com/example/football/NetworkModule.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
+    <file name="src/main/java/com/example/football/data/repository/SearchRepository.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/main/java/com/example/football/domain/SearchDataMapper.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
     <file name="src/main/java/com/example/football/exception/ResultCall.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
     <file name="src/main/java/com/example/football/exception/ResultCallAdaptorFactory.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
-    <file name="src/main/java/com/example/football/repository/SearchRepository.kt">
+    <file name="src/main/java/com/example/football/presentation/theme/Color.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
-    <file name="src/main/java/com/example/football/ui/feature/HomeScreenFragment.kt">
+    <file name="src/main/java/com/example/football/presentation/theme/Shape.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
-    <file name="src/main/java/com/example/football/ui/feature/HomeScreenViewModel.kt">
+    <file name="src/main/java/com/example/football/presentation/theme/Theme.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
-    <file name="src/main/java/com/example/football/ui/theme/Color.kt">
+    <file name="src/main/java/com/example/football/presentation/theme/Type.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
-    <file name="src/main/java/com/example/football/ui/theme/Shape.kt">
+    <file name="src/main/java/com/example/football/presentation/view/HomeScreenFragment.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
-    <file name="src/main/java/com/example/football/ui/theme/Theme.kt">
-        <error line="1" column="1" source="final-newline" />
-    </file>
-    <file name="src/main/java/com/example/football/ui/theme/Type.kt">
+    <file name="src/main/java/com/example/football/presentation/viewmodel/HomeScreenViewModel.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
     <file name="src/test/java/com/example/football/ExampleUnitTest.kt">
         <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/test/java/com/example/football/domain/SearchDataMapperImplTest.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/test/java/com/example/football/domain/usecase/SearchCountryUseCaseImplTest.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/test/java/com/example/football/presentation/viewmodel/HomeScreenViewModelTest.kt">
+        <error line="1" column="1" source="final-newline" />
+        <error line="12" column="1" source="no-wildcard-imports" />
+        <error line="18" column="1" source="no-wildcard-imports" />
     </file>
     <file name="src/test/java/com/example/football/repository/SearchRepositoryImplTest.kt">
         <error line="1" column="1" source="final-newline" />
