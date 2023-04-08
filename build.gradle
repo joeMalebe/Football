@@ -6,6 +6,7 @@ buildscript {
         kotlin_version = '1.8.10'
         lifecycle_version = '2.6.1'
         coroutines_version = '1.6.4'
+        coil_version = '2.3.0'
     }
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
