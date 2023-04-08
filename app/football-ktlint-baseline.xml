@@ -42,6 +42,11 @@
     <file name="src/main/java/com/example/football/presentation/theme/Type.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
+    <file name="src/main/java/com/example/football/presentation/view/HomeScreen.kt">
+        <error line="6" column="1" source="no-wildcard-imports" />
+        <error line="10" column="1" source="no-wildcard-imports" />
+        <error line="13" column="1" source="no-wildcard-imports" />
+    </file>
     <file name="src/main/java/com/example/football/presentation/view/HomeScreenFragment.kt">
         <error line="1" column="1" source="final-newline" />
     </file>

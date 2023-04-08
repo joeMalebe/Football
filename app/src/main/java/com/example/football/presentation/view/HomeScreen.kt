@@ -31,14 +31,14 @@ import com.example.football.presentation.theme.FootballTheme
 
 @Composable
 fun HomeScreen() {
-
     var searchText by remember { mutableStateOf(TextFieldValue("")) }
 
     Content(
         searchText = searchText.text,
         onSearchTextChange = { newSearchText ->
             searchText = TextFieldValue(newSearchText)
-        })
+        }
+    )
 }
 
 @Composable
@@ -61,7 +61,6 @@ fun Content(
     ) {
         it.calculateBottomPadding()
         CountriesList(countries = PreviewData.countries)
-
     }
 }
 
@@ -69,7 +68,7 @@ fun Content(
 fun SearchBar(
     searchText: String,
     onSearchTextChange: (String) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     OutlinedTextField(
         value = searchText,
@@ -151,11 +150,13 @@ fun NoResultsFound(modifier: Modifier = Modifier) {
             text = stringResource(id = R.string.no_results_found),
             fontWeight = FontWeight(700),
             style = MaterialTheme.typography.h5,
-            textAlign = TextAlign.Center, modifier = Modifier.padding(bottom = 4.dp)
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(bottom = 4.dp)
         )
         Text(
             text = stringResource(id = R.string.we_cant_find_any_results),
-            style = MaterialTheme.typography.subtitle1, textAlign = TextAlign.Center
+            style = MaterialTheme.typography.subtitle1,
+            textAlign = TextAlign.Center
         )
     }
 }
@@ -185,7 +186,8 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
         )
 
         Button(
-            onClick = { /*TODO*/ }) {
+            onClick = { /*TODO*/ }
+        ) {
             Text(text = stringResource(id = R.string.try_again), modifier = Modifier.padding(4.dp))
         }
     }
@@ -266,6 +268,6 @@ object PreviewData {
             ""
         ),
         CountryViewData(name = "Italy", flagUri = "https://media-2.api-sports.io/flags/it.svg", ""),
-        CountryViewData(name = "Spain", flagUri = "https://media-2.api-sports.io/flags/es.svg", ""),
+        CountryViewData(name = "Spain", flagUri = "https://media-2.api-sports.io/flags/es.svg", "")
     )
 }
