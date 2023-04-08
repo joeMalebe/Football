@@ -160,6 +160,37 @@ fun NoResultsFound(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun ErrorScreen(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_referee),
+            contentDescription = "An error has occurred",
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier
+                .heightIn(min = 120.dp, max = 384.dp)
+                .widthIn(min = 48.dp, max = 220.dp)
+                .padding(bottom = 8.dp)
+        )
+        Text(
+            text = stringResource(id = R.string.an_error_has_occurred),
+            style = MaterialTheme.typography.h5,
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight(700),
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
+
+        Button(
+            onClick = { /*TODO*/ }) {
+            Text(text = stringResource(id = R.string.try_again), modifier = Modifier.padding(4.dp))
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun SearchBarPreview() {
@@ -189,6 +220,14 @@ private fun CountriesListPreview() {
 private fun LoadingPreview() {
     FootballTheme {
         Loading()
+    }
+}
+
+@Preview(showBackground = true, widthDp = 360, heightDp = 720, uiMode = UI_MODE_NIGHT_NO)
+@Composable
+private fun ErrorDialogPreview() {
+    FootballTheme {
+        ErrorScreen()
     }
 }
 
