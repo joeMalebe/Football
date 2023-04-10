@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import com.example.football.R
 import com.example.football.presentation.theme.FootballTheme
 
-
 @Composable
 fun ErrorScreen(modifier: Modifier = Modifier) {
     Column(
@@ -52,7 +51,12 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(showBackground = true, widthDp = 360, heightDp = 720, uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(
+    showBackground = true,
+    widthDp = 360,
+    heightDp = 720,
+    uiMode = Configuration.UI_MODE_NIGHT_NO
+)
 @Composable
 private fun ErrorDialogPreview() {
     FootballTheme {
