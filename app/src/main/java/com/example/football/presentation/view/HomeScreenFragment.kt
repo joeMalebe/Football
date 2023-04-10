@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import com.example.football.presentation.theme.FootballTheme
+import com.example.football.presentation.view.composable.HomeScreen
 import com.example.football.presentation.viewmodel.HomeScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
