@@ -19,7 +19,12 @@ fun Loading(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(showBackground = true, widthDp = 360, heightDp = 720, uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(
+    showBackground = true,
+    widthDp = 360,
+    heightDp = 720,
+    uiMode = Configuration.UI_MODE_NIGHT_NO
+)
 @Composable
 private fun LoadingPreview() {
     FootballTheme {
