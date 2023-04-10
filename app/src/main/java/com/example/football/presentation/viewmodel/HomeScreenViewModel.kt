@@ -12,34 +12,65 @@ import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.launch
 
+private const val MIN_TEXT_LENGTH_FOR_SEARCH = 3
+
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
     private val searchCountryUseCase: SearchCountryUseCase,
     private val ioContext: CoroutineContext
 ) : ViewModel() {
 
-    private val _searchResultSearchViewState = MutableLiveData<SearchViewState>()
-    val searchResultSearchViewState: LiveData<SearchViewState>
-        get() = _searchResultSearchViewState
+    private val _searchResultViewState = MutableLiveData<SearchViewState>()
+    val searchResultViewState: LiveData<SearchViewState>
+        get() = _searchResultViewState
+
+    private var searchText = "$"
+    val searchResults = mutableListOf<CountryViewData>()
 
     fun search(searchQuery: String) {
         viewModelScope.launch(context = ioContext) {
-            _searchResultSearchViewState.postValue(SearchViewState.Loading)
+            _searchResultViewState.postValue(SearchViewState.Loading)
             when (val result = searchCountryUseCase.execute(searchQuery)) {
                 is SearchResult.LoadedCountries -> {
-                    _searchResultSearchViewState.postValue(
+                    searchResults.clear()
+                    searchResults.addAll(result.countries)
+                    _searchResultViewState.postValue(
                         SearchViewState.SearchResults(result.countries)
                     )
                 }
                 is SearchResult.NoResultsFound -> {
-                    _searchResultSearchViewState.postValue(SearchViewState.NoSearchResults)
+                    _searchResultViewState.postValue(SearchViewState.NoSearchResults)
                 }
                 else -> {
-                    _searchResultSearchViewState.postValue(SearchViewState.Error)
+                    _searchResultViewState.postValue(SearchViewState.Error)
                 }
             }
         }
     }
+
+    fun searchOnTextChanged(searchText: String) {
+        if (isValidSearchText(searchText)) {
+            this.searchText = searchText.substring(0..2)
+            search(searchText)
+        } else if (searchResults.isNotEmpty() && searchText.startsWith(this.searchText)) {
+            _searchResultViewState.postValue(
+                SearchViewState.SearchResults(
+                    searchResults.filter { country ->
+                        country.name.startsWith(
+                            searchText,
+                            true
+                        )
+                    }
+                )
+            )
+        }
+    }
+
+    private fun isValidSearchText(searchText: String) =
+        searchText.length >= MIN_TEXT_LENGTH_FOR_SEARCH && !searchText.startsWith(
+            this.searchText,
+            false
+        )
 
     sealed class SearchViewState {
 
