@@ -9,6 +9,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -23,16 +24,22 @@ import coil.request.ImageRequest
 import com.example.football.R
 import com.example.football.domain.CountryViewData
 import com.example.football.presentation.theme.FootballTheme
+import com.example.football.presentation.viewmodel.HomeScreenViewModel
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(viewModel: HomeScreenViewModel) {
     var searchText by remember { mutableStateOf(TextFieldValue("")) }
+
+    val nullableViewState by viewModel.searchResultViewState.observeAsState()
+    val viewState = nullableViewState ?: return
 
     Content(
         searchText = searchText.text,
         onSearchTextChange = { newSearchText ->
             searchText = TextFieldValue(newSearchText)
-        }
+            viewModel.searchOnTextChanged(newSearchText)
+        },
+        viewState = viewState
     )
 }
 
@@ -40,7 +47,8 @@ fun HomeScreen() {
 fun Content(
     searchText: String,
     onSearchTextChange: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewState: HomeScreenViewModel.SearchViewState = HomeScreenViewModel.SearchViewState.Loading
 ) {
     Scaffold(
         modifier = modifier,
@@ -54,7 +62,23 @@ fun Content(
             )
         }
     ) {
-        CountriesList(modifier = Modifier.padding(it), countries = PreviewData.countries)
+        when (viewState) {
+            is HomeScreenViewModel.SearchViewState.SearchResults -> {
+                CountriesList(countries = viewState.countries, modifier = Modifier.padding(it))
+            }
+            is HomeScreenViewModel.SearchViewState.Loading -> {
+                Loading()
+            }
+            is HomeScreenViewModel.SearchViewState.Error -> {
+                ErrorScreen()
+            }
+            is HomeScreenViewModel.SearchViewState.NoSearchResults -> {
+                NoResultsFound()
+            }
+            else -> {
+                Text(text = "welcome home", style = MaterialTheme.typography.h5)
+            }
+        }
     }
 }
 

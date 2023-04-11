@@ -26,7 +26,7 @@ class HomeScreenFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 FootballTheme {
-                    HomeScreen()
+                    HomeScreen(viewModel)
                 }
             }
         }
