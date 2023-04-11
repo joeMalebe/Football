@@ -38,6 +38,11 @@ class HomeScreenViewModelTest {
     }
 
     @Test
+    fun `when initialised the state should be default view`() {
+        assertEquals(SearchViewState.InitialViewState, viewModel.searchResultViewState.value)
+    }
+
+    @Test
     fun `search should first load then return search results`() = runTest {
         whenever(searchCountryUseCase.execute(any())).thenReturn(
             SearchResult.LoadedCountries(
@@ -50,9 +55,10 @@ class HomeScreenViewModelTest {
         viewModel.search("search text")
 
         argumentCaptor.run {
-            verify(observer, times(2)).onChanged(capture())
+            verify(observer, times(3)).onChanged(capture())
             assertEquals(
                 listOf(
+                    SearchViewState.InitialViewState,
                     SearchViewState.Loading,
                     SearchViewState.SearchResults(TestData.countries)
                 ),
@@ -70,9 +76,13 @@ class HomeScreenViewModelTest {
         viewModel.search("search text")
 
         argumentCaptor.run {
-            verify(observer, times(2)).onChanged(capture())
+            verify(observer, times(3)).onChanged(capture())
             assertEquals(
-                listOf(SearchViewState.Loading, SearchViewState.NoSearchResults),
+                listOf(
+                    SearchViewState.InitialViewState,
+                    SearchViewState.Loading,
+                    SearchViewState.NoSearchResults
+                ),
                 allValues
             )
         }
@@ -87,9 +97,13 @@ class HomeScreenViewModelTest {
         viewModel.search("search text")
 
         argumentCaptor.run {
-            verify(observer, times(2)).onChanged(capture())
+            verify(observer, times(3)).onChanged(capture())
             assertEquals(
-                listOf(SearchViewState.Loading, SearchViewState.Error),
+                listOf(
+                    SearchViewState.InitialViewState,
+                    SearchViewState.Loading,
+                    SearchViewState.Error
+                ),
                 allValues
             )
         }
@@ -151,9 +165,10 @@ class HomeScreenViewModelTest {
         viewModel.searchOnTextChanged("sea")
 
         argumentCaptor.run {
-            verify(observer, times(2)).onChanged(capture())
-            assertEquals(SearchViewState.Loading, this.firstValue)
-            val searchResultsViewState = this.secondValue as SearchViewState.SearchResults
+            verify(observer, times(3)).onChanged(capture())
+            assertEquals(SearchViewState.InitialViewState, this.firstValue)
+            assertEquals(SearchViewState.Loading, this.secondValue)
+            val searchResultsViewState = this.thirdValue as SearchViewState.SearchResults
             assertEquals(searchResultsViewState.countries[0], viewModel.searchResults[0])
         }
     }
@@ -176,48 +191,50 @@ class HomeScreenViewModelTest {
 
         viewModel.searchOnTextChanged("sea")
         firstSearchArgumentCaptor.run {
-            verify(observer, times(2)).onChanged(capture())
-            assertEquals(SearchViewState.Loading, this.firstValue)
-            val searchResultsViewState = this.secondValue as SearchViewState.SearchResults
+            verify(observer, times(3)).onChanged(capture())
+            assertEquals(SearchViewState.InitialViewState, this.firstValue)
+            assertEquals(SearchViewState.Loading, this.secondValue)
+            val searchResultsViewState = this.thirdValue as SearchViewState.SearchResults
             assertEquals(searchResultsViewState.countries[0], viewModel.searchResults[0])
         }
 
         viewModel.searchOnTextChanged("germ")
 
         secondSearchArgumentCaptor.run {
-            verify(observer, times(4)).onChanged(capture())
-            assertEquals(SearchViewState.Loading, this.thirdValue)
+            verify(observer, times(5)).onChanged(capture())
             val newSearchResultsView = this.lastValue as SearchViewState.SearchResults
             assertEquals(newSearchResultsView.countries[0], viewModel.searchResults[0])
         }
     }
 
     @Test
-    fun `search results should be filtered by prefix when search text is similar`() = runTest {
-        whenever(searchCountryUseCase.execute("port")).thenReturn(
-            SearchResult.LoadedCountries(
-                TestData.countries3
+    fun `results should be filtered by countries the contain the same search text in the name`() =
+        runTest {
+            whenever(searchCountryUseCase.execute("port")).thenReturn(
+                SearchResult.LoadedCountries(
+                    TestData.countries3
+                )
             )
-        )
-        val argumentCaptor = argumentCaptor<SearchViewState>()
-        viewModel.searchResultViewState.observeForever(observer)
+            val argumentCaptor = argumentCaptor<SearchViewState>()
+            viewModel.searchResultViewState.observeForever(observer)
 
-        viewModel.searchOnTextChanged("port")
-        viewModel.searchOnTextChanged("porto")
-        viewModel.searchOnTextChanged("portu")
+            viewModel.searchOnTextChanged("port")
+            viewModel.searchOnTextChanged("porto")
+            viewModel.searchOnTextChanged("portu")
 
-        argumentCaptor.run {
-            verify(observer, times(4)).onChanged(capture())
-            assertEquals(SearchViewState.Loading, this.firstValue)
-            val firstResult = this.secondValue as SearchViewState.SearchResults
-            val secondResult = this.thirdValue as SearchViewState.SearchResults
-            val thirdResult = this.lastValue as SearchViewState.SearchResults
-
-            assertTrue(firstResult.countries.size == 4)
-            assertTrue(secondResult.countries.size == 2)
-            assertTrue(thirdResult.countries.size == 1)
+            argumentCaptor.run {
+                verify(observer, times(5)).onChanged(capture())
+                val allStates = this.allValues
+                assertEquals(SearchViewState.InitialViewState, allStates[0])
+                assertEquals(SearchViewState.Loading, allStates[1])
+                val firstResult = allStates[2] as SearchViewState.SearchResults
+                val secondResult = allStates[3] as SearchViewState.SearchResults
+                val thirdResult = allStates[4] as SearchViewState.SearchResults
+                assertTrue(firstResult.countries.size == 4)
+                assertTrue(secondResult.countries.size == 2)
+                assertTrue(thirdResult.countries.size == 1)
+            }
         }
-    }
 }
 
 object TestData {
@@ -233,9 +250,9 @@ object TestData {
     )
 
     val countries3 = arrayListOf(
-        CountryViewData(name = "Port", flagUri = "url", code = "2"),
+        CountryViewData(name = "Elportinose", flagUri = "url", code = "2"),
         CountryViewData(name = "Portugal", flagUri = "url", code = "6"),
         CountryViewData(name = "Porto", flagUri = "url", code = "4"),
-        CountryViewData(name = "Porto Allegra", flagUri = "url", code = "4")
+        CountryViewData(name = "Vahporto Allegra", flagUri = "url", code = "4")
     )
 }

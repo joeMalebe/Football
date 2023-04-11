@@ -20,7 +20,8 @@ class HomeScreenViewModel @Inject constructor(
     private val ioContext: CoroutineContext
 ) : ViewModel() {
 
-    private val _searchResultViewState = MutableLiveData<SearchViewState>()
+    private val _searchResultViewState =
+        MutableLiveData<SearchViewState>(SearchViewState.InitialViewState)
     val searchResultViewState: LiveData<SearchViewState>
         get() = _searchResultViewState
 
@@ -52,11 +53,11 @@ class HomeScreenViewModel @Inject constructor(
         if (isValidSearchText(searchText)) {
             this.searchText = searchText.substring(0..2)
             search(searchText)
-        } else if (searchResults.isNotEmpty() && searchText.startsWith(this.searchText)) {
+        } else if (searchResults.isNotEmpty() && searchText.contains(this.searchText)) {
             _searchResultViewState.postValue(
                 SearchViewState.SearchResults(
                     searchResults.filter { country ->
-                        country.name.startsWith(
+                        country.name.contains(
                             searchText,
                             true
                         )
@@ -79,6 +80,8 @@ class HomeScreenViewModel @Inject constructor(
         object Error : SearchViewState()
 
         object NoSearchResults : SearchViewState()
+
+        object InitialViewState : SearchViewState()
 
         data class SearchResults(val countries: List<CountryViewData>) : SearchViewState()
     }
