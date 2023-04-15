@@ -1,7 +1,7 @@
 package com.example.football.repository
 
 import com.example.football.FootballService
-import com.example.football.data.model.SearchLeagueResponse
+import com.example.football.data.model.CountryLeagueDto
 import com.example.football.data.model.SearchResponse
 import com.example.football.data.repository.SearchRepository
 import com.example.football.data.repository.SearchRepositoryImpl
@@ -26,7 +26,7 @@ class SearchRepositoryImplTest {
 
     @Before
     fun setup() {
-        MockitoAnnotations.initMocks(this)
+        MockitoAnnotations.openMocks(this)
         searchRepository = SearchRepositoryImpl(
             footballService = footballService,
             Dispatchers.Unconfined
@@ -49,7 +49,7 @@ class SearchRepositoryImplTest {
         val searchQuery = "Premier"
         whenever(footballService.searchLeagues(searchQuery)).thenReturn(
             Result.success(
-                SearchLeagueResponse()
+                CountryLeagueDto()
             )
         )
 

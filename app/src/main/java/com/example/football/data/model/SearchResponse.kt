@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class SearchResponse(
-    @SerialName("response") val response: ArrayList<CountryData> = arrayListOf()
+    @SerialName("response") val response: ArrayList<CountryDto> = arrayListOf()
 )

@@ -3,8 +3,8 @@ package com.example.football.presentation.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.football.domain.CountryViewData
-import com.example.football.domain.usecase.SearchCountryUseCase
 import com.example.football.domain.usecase.SearchResult
+import com.example.football.domain.usecase.SearchUseCase
 import com.example.football.presentation.viewmodel.HomeScreenViewModel.SearchViewState
 import kotlinx.coroutines.Dispatchers.Unconfined
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -21,7 +21,7 @@ import org.mockito.kotlin.*
 class HomeScreenViewModelTest {
 
     @Mock
-    lateinit var searchCountryUseCase: SearchCountryUseCase
+    lateinit var searchUseCase: SearchUseCase
 
     private lateinit var viewModel: HomeScreenViewModel
 
@@ -34,7 +34,7 @@ class HomeScreenViewModelTest {
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        viewModel = HomeScreenViewModel(searchCountryUseCase, Unconfined)
+        viewModel = HomeScreenViewModel(searchUseCase, Unconfined)
     }
 
     @Test
@@ -44,7 +44,7 @@ class HomeScreenViewModelTest {
 
     @Test
     fun `search should first load then return search results`() = runTest {
-        whenever(searchCountryUseCase.execute(any())).thenReturn(
+        whenever(searchUseCase.searchCountry(any())).thenReturn(
             SearchResult.LoadedCountries(
                 TestData.countries
             )
@@ -69,7 +69,7 @@ class HomeScreenViewModelTest {
 
     @Test
     fun `search should first load then return no search results`() = runTest {
-        whenever(searchCountryUseCase.execute(any())).thenReturn(SearchResult.NoResultsFound)
+        whenever(searchUseCase.searchCountry(any())).thenReturn(SearchResult.NoResultsFound)
         val argumentCaptor = argumentCaptor<SearchViewState>()
         viewModel.searchResultViewState.observeForever(observer)
 
@@ -90,7 +90,7 @@ class HomeScreenViewModelTest {
 
     @Test
     fun `search should first load then return error`() = runTest {
-        whenever(searchCountryUseCase.execute(any())).thenReturn(SearchResult.SearchError)
+        whenever(searchUseCase.searchCountry(any())).thenReturn(SearchResult.SearchError)
         val argumentCaptor = argumentCaptor<SearchViewState>()
         viewModel.searchResultViewState.observeForever(observer)
 
@@ -113,14 +113,14 @@ class HomeScreenViewModelTest {
     fun `search should execute when 3 or more characters are inputted`() = runTest {
         viewModel.searchOnTextChanged(searchText = "country")
 
-        verify(searchCountryUseCase).execute("country")
+        verify(searchUseCase).searchCountry("country")
     }
 
     @Test
     fun `search should not execute if text is less than 3 characters`() = runTest {
         viewModel.searchOnTextChanged(searchText = "co")
 
-        verifyNoInteractions(searchCountryUseCase)
+        verifyNoInteractions(searchUseCase)
     }
 
     @Test
@@ -131,7 +131,7 @@ class HomeScreenViewModelTest {
             searchText = searchText.substring(0, searchText.length - 1)
         }
 
-        verify(searchCountryUseCase, times(1)).execute(any())
+        verify(searchUseCase, times(1)).searchCountry(any())
     }
 
     @Test
@@ -142,7 +142,7 @@ class HomeScreenViewModelTest {
         viewModel.searchOnTextChanged("fourth search")
         viewModel.searchOnTextChanged("fov")
 
-        verify(searchCountryUseCase, times(5)).execute(any())
+        verify(searchUseCase, times(5)).searchCountry(any())
     }
 
     @Test
@@ -154,7 +154,7 @@ class HomeScreenViewModelTest {
 
     @Test
     fun `after search is successful search results is not empty`() = runTest {
-        whenever(searchCountryUseCase.execute("sea")).thenReturn(
+        whenever(searchUseCase.searchCountry("sea")).thenReturn(
             SearchResult.LoadedCountries(
                 TestData.countries
             )
@@ -175,12 +175,12 @@ class HomeScreenViewModelTest {
 
     @Test
     fun `after 2 searches is successful search results is updated`() = runTest {
-        whenever(searchCountryUseCase.execute("sea")).thenReturn(
+        whenever(searchUseCase.searchCountry("sea")).thenReturn(
             SearchResult.LoadedCountries(
                 TestData.countries
             )
         )
-        whenever(searchCountryUseCase.execute("germ")).thenReturn(
+        whenever(searchUseCase.searchCountry("germ")).thenReturn(
             SearchResult.LoadedCountries(
                 TestData.countries2
             )
@@ -210,7 +210,7 @@ class HomeScreenViewModelTest {
     @Test
     fun `results should be filtered by countries the contain the same search text in the name`() =
         runTest {
-            whenever(searchCountryUseCase.execute("port")).thenReturn(
+            whenever(searchUseCase.searchCountry("port")).thenReturn(
                 SearchResult.LoadedCountries(
                     TestData.countries3
                 )
