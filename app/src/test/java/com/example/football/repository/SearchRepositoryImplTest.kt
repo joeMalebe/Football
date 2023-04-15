@@ -35,7 +35,9 @@ class SearchRepositoryImplTest {
 
     @Test
     fun searchCountry() = runTest {
-        whenever(footballService.searchCountries(any())).thenReturn(Result.success(SearchResponse()))
+        whenever(footballService.searchCountries(any())).thenReturn(
+            Result.success(SearchResponse())
+        )
 
         searchRepository.searchCountry("hello")
 

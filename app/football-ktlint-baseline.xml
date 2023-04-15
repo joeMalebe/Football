@@ -18,6 +18,12 @@
     <file name="src/main/java/com/example/football/NetworkModule.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
+    <file name="src/main/java/com/example/football/data/model/LeagueDto.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
+    <file name="src/main/java/com/example/football/data/model/SearchLeagueResponse.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
     <file name="src/main/java/com/example/football/data/repository/SearchRepository.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
