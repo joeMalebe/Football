@@ -48,7 +48,7 @@ fun Content(
     searchText: String,
     onSearchTextChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    viewState: HomeScreenViewModel.SearchViewState = HomeScreenViewModel.SearchViewState.Loading
+    viewState: HomeScreenViewModel.SearchViewState
 ) {
     Scaffold(
         modifier = modifier,
@@ -141,7 +141,11 @@ private fun CountriesListPreview() {
 @Composable
 private fun ContentPreview() {
     FootballTheme {
-        Content("", {})
+        Content(
+            searchText = "",
+            onSearchTextChange = {},
+            viewState = HomeScreenViewModel.SearchViewState.InitialViewState
+        )
     }
 }
 
