@@ -1,6 +1,7 @@
 package com.example.football.repository
 
 import com.example.football.FootballService
+import com.example.football.data.model.SearchLeagueResponse
 import com.example.football.data.model.SearchResponse
 import com.example.football.data.repository.SearchRepository
 import com.example.football.data.repository.SearchRepositoryImpl
@@ -34,10 +35,24 @@ class SearchRepositoryImplTest {
 
     @Test
     fun searchCountry() = runTest {
-        whenever(footballService.search(any())).thenReturn(Result.success(SearchResponse()))
+        whenever(footballService.searchCountries(any())).thenReturn(Result.success(SearchResponse()))
 
         searchRepository.searchCountry("hello")
 
-        verify(footballService).search(any())
+        verify(footballService).searchCountries(any())
+    }
+
+    @Test
+    fun searchByLeague() = runTest {
+        val searchQuery = "Premier"
+        whenever(footballService.searchLeagues(searchQuery)).thenReturn(
+            Result.success(
+                SearchLeagueResponse()
+            )
+        )
+
+        searchRepository.searchByLeague(searchQuery)
+
+        verify(footballService).searchLeagues(searchQuery)
     }
 }
