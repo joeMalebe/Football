@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.football.domain.CountryViewData
-import com.example.football.domain.usecase.SearchCountryUseCase
 import com.example.football.domain.usecase.SearchResult
+import com.example.football.domain.usecase.SearchUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -16,7 +16,7 @@ private const val MIN_TEXT_LENGTH_FOR_SEARCH = 3
 
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
-    private val searchCountryUseCase: SearchCountryUseCase,
+    private val searchUseCase: SearchUseCase,
     private val ioContext: CoroutineContext
 ) : ViewModel() {
 
@@ -31,7 +31,7 @@ class HomeScreenViewModel @Inject constructor(
     fun search(searchQuery: String) {
         viewModelScope.launch(context = ioContext) {
             _searchResultViewState.postValue(SearchViewState.Loading)
-            when (val result = searchCountryUseCase.execute(searchQuery)) {
+            when (val result = searchUseCase.searchCountry(searchQuery)) {
                 is SearchResult.LoadedCountries -> {
                     searchResults.clear()
                     searchResults.addAll(result.countries)

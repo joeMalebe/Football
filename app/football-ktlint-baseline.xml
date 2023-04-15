@@ -18,13 +18,16 @@
     <file name="src/main/java/com/example/football/NetworkModule.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
+    <file name="src/main/java/com/example/football/data/model/CountryLeagueDto.kt">
+        <error line="1" column="1" source="final-newline" />
+    </file>
     <file name="src/main/java/com/example/football/data/model/LeagueDto.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
-    <file name="src/main/java/com/example/football/data/model/SearchLeagueResponse.kt">
+    <file name="src/main/java/com/example/football/data/repository/SearchRepository.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
-    <file name="src/main/java/com/example/football/data/repository/SearchRepository.kt">
+    <file name="src/main/java/com/example/football/domain/LeagueViewData.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
     <file name="src/main/java/com/example/football/domain/SearchDataMapper.kt">
@@ -78,8 +81,9 @@
     <file name="src/test/java/com/example/football/domain/SearchDataMapperImplTest.kt">
         <error line="1" column="1" source="final-newline" />
     </file>
-    <file name="src/test/java/com/example/football/domain/usecase/SearchCountryUseCaseImplTest.kt">
+    <file name="src/test/java/com/example/football/domain/usecase/SearchUseCaseImplTest.kt">
         <error line="1" column="1" source="final-newline" />
+        <error line="3" column="1" source="no-wildcard-imports" />
     </file>
     <file name="src/test/java/com/example/football/presentation/viewmodel/HomeScreenViewModelTest.kt">
         <error line="1" column="1" source="final-newline" />
