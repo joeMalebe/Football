@@ -4,8 +4,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CountryData(
+data class LeagueDto(
+    @SerialName("id") val id: Int = 0,
     @SerialName("name") val name: String = "",
-    @SerialName("code") val code: String = "",
-    @SerialName("flag") val flagUrl: String = ""
+    @SerialName("type") val type: String = "",
+    @SerialName("logo") val logo: String = ""
 )
