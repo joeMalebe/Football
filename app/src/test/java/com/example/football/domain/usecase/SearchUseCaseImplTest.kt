@@ -3,6 +3,7 @@ package com.example.football.domain.usecase
 import com.example.football.data.model.*
 import com.example.football.data.repository.SearchRepository
 import com.example.football.domain.CountryViewData
+import com.example.football.domain.LeagueViewData
 import com.example.football.domain.SearchDataMapper
 import com.example.football.domain.usecase.TestData.countries
 import com.example.football.domain.usecase.TestData.successfulSearchResponse
@@ -64,6 +65,57 @@ class SearchUseCaseImplTest {
         verify(searchRepository).searchCountry("Jam")
         verifyNoInteractions(searchDataMapper)
     }
+
+    @Test
+    fun `When search for league fails return error`() = runTest {
+        val searchQuery = "sea"
+        whenever(searchRepository.searchByLeague(searchQuery)).thenReturn(
+            Result.failure(Throwable())
+        )
+
+        val sut = searchUseCase.searchLeague(searchQuery)
+
+        assertSame(sut, SearchResult.SearchError)
+        verify(searchRepository).searchByLeague(searchQuery)
+        verifyNoInteractions(searchDataMapper)
+    }
+
+    @Test
+    fun `When search for leagues is successful then return loaded leagues`() = runTest {
+        val searchQuery = "search"
+        val expected = SearchResult.LoadedLeagues(TestData.leaguesViewData)
+        whenever(searchRepository.searchByLeague(searchQuery)).thenReturn(
+            Result.success(TestData.searchLeagueResponse)
+        )
+        whenever(searchDataMapper.mapLeagueSearchResult(TestData.searchLeagueResponse)).thenReturn(
+            expected
+        )
+
+        val sut = searchUseCase.searchLeague(searchQuery)
+
+        assertSame(sut, expected)
+        verify(searchRepository).searchByLeague(searchQuery)
+        verify(searchDataMapper).mapLeagueSearchResult(TestData.searchLeagueResponse)
+    }
+
+    @Test
+    fun `When search for leagues is successful with empty list return no results`() = runTest {
+        val searchQuery = "search"
+        val expected = SearchResult.NoResultsFound
+        whenever(searchDataMapper.mapLeagueSearchResult(TestData.emptySearchLeagueResponse))
+            .thenReturn(
+                expected
+            )
+        whenever(searchRepository.searchByLeague(searchQuery)).thenReturn(
+            Result.success(TestData.emptySearchLeagueResponse)
+        )
+
+        val sut = searchUseCase.searchLeague(searchQuery)
+
+        assertSame(sut, expected)
+        verify(searchRepository).searchByLeague(searchQuery)
+        verify(searchDataMapper).mapLeagueSearchResult(TestData.emptySearchLeagueResponse)
+    }
 }
 
 object TestData {
@@ -86,7 +138,7 @@ object TestData {
         CountryViewData(name = "Jordan", flagUri = "url", code = "4")
     )
 
-    val searchLeagueResponse = listOf(
+    val countryLeagueDtos = listOf(
         CountryLeagueDto(
             LeagueDto(1, "Premier League", "soccer", "https://example.com/premier-league.png"),
             CountryDto("England", "ENG", "https://example.com/england-flag.png")
@@ -112,4 +164,49 @@ object TestData {
             CountryDto("Netherlands", "NED", "https://example.com/netherlands-flag.png")
         )
     )
+
+    val leaguesViewData = listOf(
+        LeagueViewData(
+            1,
+            "Premier League",
+            "https://example.com/premier-league.png",
+            CountryViewData("England", "https://example.com/england-flag.png", "ENG")
+        ),
+
+        LeagueViewData(
+            2,
+            "La Liga",
+            "https://example.com/la-liga.png",
+            CountryViewData("Spain", "https://example.com/spain-flag.png", "ESP")
+        ),
+
+        LeagueViewData(
+            3,
+            "Bundesliga",
+            "https://example.com/bundesliga.png",
+            CountryViewData("Germany", "https://example.com/germany-flag.png", "GER")
+        ),
+
+        LeagueViewData(
+            4,
+            "Serie A",
+            "https://example.com/serie-a.png",
+            CountryViewData("Italy", "https://example.com/italy-flag.png", "ITA")
+        ),
+
+        LeagueViewData(
+            5,
+            "Ligue 1",
+            "https://example.com/ligue-1.png",
+            CountryViewData("France", "https://example.com/france-flag.png", "FRA")
+        ),
+
+        LeagueViewData(
+            6,
+            "Eredivisie",
+            "https://example.com/eredivisie.png",
+            CountryViewData("Netherlands", "https://example.com/netherlands-flag.png", "NED")
+        )
+    )
+    val searchLeagueResponse = SearchLeagueResponse(countryLeagueDtos)
 }

@@ -1,5 +1,6 @@
 package com.example.football.domain
 
+import com.example.football.data.model.SearchLeagueResponse
 import com.example.football.domain.usecase.SearchResult
 import com.example.football.domain.usecase.TestData
 import org.junit.Assert.assertEquals
@@ -88,7 +89,7 @@ class SearchDataMapperImplTest {
 
     @Test
     fun `When country league list is empty then return no results`() {
-        val sut = searchDataMapper.mapLeagueSearchResult(emptyList())
+        val sut = searchDataMapper.mapLeagueSearchResult(SearchLeagueResponse())
 
         assertTrue(sut::class.java === SearchResult.NoResultsFound::class.java)
     }
