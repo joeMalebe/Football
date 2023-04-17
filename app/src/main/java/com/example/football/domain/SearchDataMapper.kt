@@ -1,7 +1,7 @@
 package com.example.football.domain
 
 import com.example.football.data.model.CountryDto
-import com.example.football.data.model.CountryLeagueDto
+import com.example.football.data.model.SearchLeagueResponse
 import com.example.football.data.model.SearchResponse
 import com.example.football.domain.usecase.SearchResult
 import com.example.football.domain.usecase.SearchResult.LoadedCountries
@@ -10,7 +10,7 @@ import com.example.football.domain.usecase.SearchResult.NoResultsFound
 
 interface SearchDataMapper {
     fun mapCountrySearchResult(searchResponse: SearchResponse?): SearchResult
-    fun mapLeagueSearchResult(searchLeagueResponse: List<CountryLeagueDto>): SearchResult
+    fun mapLeagueSearchResult(searchLeagueResponse: SearchLeagueResponse?): SearchResult
 }
 
 internal class SearchDataMapperImpl : SearchDataMapper {
@@ -25,12 +25,12 @@ internal class SearchDataMapperImpl : SearchDataMapper {
         }
     }
 
-    override fun mapLeagueSearchResult(searchLeagueResponse: List<CountryLeagueDto>): SearchResult {
-        return if (searchLeagueResponse.isEmpty()) {
+    override fun mapLeagueSearchResult(searchLeagueResponse: SearchLeagueResponse?): SearchResult {
+        return if (searchLeagueResponse == null || searchLeagueResponse.response.isEmpty()) {
             NoResultsFound
         } else {
             LoadedLeagues(
-                searchLeagueResponse.map { dto ->
+                searchLeagueResponse.response.map { dto ->
                     LeagueViewData(
                         dto.league.id,
                         dto.league.name,

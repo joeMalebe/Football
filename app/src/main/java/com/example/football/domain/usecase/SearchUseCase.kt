@@ -7,6 +7,7 @@ import com.example.football.domain.SearchDataMapper
 
 interface SearchUseCase {
     suspend fun searchCountry(searchQuery: String): SearchResult
+    suspend fun searchLeague(searchQuery: String): SearchResult
 }
 
 internal class SearchUseCaseImpl(
@@ -18,6 +19,15 @@ internal class SearchUseCaseImpl(
         return if (result.isSuccess) {
             val searchResponse = result.getOrNull()
             searchDataMapper.mapCountrySearchResult(searchResponse)
+        } else {
+            SearchResult.SearchError
+        }
+    }
+
+    override suspend fun searchLeague(searchQuery: String): SearchResult {
+        val result = searchRepository.searchByLeague(searchQuery)
+        return if (result.isSuccess) {
+            searchDataMapper.mapLeagueSearchResult(result.getOrNull())
         } else {
             SearchResult.SearchError
         }
