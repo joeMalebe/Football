@@ -38,5 +38,5 @@ sealed class SearchResult {
     data class LoadedCountries(val countries: List<CountryViewData>) : SearchResult()
     object NoResultsFound : SearchResult()
     object SearchError : SearchResult()
-    data class LoadedLeagues(val leagueViewData: List<LeagueViewData>) : SearchResult()
+    data class LoadedLeagues(val leagues: List<LeagueViewData>) : SearchResult()
 }

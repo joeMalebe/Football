@@ -37,13 +37,13 @@ class SearchDataMapperImplTest {
 
         assertTrue(sut::class.java === SearchResult.LoadedLeagues::class.java)
         val leagues = sut as SearchResult.LoadedLeagues
-        assertTrue(leagues.leagueViewData.size == 6)
+        assertTrue(leagues.leagues.size == 6)
         assertLeagueViewData(
             1,
             "Premier League",
             "https://example.com/premier-league.png",
             CountryViewData("England", "https://example.com/england-flag.png", "ENG"),
-            leagues.leagueViewData[0]
+            leagues.leagues[0]
         )
 
         assertLeagueViewData(
@@ -51,7 +51,7 @@ class SearchDataMapperImplTest {
             "La Liga",
             "https://example.com/la-liga.png",
             CountryViewData("Spain", "https://example.com/spain-flag.png", "ESP"),
-            leagues.leagueViewData[1]
+            leagues.leagues[1]
         )
 
         assertLeagueViewData(
@@ -59,7 +59,7 @@ class SearchDataMapperImplTest {
             "Bundesliga",
             "https://example.com/bundesliga.png",
             CountryViewData("Germany", "https://example.com/germany-flag.png", "GER"),
-            leagues.leagueViewData[2]
+            leagues.leagues[2]
         )
 
         assertLeagueViewData(
@@ -67,7 +67,7 @@ class SearchDataMapperImplTest {
             "Serie A",
             "https://example.com/serie-a.png",
             CountryViewData("Italy", "https://example.com/italy-flag.png", "ITA"),
-            leagues.leagueViewData[3]
+            leagues.leagues[3]
         )
 
         assertLeagueViewData(
@@ -75,7 +75,7 @@ class SearchDataMapperImplTest {
             "Ligue 1",
             "https://example.com/ligue-1.png",
             CountryViewData("France", "https://example.com/france-flag.png", "FRA"),
-            leagues.leagueViewData[4]
+            leagues.leagues[4]
         )
 
         assertLeagueViewData(
@@ -83,7 +83,7 @@ class SearchDataMapperImplTest {
             "Eredivisie",
             "https://example.com/eredivisie.png",
             CountryViewData("Netherlands", "https://example.com/netherlands-flag.png", "NED"),
-            leagues.leagueViewData[5]
+            leagues.leagues[5]
         )
     }
 
