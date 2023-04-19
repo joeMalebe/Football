@@ -63,7 +63,7 @@ fun Content(
         }
     ) {
         when (viewState) {
-            is HomeScreenViewModel.SearchViewState.SearchResults -> {
+            is HomeScreenViewModel.SearchViewState.CountrySearchResults -> {
                 CountriesList(countries = viewState.countries, modifier = Modifier.padding(it))
             }
             is HomeScreenViewModel.SearchViewState.Loading -> {

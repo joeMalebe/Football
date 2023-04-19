@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.football.domain.CountryViewData
+import com.example.football.domain.LeagueViewData
 import com.example.football.domain.usecase.SearchResult
 import com.example.football.domain.usecase.SearchUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -36,7 +37,7 @@ class HomeScreenViewModel @Inject constructor(
                     searchResults.clear()
                     searchResults.addAll(result.countries)
                     _searchResultViewState.postValue(
-                        SearchViewState.SearchResults(result.countries)
+                        SearchViewState.CountrySearchResults(result.countries)
                     )
                 }
                 is SearchResult.NoResultsFound -> {
@@ -55,7 +56,7 @@ class HomeScreenViewModel @Inject constructor(
             search(searchText)
         } else if (searchResults.isNotEmpty() && searchText.contains(this.searchText)) {
             _searchResultViewState.postValue(
-                SearchViewState.SearchResults(
+                SearchViewState.CountrySearchResults(
                     searchResults.filter { country ->
                         country.name.contains(
                             searchText,
@@ -73,6 +74,23 @@ class HomeScreenViewModel @Inject constructor(
             false
         )
 
+    fun searchLeague(searchQuery: String) {
+        viewModelScope.launch(ioContext) {
+            _searchResultViewState.postValue(SearchViewState.Loading)
+            when (val result = searchUseCase.searchLeague(searchQuery)) {
+                SearchResult.SearchError -> {
+                    _searchResultViewState.postValue(SearchViewState.Error)
+                }
+                is SearchResult.LoadedLeagues -> {
+                    _searchResultViewState.postValue(SearchViewState.LeagueSearchResults(result.leagues))
+                }
+                else -> {
+                    _searchResultViewState.postValue(SearchViewState.NoSearchResults)
+                }
+            }
+        }
+    }
+
     sealed class SearchViewState {
 
         object Loading : SearchViewState()
@@ -83,6 +101,8 @@ class HomeScreenViewModel @Inject constructor(
 
         object InitialViewState : SearchViewState()
 
-        data class SearchResults(val countries: List<CountryViewData>) : SearchViewState()
+        data class CountrySearchResults(val countries: List<CountryViewData>) : SearchViewState()
+
+        data class LeagueSearchResults(val leagues: List<LeagueViewData>) : SearchViewState()
     }
 }
