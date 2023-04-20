@@ -296,6 +296,24 @@ class HomeScreenViewModelTest {
             assertEquals(thirdValue, SearchViewState.LeagueSearchResults(TestData.leaguesViewData))
         }
     }
+
+    @Test
+    fun `When search query is less than 3 chars then don't call the search league use case`() = runTest {
+        val searchQuery = "Se"
+
+        viewModel.searchLeagueOnTextChanged(searchQuery)
+
+        verifyNoInteractions(searchUseCase)
+    }
+
+    @Test
+    fun `When search query is 3 or more chars then call the search league use case`() = runTest {
+        val searchQuery = "Sea"
+
+        viewModel.searchLeagueOnTextChanged(searchQuery)
+
+        verify(searchUseCase).searchLeague(searchQuery)
+    }
 }
 
 object TestData {
