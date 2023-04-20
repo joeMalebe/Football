@@ -91,6 +91,12 @@ class HomeScreenViewModel @Inject constructor(
         }
     }
 
+    fun searchLeagueOnTextChanged(searchQuery: String) {
+        if(searchQuery.length >= MIN_TEXT_LENGTH_FOR_SEARCH) {
+            searchLeague(searchQuery)
+        }
+    }
+
     sealed class SearchViewState {
 
         object Loading : SearchViewState()
