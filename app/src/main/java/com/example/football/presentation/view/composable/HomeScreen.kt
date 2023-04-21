@@ -2,6 +2,7 @@ package com.example.football.presentation.view.composable
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -12,10 +13,12 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -23,6 +26,7 @@ import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.example.football.R
 import com.example.football.domain.CountryViewData
+import com.example.football.domain.LeagueViewData
 import com.example.football.presentation.theme.FootballTheme
 import com.example.football.presentation.viewmodel.HomeScreenViewModel
 
@@ -37,7 +41,7 @@ fun HomeScreen(viewModel: HomeScreenViewModel) {
         searchText = searchText.text,
         onSearchTextChange = { newSearchText ->
             searchText = TextFieldValue(newSearchText)
-            viewModel.searchOnTextChanged(newSearchText)
+            viewModel.searchLeagueOnTextChanged(newSearchText)
         },
         viewState = viewState
     )
@@ -74,6 +78,9 @@ fun Content(
             }
             is HomeScreenViewModel.SearchViewState.NoSearchResults -> {
                 NoResultsFound()
+            }
+            is HomeScreenViewModel.SearchViewState.LeagueSearchResults -> {
+                LeagueList(leagues = viewState.leagues, modifier = Modifier.padding(it))
             }
             else -> {
                 Text(text = "welcome home", style = MaterialTheme.typography.h5)
@@ -114,6 +121,44 @@ fun CountryViewItem(country: CountryViewData, modifier: Modifier = Modifier) {
         )
         Text(
             text = country.name,
+            modifier = Modifier.padding(top = 8.dp),
+            style = MaterialTheme.typography.subtitle1
+        )
+    }
+}
+
+@Composable
+fun LeagueList(leagues: List<LeagueViewData>, modifier: Modifier = Modifier) {
+    LazyVerticalGrid(modifier = modifier, columns = GridCells.Fixed(2), content = {
+        items(count = leagues.size) { index ->
+            LeagueViewItem(
+                league = leagues[index],
+                modifier = Modifier.padding(bottom = 16.dp).border(width = 3.dp, color = Color.Blue)
+            )
+        }
+    })
+}
+
+@Composable
+fun LeagueViewItem(league: LeagueViewData, modifier: Modifier = Modifier) {
+    Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+        AsyncImage(
+            model = ImageRequest.Builder(context = LocalContext.current)
+                .data(league.logo)
+                .crossfade(true)
+                .build(),
+            contentDescription = league.name,
+            placeholder = painterResource(
+                id = R.drawable.ic_flag_placeholder
+            ),
+            modifier = Modifier
+                .widthIn(min = 48.dp, max = 144.dp)
+                .heightIn(min = 40.dp, max = 138.dp),
+            contentScale = ContentScale.Fit
+        )
+        Text(
+            textAlign = TextAlign.Center,
+            text = league.name,
             modifier = Modifier.padding(top = 8.dp),
             style = MaterialTheme.typography.subtitle1
         )

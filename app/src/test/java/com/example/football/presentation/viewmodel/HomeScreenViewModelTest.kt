@@ -201,7 +201,8 @@ class HomeScreenViewModelTest {
             verify(observer, times(3)).onChanged(capture())
             assertEquals(SearchViewState.InitialViewState, this.firstValue)
             assertEquals(SearchViewState.Loading, this.secondValue)
-            val countrySearchResultsViewState = this.thirdValue as SearchViewState.CountrySearchResults
+            val countrySearchResultsViewState =
+                this.thirdValue as SearchViewState.CountrySearchResults
             assertEquals(countrySearchResultsViewState.countries[0], viewModel.searchResults[0])
         }
 
@@ -282,7 +283,11 @@ class HomeScreenViewModelTest {
     @Test
     fun `When search leagues returns search results emit search results view state`() = runTest {
         val searchQuery = "search"
-        whenever(searchUseCase.searchLeague(searchQuery)).thenReturn(SearchResult.LoadedLeagues(TestData.leaguesViewData))
+        whenever(searchUseCase.searchLeague(searchQuery)).thenReturn(
+            SearchResult.LoadedLeagues(
+                TestData.leaguesViewData
+            )
+        )
         val argumentCaptor = argumentCaptor<SearchViewState>()
         viewModel.searchResultViewState.observeForever(observer)
 
@@ -298,13 +303,14 @@ class HomeScreenViewModelTest {
     }
 
     @Test
-    fun `When search query is less than 3 chars then don't call the search league use case`() = runTest {
-        val searchQuery = "Se"
+    fun `When search query is less than 3 chars then don't call the search league use case`() =
+        runTest {
+            val searchQuery = "Se"
 
-        viewModel.searchLeagueOnTextChanged(searchQuery)
+            viewModel.searchLeagueOnTextChanged(searchQuery)
 
-        verifyNoInteractions(searchUseCase)
-    }
+            verifyNoInteractions(searchUseCase)
+        }
 
     @Test
     fun `When search query is 3 or more chars then call the search league use case`() = runTest {
@@ -339,6 +345,51 @@ class HomeScreenViewModelTest {
             verify(searchUseCase, times(2)).searchLeague(any())
         }
 
+    @Test
+    fun `When search query gets appended and search results has matching substring, emit league results view state with new results `() =
+        runTest {
+            whenever(searchUseCase.searchLeague(any())).thenReturn(
+                SearchResult.LoadedLeagues(
+                    TestData.leaguesViewData
+                )
+            )
+            val argumentCaptor = argumentCaptor<SearchViewState>()
+            viewModel.searchResultViewState.observeForever(observer)
+
+            viewModel.searchLeagueOnTextChanged("lan")
+            viewModel.searchLeagueOnTextChanged("land")
+
+            argumentCaptor.run {
+                verify(observer, times(5)).onChanged(capture())
+                val firstSearchResult = this.thirdValue as SearchViewState.LeagueSearchResults
+                val secondSearchResult = this.lastValue as SearchViewState.LeagueSearchResults
+                assertEquals(firstSearchResult.leagues.size, 6)
+                assertEquals(secondSearchResult.leagues.size, 2)
+            }
+        }
+
+    @Test
+    fun `When search query gets appended and search results have no matching substring emit no results view state`() =
+        runTest {
+            whenever(searchUseCase.searchLeague(any())).thenReturn(
+                SearchResult.LoadedLeagues(
+                    TestData.leaguesViewData
+                )
+            )
+            val argumentCaptor = argumentCaptor<SearchViewState>()
+            viewModel.searchResultViewState.observeForever(observer)
+
+            viewModel.searchLeagueOnTextChanged("lan")
+            viewModel.searchLeagueOnTextChanged("landx")
+
+            argumentCaptor.run {
+                verify(observer, times(5)).onChanged(capture())
+                val firstSearchResult = this.thirdValue as SearchViewState.LeagueSearchResults
+                val secondSearchResult = this.lastValue
+                assertEquals(firstSearchResult.leagues.size, 6)
+                assertSame(secondSearchResult, SearchViewState.NoSearchResults)
+            }
+        }
 }
 
 object TestData {
