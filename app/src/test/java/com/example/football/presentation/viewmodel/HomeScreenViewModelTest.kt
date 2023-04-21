@@ -215,9 +215,9 @@ class HomeScreenViewModelTest {
     }
 
     @Test
-    fun `results should be filtered by countries the contain the same search text in the name`() =
+    fun `results should be filtered by countries that contain the same search text in the name`() =
         runTest {
-            whenever(searchUseCase.searchCountry("port")).thenReturn(
+            whenever(searchUseCase.searchCountry(any())).thenReturn(
                 SearchResult.LoadedCountries(
                     TestData.countries3
                 )
@@ -225,7 +225,7 @@ class HomeScreenViewModelTest {
             val argumentCaptor = argumentCaptor<SearchViewState>()
             viewModel.searchResultViewState.observeForever(observer)
 
-            viewModel.searchOnTextChanged("port")
+            viewModel.searchOnTextChanged("Port")
             viewModel.searchOnTextChanged("porto")
             viewModel.searchOnTextChanged("portu")
 
@@ -314,6 +314,31 @@ class HomeScreenViewModelTest {
 
         verify(searchUseCase).searchLeague(searchQuery)
     }
+
+    @Test
+    fun `When search league text is greater than 3 with same prefix then execute search use case once`() =
+        runTest {
+            whenever(searchUseCase.searchLeague(any())).thenReturn(
+                SearchResult.LoadedLeagues(
+                    TestData.leaguesViewData
+                )
+            )
+
+            viewModel.searchLeagueOnTextChanged("Eng")
+            viewModel.searchLeagueOnTextChanged("England")
+
+            verify(searchUseCase, times(1)).searchLeague(any())
+        }
+
+    @Test
+    fun `When search league text is greater than 3 and different from previous search then execute search use case again`() =
+        runTest {
+            viewModel.searchLeagueOnTextChanged("Check")
+            viewModel.searchLeagueOnTextChanged("Test")
+
+            verify(searchUseCase, times(2)).searchLeague(any())
+        }
+
 }
 
 object TestData {

@@ -54,7 +54,7 @@ class HomeScreenViewModel @Inject constructor(
         if (isValidSearchText(searchText)) {
             this.searchText = searchText.substring(0..2)
             search(searchText)
-        } else if (searchResults.isNotEmpty() && searchText.contains(this.searchText)) {
+        } else if (searchResults.isNotEmpty() && searchText.contains(this.searchText, true)) {
             _searchResultViewState.postValue(
                 SearchViewState.CountrySearchResults(
                     searchResults.filter { country ->
@@ -71,7 +71,7 @@ class HomeScreenViewModel @Inject constructor(
     private fun isValidSearchText(searchText: String) =
         searchText.length >= MIN_TEXT_LENGTH_FOR_SEARCH && !searchText.startsWith(
             this.searchText,
-            false
+            true
         )
 
     fun searchLeague(searchQuery: String) {
@@ -92,7 +92,10 @@ class HomeScreenViewModel @Inject constructor(
     }
 
     fun searchLeagueOnTextChanged(searchQuery: String) {
-        if(searchQuery.length >= MIN_TEXT_LENGTH_FOR_SEARCH) {
+        if (searchQuery.length >= MIN_TEXT_LENGTH_FOR_SEARCH && !searchQuery
+                .contains(searchText, true)
+        ) {
+            searchText = searchQuery.substring(0..2)
             searchLeague(searchQuery)
         }
     }
