@@ -28,6 +28,7 @@ class HomeScreenViewModel @Inject constructor(
 
     private var searchText = "$"
     val searchResults = mutableListOf<CountryViewData>()
+    val searchLeagueResults = mutableListOf<LeagueViewData>()
 
     fun search(searchQuery: String) {
         viewModelScope.launch(context = ioContext) {
@@ -82,7 +83,11 @@ class HomeScreenViewModel @Inject constructor(
                     _searchResultViewState.postValue(SearchViewState.Error)
                 }
                 is SearchResult.LoadedLeagues -> {
-                    _searchResultViewState.postValue(SearchViewState.LeagueSearchResults(result.leagues))
+                    searchLeagueResults.clear()
+                    searchLeagueResults.addAll(result.leagues)
+                    _searchResultViewState.postValue(
+                        SearchViewState.LeagueSearchResults(result.leagues)
+                    )
                 }
                 else -> {
                     _searchResultViewState.postValue(SearchViewState.NoSearchResults)
@@ -97,6 +102,27 @@ class HomeScreenViewModel @Inject constructor(
         ) {
             searchText = searchQuery.substring(0..2)
             searchLeague(searchQuery)
+        } else if (searchQuery.contains(searchText, true)) {
+            _searchResultViewState.postValue(SearchViewState.Loading)
+
+            val filteredResults = filterResultsByLeagueOrCountryName(searchQuery)
+            _searchResultViewState.postValue(updateViewState(filteredResults))
+        }
+    }
+
+    private fun filterResultsByLeagueOrCountryName(searchQuery: String) =
+        searchLeagueResults.filter {
+            it.name.contains(
+                searchQuery,
+                true
+            ) || it.country.name.contains(searchQuery, true)
+        }
+
+    private fun updateViewState(filteredResults: List<LeagueViewData>): SearchViewState {
+        return if (filteredResults.isEmpty()) {
+            SearchViewState.NoSearchResults
+        } else {
+            SearchViewState.LeagueSearchResults(filteredResults)
         }
     }
 

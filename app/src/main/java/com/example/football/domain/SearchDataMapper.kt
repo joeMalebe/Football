@@ -43,5 +43,5 @@ internal class SearchDataMapperImpl : SearchDataMapper {
     }
 
     private fun mapDtoToCountryViewData(country: CountryDto) =
-        CountryViewData(country.name, country.flagUrl, country.code)
+        CountryViewData(country.name, country.flagUrl ?: "", country.code ?: "")
 }
