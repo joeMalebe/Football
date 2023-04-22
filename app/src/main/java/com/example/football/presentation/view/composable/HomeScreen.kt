@@ -133,7 +133,7 @@ fun LeagueList(leagues: List<LeagueViewData>, modifier: Modifier = Modifier) {
         items(count = leagues.size) { index ->
             LeagueViewItem(
                 league = leagues[index],
-                modifier = Modifier.padding(bottom = 16.dp).border(width = 3.dp, color = Color.Blue)
+                modifier = Modifier.padding(all = 16.dp).border(width = 3.dp, color = Color.Blue)
             )
         }
     })
@@ -151,9 +151,7 @@ fun LeagueViewItem(league: LeagueViewData, modifier: Modifier = Modifier) {
             placeholder = painterResource(
                 id = R.drawable.ic_flag_placeholder
             ),
-            modifier = Modifier
-                .widthIn(min = 48.dp, max = 144.dp)
-                .heightIn(min = 40.dp, max = 138.dp),
+            modifier = Modifier.fillMaxWidth(0.5f).height(96.dp),
             contentScale = ContentScale.Fit
         )
         Text(
