@@ -19,5 +19,4 @@ interface FootballService {
         @Query("league") leagueId: String,
         @Query("season") season: String
     ): Result<StandingsResponse>
-
 }
