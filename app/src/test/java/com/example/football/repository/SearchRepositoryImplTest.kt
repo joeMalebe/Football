@@ -8,6 +8,8 @@ import com.example.football.data.repository.SearchRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
+import okhttp3.ResponseBody.Companion.toResponseBody
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -15,6 +17,8 @@ import org.mockito.MockitoAnnotations
 import org.mockito.kotlin.any
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
+import retrofit2.HttpException
+import retrofit2.Response
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class SearchRepositoryImplTest {
@@ -56,5 +60,18 @@ class SearchRepositoryImplTest {
         searchRepository.searchByLeague(searchQuery)
 
         verify(footballService).searchLeagues(searchQuery)
+    }
+
+    @Test
+    fun `When search by league throws an exception then return failure result`() = runTest {
+        whenever(footballService.searchLeagues("eng")).thenThrow(
+            HttpException(Response.error<SearchLeagueResponse>(500, "no internet".toResponseBody()))
+        )
+
+        val sut = searchRepository.searchByLeague("eng")
+
+        val exception = sut.exceptionOrNull() as HttpException
+        assertTrue(sut.isFailure)
+        assertSame(HttpException::class.java, exception::class.java)
     }
 }

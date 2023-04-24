@@ -11,11 +11,11 @@ data class League(
     @SerialName("logo") val logo: String,
     @SerialName("flag") val flag: String,
     @SerialName("season") val season: Int,
-    @SerialName("standings") val standings: List<List<TeamStanding>>
+    @SerialName("standings") val standings: List<List<TeamStandingDto>>
 )
 
 @Serializable
-data class TeamStanding(
+data class TeamStandingDto(
     @SerialName("rank") val rank: Int,
     @SerialName("team") val team: Team,
     @SerialName("points") val points: Int,
@@ -24,9 +24,9 @@ data class TeamStanding(
     @SerialName("form") val form: String,
     @SerialName("status") val status: String,
     @SerialName("description") val description: String,
-    @SerialName("all") val all: TeamStats,
-    @SerialName("home") val home: TeamStats,
-    @SerialName("away") val away: TeamStats,
+    @SerialName("all") val all: TeamStatsDto,
+    @SerialName("home") val home: TeamStatsDto,
+    @SerialName("away") val away: TeamStatsDto,
     @SerialName("update") val update: String
 )
 
@@ -38,16 +38,16 @@ data class Team(
 )
 
 @Serializable
-data class TeamStats(
+data class TeamStatsDto(
     @SerialName("played") val played: Int,
     @SerialName("win") val win: Int,
     @SerialName("draw") val draw: Int,
     @SerialName("lose") val lose: Int,
-    @SerialName("goals") val goals: TeamGoals
+    @SerialName("goals") val goals: TeamGoalsDto
 )
 
 @Serializable
-data class TeamGoals(
+data class TeamGoalsDto(
     @SerialName("for") val `for`: Int,
     @SerialName("against") val against: Int
 )
