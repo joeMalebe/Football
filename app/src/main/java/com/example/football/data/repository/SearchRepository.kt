@@ -23,7 +23,11 @@ internal class SearchRepositoryImpl(
 
     override suspend fun searchByLeague(search: String): Result<SearchLeagueResponse> {
         return withContext(ioContext) {
-            footballService.searchLeagues(search)
+            try {
+                footballService.searchLeagues(search)
+            } catch (throwable: Throwable) {
+                Result.failure(throwable)
+            }
         }
     }
 }
