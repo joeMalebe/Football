@@ -20,7 +20,7 @@ class StandingsViewDataMapperImpl : StandingsViewDataMapper {
             StandingsResult.NoStandingsInformation
         } else {
             StandingsResult.StandingsLoaded(
-                standingsResponse.response[0].standings[0].map {
+                standingsResponse.response[0].league.standings[0].map {
                     StandingsViewData(
                         teamId = it.team.id,
                         draws = it.all.draw,

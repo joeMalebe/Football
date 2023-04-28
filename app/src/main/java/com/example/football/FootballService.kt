@@ -14,7 +14,7 @@ interface FootballService {
     @GET("leagues")
     suspend fun searchLeagues(@Query("search") search: String): Result<SearchLeagueResponse>
 
-    @GET("leagues")
+    @GET("standings")
     suspend fun getStandings(
         @Query("league") leagueId: String,
         @Query("season") season: String
