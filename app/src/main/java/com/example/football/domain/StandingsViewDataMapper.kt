@@ -14,7 +14,7 @@ sealed class StandingsResult {
     data class StandingsLoaded(val standingsViewData: List<StandingsViewData>) : StandingsResult()
 }
 
-class StandingsViewDataMapperImpl() : StandingsViewDataMapper {
+class StandingsViewDataMapperImpl : StandingsViewDataMapper {
     override fun mapDtoToStandingsResult(standingsResponse: StandingsResponse?): StandingsResult {
         return if (standingsResponse == null) {
             StandingsResult.NoStandingsInformation
