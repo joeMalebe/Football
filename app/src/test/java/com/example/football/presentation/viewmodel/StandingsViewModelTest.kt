@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import com.example.football.FootballService
 import com.example.football.data.repository.StandingsRepository
 import com.example.football.data.repository.StandingsRepositoryImpl
+import com.example.football.data.repository.TestData.standingsResponse
 import com.example.football.domain.StandingsResult
 import com.example.football.domain.StandingsViewDataMapperImpl
 import com.example.football.domain.usecase.StandingsUseCase
@@ -80,6 +81,37 @@ class StandingsViewModelTest {
 
         assertEquals(StandingsResult.Error, sut)
         verify(footballService).getStandings("3", "2023")
+    }
+
+    @Test
+    fun `When football service throws an exception then return error standings result`() = runTest {
+        whenever(footballService.getStandings("3", "2023")).thenThrow(
+            java.lang.RuntimeException("error")
+        )
+
+        val sut = standingsUseCase.getLeagueStandings("3")
+
+        assertSame(StandingsResult.Error, sut)
+    }
+
+    @Test
+    fun `When get standings is successful then emit standings loaded state`() = runTest {
+        whenever(footballService.getStandings("5", "2023")).thenReturn(
+            Result.success(
+                standingsResponse
+            )
+        )
+        val argumentCaptor = argumentCaptor<StandingsViewState>()
+        standingsViewModel.standingsViewState.observeForever(observer)
+
+        standingsViewModel.getStandings("5")
+
+        argumentCaptor.run {
+            verify(observer, times(3)).onChanged(this.capture())
+            assertSame(StandingsViewState.Initial, firstValue)
+            assertSame(StandingsViewState.Loading, secondValue)
+            assertSame(StandingsViewState.StandingsLoaded::class.java, thirdValue::class.java)
+        }
     }
 
     @After
