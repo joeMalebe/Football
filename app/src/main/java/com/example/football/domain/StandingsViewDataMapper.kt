@@ -16,7 +16,7 @@ sealed class StandingsResult {
 
 class StandingsViewDataMapperImpl : StandingsViewDataMapper {
     override fun mapDtoToStandingsResult(standingsResponse: StandingsResponse?): StandingsResult {
-        return if (standingsResponse == null) {
+        return if (standingsResponse == null || standingsResponse.response.isEmpty()) {
             StandingsResult.NoStandingsInformation
         } else {
             StandingsResult.StandingsLoaded(
