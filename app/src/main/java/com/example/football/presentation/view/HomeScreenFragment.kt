@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.football.presentation.theme.FootballTheme
 import com.example.football.presentation.view.composable.HomeScreen
 import com.example.football.presentation.viewmodel.HomeScreenViewModel
@@ -26,7 +27,7 @@ class HomeScreenFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 FootballTheme {
-                    HomeScreen(viewModel)
+                    HomeScreen(viewModel, findNavController())
                 }
             }
         }

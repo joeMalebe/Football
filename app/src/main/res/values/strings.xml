@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Football</string>
     <string name="football">Football</string>
+    <string name="standings">standings</string>
     <string name="search">Search</string>
     <string name="no_results_found">No results found</string>
     <string name="we_cant_find_any_results">We can\'t find any results that match your search term</string>

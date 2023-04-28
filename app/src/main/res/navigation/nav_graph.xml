@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/homeScreenFragment"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeScreenFragment">
 
     <fragment
         android:id="@+id/homeScreenFragment"
         android:name="com.example.football.presentation.view.HomeScreenFragment"
-        android:label="@string/football">
+        android:label="@string/football" />
+
+    <fragment
+        android:id="@+id/standingsFragment"
+        android:name="com.example.football.presentation.view.StandingsFragment"
+        android:label="@string/standings">
+
+        <argument
+            android:name="leagueId"
+            app:argType="string"
+            app:nullable="false" />
     </fragment>
 </navigation>
