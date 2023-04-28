@@ -3,6 +3,7 @@ package com.example.football.presentation.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.football.FootballService
+import com.example.football.data.model.StandingsResponse
 import com.example.football.data.repository.StandingsRepository
 import com.example.football.data.repository.StandingsRepositoryImpl
 import com.example.football.data.repository.TestData.standingsResponse
@@ -111,6 +112,26 @@ class StandingsViewModelTest {
             assertSame(StandingsViewState.Initial, firstValue)
             assertSame(StandingsViewState.Loading, secondValue)
             assertSame(StandingsViewState.StandingsLoaded::class.java, thirdValue::class.java)
+        }
+    }
+
+    @Test
+    fun `When get standings has no standings data then emit no information state`() = runTest {
+        whenever(footballService.getStandings("12", "2023")).thenReturn(
+            Result.success(
+                StandingsResponse(emptyList())
+            )
+        )
+        val argumentCaptor = argumentCaptor<StandingsViewState>()
+        standingsViewModel.standingsViewState.observeForever(observer)
+
+        standingsViewModel.getStandings("12")
+
+        argumentCaptor.run {
+            verify(observer, times(3)).onChanged(this.capture())
+            assertSame(StandingsViewState.Initial, firstValue)
+            assertSame(StandingsViewState.Loading, secondValue)
+            assertSame(StandingsViewState.NoInformation, thirdValue)
         }
     }
 

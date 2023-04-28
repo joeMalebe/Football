@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.football.domain.StandingsResult
 import com.example.football.domain.StandingsResult.Error
 import com.example.football.domain.StandingsResult.StandingsLoaded
 import com.example.football.domain.usecase.StandingsUseCase
@@ -35,8 +36,8 @@ class StandingsViewModel @Inject constructor(
                         StandingsViewState.StandingsLoaded(result.standingsViewData)
                     )
                 }
-                else -> {
-                    _standingsViewState.postValue(StandingsViewState.Initial)
+                is StandingsResult.NoStandingsInformation -> {
+                    _standingsViewState.postValue(StandingsViewState.NoInformation)
                 }
             }
         }
