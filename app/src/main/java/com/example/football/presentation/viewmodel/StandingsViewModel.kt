@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.football.domain.StandingsResult
+import com.example.football.domain.StandingsResult.Error
+import com.example.football.domain.StandingsResult.StandingsLoaded
 import com.example.football.domain.usecase.StandingsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -26,11 +27,13 @@ class StandingsViewModel @Inject constructor(
             _standingsViewState.postValue(StandingsViewState.Loading)
 
             when (val result = standingsUseCase.getLeagueStandings(leagueId)) {
-                is StandingsResult.Error -> {
+                is Error -> {
                     _standingsViewState.postValue(StandingsViewState.Error)
                 }
-                is StandingsResult.StandingsLoaded -> {
-                    _standingsViewState.postValue(StandingsViewState.StandingsLoaded(result.standingsViewData))
+                is StandingsLoaded -> {
+                    _standingsViewState.postValue(
+                        StandingsViewState.StandingsLoaded(result.standingsViewData)
+                    )
                 }
                 else -> {
                     _standingsViewState.postValue(StandingsViewState.Initial)
