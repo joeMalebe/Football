@@ -6,12 +6,17 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class League(
     @SerialName("id") val id: Int,
-    @SerialName("name") val name: String,
-    @SerialName("country") val country: String,
-    @SerialName("logo") val logo: String,
-    @SerialName("flag") val flag: String,
+    @SerialName("name") val name: String? = "",
+    @SerialName("country") val country: String? = "",
+    @SerialName("logo") val logo: String? = "",
+    @SerialName("flag") val flag: String? = "",
     @SerialName("season") val season: Int,
     @SerialName("standings") val standings: List<List<TeamStandingDto>>
+)
+
+@Serializable
+data class LeagueInfo(
+    @SerialName("league") val league: League
 )
 
 @Serializable
@@ -20,21 +25,21 @@ data class TeamStandingDto(
     @SerialName("team") val team: Team,
     @SerialName("points") val points: Int,
     @SerialName("goalsDiff") val goalsDiff: Int,
-    @SerialName("group") val group: String,
-    @SerialName("form") val form: String,
-    @SerialName("status") val status: String,
-    @SerialName("description") val description: String,
+    @SerialName("group") val group: String? = "",
+    @SerialName("form") val form: String? = "",
+    @SerialName("status") val status: String? = "",
+    @SerialName("description") val description: String? = "",
     @SerialName("all") val all: TeamStatsDto,
     @SerialName("home") val home: TeamStatsDto,
     @SerialName("away") val away: TeamStatsDto,
-    @SerialName("update") val update: String
+    @SerialName("update") val update: String? = ""
 )
 
 @Serializable
 data class Team(
     @SerialName("id") val id: Int,
-    @SerialName("name") val name: String,
-    @SerialName("logo") val logo: String
+    @SerialName("name") val name: String? = "",
+    @SerialName("logo") val logo: String? = ""
 )
 
 @Serializable
@@ -54,5 +59,5 @@ data class TeamGoalsDto(
 
 @Serializable
 data class StandingsResponse(
-    @SerialName("response") val response: List<League>
+    @SerialName("response") val response: List<LeagueInfo>
 )

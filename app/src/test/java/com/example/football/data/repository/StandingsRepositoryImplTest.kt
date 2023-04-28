@@ -68,105 +68,108 @@ class StandingsRepositoryImplTest {
 
 object TestData {
     val standingsResponse = StandingsResponse(
+        response =
         listOf(
-            League(
-                id = 39,
-                name = "Premier League",
-                country = "England",
-                logo = "https://media.api-sports.io/football/leagues/39.png",
-                flag = "https://media.api-sports.io/flags/gb.svg",
-                season = 2020,
-                standings = listOf(
-                    listOf(
-                        TeamStandingDto(
-                            rank = 1,
-                            team = Team(
-                                id = 50,
-                                name = "Manchester City",
-                                logo = "https://media.api-sports.io/football/teams/50.png"
+            LeagueInfo(
+                league = League(
+                    id = 39,
+                    name = "Premier League",
+                    country = "England",
+                    logo = "https://media.api-sports.io/football/leagues/39.png",
+                    flag = "https://media.api-sports.io/flags/gb.svg",
+                    season = 2020,
+                    standings = listOf(
+                        listOf(
+                            TeamStandingDto(
+                                rank = 1,
+                                team = Team(
+                                    id = 50,
+                                    name = "Manchester City",
+                                    logo = "https://media.api-sports.io/football/teams/50.png"
+                                ),
+                                points = 74,
+                                goalsDiff = 45,
+                                group = "Premier League",
+                                form = "WWWLW",
+                                status = "same",
+                                description = "Promotion - Champions League (Group Stage)",
+                                all = TeamStatsDto(
+                                    played = 31,
+                                    win = 23,
+                                    draw = 5,
+                                    lose = 3,
+                                    goals = TeamGoalsDto(
+                                        `for` = 66,
+                                        against = 21
+                                    )
+                                ),
+                                home = TeamStatsDto(
+                                    played = 16,
+                                    win = 12,
+                                    draw = 2,
+                                    lose = 2,
+                                    goals = TeamGoalsDto(
+                                        `for` = 36,
+                                        against = 13
+                                    )
+                                ),
+                                away = TeamStatsDto(
+                                    played = 15,
+                                    win = 11,
+                                    draw = 3,
+                                    lose = 1,
+                                    goals = TeamGoalsDto(
+                                        `for` = 30,
+                                        against = 8
+                                    )
+                                ),
+                                update = "2021-04-05T00:00:00+00:00"
                             ),
-                            points = 74,
-                            goalsDiff = 45,
-                            group = "Premier League",
-                            form = "WWWLW",
-                            status = "same",
-                            description = "Promotion - Champions League (Group Stage)",
-                            all = TeamStatsDto(
-                                played = 31,
-                                win = 23,
-                                draw = 5,
-                                lose = 3,
-                                goals = TeamGoalsDto(
-                                    `for` = 66,
-                                    against = 21
-                                )
-                            ),
-                            home = TeamStatsDto(
-                                played = 16,
-                                win = 12,
-                                draw = 2,
-                                lose = 2,
-                                goals = TeamGoalsDto(
-                                    `for` = 36,
-                                    against = 13
-                                )
-                            ),
-                            away = TeamStatsDto(
-                                played = 15,
-                                win = 11,
-                                draw = 3,
-                                lose = 1,
-                                goals = TeamGoalsDto(
-                                    `for` = 30,
-                                    against = 8
-                                )
-                            ),
-                            update = "2021-04-05T00:00:00+00:00"
-                        ),
-                        TeamStandingDto(
-                            rank = 2,
-                            team = Team(
-                                id = 33,
-                                name = "Manchester United",
-                                logo = "https://media.api-sports.io/football/teams/33.png"
-                            ),
-                            points = 60,
-                            goalsDiff = 25,
-                            group = "Premier League",
-                            form = "WWWDD",
-                            status = "same",
-                            description = "Promotion - Champions League (Group Stage)",
-                            all = TeamStatsDto(
-                                played = 30,
-                                win = 17,
-                                draw = 9,
-                                lose = 4,
-                                goals = TeamGoalsDto(
-                                    `for` = 58,
-                                    against = 33
-                                )
-                            ),
-                            home = TeamStatsDto(
-                                played = 15,
-                                win = 8,
-                                draw = 3,
-                                lose = 4,
-                                goals = TeamGoalsDto(
-                                    `for` = 31,
-                                    against = 20
-                                )
-                            ),
-                            away = TeamStatsDto(
-                                played = 15,
-                                win = 9,
-                                draw = 6,
-                                lose = 0,
-                                goals = TeamGoalsDto(
-                                    `for` = 27,
-                                    against = 13
-                                )
-                            ),
-                            update = "2021-04-05T00:00:00+00:00"
+                            TeamStandingDto(
+                                rank = 2,
+                                team = Team(
+                                    id = 33,
+                                    name = "Manchester United",
+                                    logo = "https://media.api-sports.io/football/teams/33.png"
+                                ),
+                                points = 60,
+                                goalsDiff = 25,
+                                group = "Premier League",
+                                form = "WWWDD",
+                                status = "same",
+                                description = "Promotion - Champions League (Group Stage)",
+                                all = TeamStatsDto(
+                                    played = 30,
+                                    win = 17,
+                                    draw = 9,
+                                    lose = 4,
+                                    goals = TeamGoalsDto(
+                                        `for` = 58,
+                                        against = 33
+                                    )
+                                ),
+                                home = TeamStatsDto(
+                                    played = 15,
+                                    win = 8,
+                                    draw = 3,
+                                    lose = 4,
+                                    goals = TeamGoalsDto(
+                                        `for` = 31,
+                                        against = 20
+                                    )
+                                ),
+                                away = TeamStatsDto(
+                                    played = 15,
+                                    win = 9,
+                                    draw = 6,
+                                    lose = 0,
+                                    goals = TeamGoalsDto(
+                                        `for` = 27,
+                                        against = 13
+                                    )
+                                ),
+                                update = "2021-04-05T00:00:00+00:00"
+                            )
                         )
                     )
                 )
