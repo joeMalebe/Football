@@ -25,9 +25,12 @@ class StandingsViewModel @Inject constructor(
         viewModelScope.launch(ioContext) {
             _standingsViewState.postValue(StandingsViewState.Loading)
 
-            when (standingsUseCase.getLeagueStandings(leagueId)) {
+            when (val result = standingsUseCase.getLeagueStandings(leagueId)) {
                 is StandingsResult.Error -> {
                     _standingsViewState.postValue(StandingsViewState.Error)
+                }
+                is StandingsResult.StandingsLoaded -> {
+                    _standingsViewState.postValue(StandingsViewState.StandingsLoaded(result.standingsViewData))
                 }
                 else -> {
                     _standingsViewState.postValue(StandingsViewState.Initial)
