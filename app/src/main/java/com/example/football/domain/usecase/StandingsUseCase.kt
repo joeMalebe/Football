@@ -15,7 +15,6 @@ class StandingsUseCaseImpl(
     private val standingsViewDataMapper: StandingsViewDataMapper
 ) : StandingsUseCase {
     override suspend fun getLeagueStandings(leagueId: String): StandingsResult {
-
         val response = repository.getStandings(
             leagueId = leagueId,
             season = Calendar.getInstance().get(YEAR).toString()

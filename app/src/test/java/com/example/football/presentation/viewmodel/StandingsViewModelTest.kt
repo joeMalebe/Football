@@ -12,10 +12,8 @@ import com.example.football.domain.usecase.StandingsUseCaseImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
-import kotlinx.coroutines.yield
 import org.junit.After
 import org.junit.Assert.*
-
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -50,13 +48,15 @@ class StandingsViewModelTest {
         Dispatchers.setMain(testDispatcher)
 
         standingsRepository = StandingsRepositoryImpl(footballService, testDispatcher)
-        standingsUseCase = StandingsUseCaseImpl(standingsRepository,standingsViewDataMapper)
+        standingsUseCase = StandingsUseCaseImpl(standingsRepository, standingsViewDataMapper)
         standingsViewModel = StandingsViewModel(standingsUseCase, testDispatcher)
     }
 
     @Test
-    fun `When getting standings fails then return error view state`() = runTest{
-        whenever(footballService.getStandings("3","2023")).thenReturn(Result.failure(Throwable("errorr")))
+    fun `When getting standings fails then return error view state`() = runTest {
+        whenever(footballService.getStandings("3", "2023")).thenReturn(
+            Result.failure(Throwable("errorr"))
+        )
         val argumentCaptor = argumentCaptor<StandingsViewState>()
         standingsViewModel.standingsViewState.observeForever(observer)
 
@@ -72,12 +72,14 @@ class StandingsViewModelTest {
 
     @Test
     fun `When football service fails then return error standings Result`() = runTest {
-        whenever(footballService.getStandings("3","2023")).thenReturn(Result.failure(Throwable("Error")))
+        whenever(footballService.getStandings("3", "2023")).thenReturn(
+            Result.failure(Throwable("Error"))
+        )
 
         val sut = standingsUseCase.getLeagueStandings("3")
 
         assertEquals(StandingsResult.Error, sut)
-        verify(footballService).getStandings("3","2023")
+        verify(footballService).getStandings("3", "2023")
     }
 
     @After

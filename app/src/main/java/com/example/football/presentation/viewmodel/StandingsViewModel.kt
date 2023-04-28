@@ -7,9 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.football.domain.StandingsResult
 import com.example.football.domain.usecase.StandingsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class StandingsViewModel @Inject constructor(
@@ -25,16 +25,14 @@ class StandingsViewModel @Inject constructor(
         viewModelScope.launch(ioContext) {
             _standingsViewState.postValue(StandingsViewState.Loading)
 
-           val result = standingsUseCase.getLeagueStandings(leagueId)
-
-           when(result) {
-              is StandingsResult.Error -> {
-                   _standingsViewState.postValue(StandingsViewState.Error)
-               }
-               else -> {
-                   _standingsViewState.postValue(StandingsViewState.Initial)
-               }
-           }
+            when (standingsUseCase.getLeagueStandings(leagueId)) {
+                is StandingsResult.Error -> {
+                    _standingsViewState.postValue(StandingsViewState.Error)
+                }
+                else -> {
+                    _standingsViewState.postValue(StandingsViewState.Initial)
+                }
+            }
         }
     }
 }
