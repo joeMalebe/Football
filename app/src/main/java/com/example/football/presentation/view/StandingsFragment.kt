@@ -9,6 +9,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.football.presentation.theme.FootballTheme
+import com.example.football.presentation.view.composable.StandingsScreen
 import com.example.football.presentation.viewmodel.StandingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,6 +28,7 @@ class StandingsFragment : Fragment() {
                 FootballTheme {
                     Text(text = "hello Mr")
                     viewModel.getStandings(arguments?.getString("leagueId") ?: "0")
+                    StandingsScreen(viewModel)
                 }
             }
         }

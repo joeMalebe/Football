@@ -22,6 +22,7 @@ class StandingsViewDataMapperImpl : StandingsViewDataMapper {
             StandingsResult.StandingsLoaded(
                 standingsResponse.response[0].league.standings[0].map {
                     StandingsViewData(
+                        teamName = it.team.name,
                         teamId = it.team.id,
                         draws = it.all.draw,
                         losses = it.all.lose,
