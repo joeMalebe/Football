@@ -8,5 +8,6 @@ data class StandingsViewData(
     val losses: Int,
     val draws: Int,
     val points: Int,
-    val positionDescription: String?
+    val positionDescription: String?,
+    val teamName: String?
 )

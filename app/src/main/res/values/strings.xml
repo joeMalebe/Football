@@ -7,4 +7,10 @@
     <string name="we_cant_find_any_results">We can\'t find any results that match your search term</string>
     <string name="an_error_has_occurred">An error has occurred</string>
     <string name="try_again">Try again</string>
+    <string name="clubs">Clubs</string>
+    <string name="wins">W</string>
+    <string name="draws">D</string>
+    <string name="losses">L</string>
+    <string name="points">Pts</string>
+    <string name="unknown">unknown</string>
 </resources>

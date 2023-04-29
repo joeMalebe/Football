@@ -31,6 +31,7 @@ import coil.request.ImageRequest
 import com.example.football.R
 import com.example.football.domain.CountryViewData
 import com.example.football.domain.LeagueViewData
+import com.example.football.domain.StandingsViewData
 import com.example.football.presentation.theme.FootballTheme
 import com.example.football.presentation.viewmodel.HomeScreenViewModel
 
@@ -237,5 +238,46 @@ object PreviewData {
         ),
         CountryViewData(name = "Italy", flagUri = "https://media-2.api-sports.io/flags/it.svg", ""),
         CountryViewData(name = "Spain", flagUri = "https://media-2.api-sports.io/flags/es.svg", "")
+    )
+    val standings = listOf(
+        StandingsViewData(
+            1,
+            1234,
+            "https://example.com/logo.png",
+            20,
+            3,
+            7,
+            67,
+            "1st Place",
+            "Team A"
+        ),
+        StandingsViewData(
+            2,
+            5678,
+            "https://example.com/logo.png",
+            18,
+            5,
+            7,
+            61,
+            "2nd Place",
+            "Team B"
+        ),
+        StandingsViewData(3, 9012, null, 15, 8, 7, 52, "3rd Place", "Team C"),
+        StandingsViewData(4, 3456, "https://example.com/logo.png", 14, 9, 7, 49, null, "Team D"),
+        StandingsViewData(5, 7890, "https://example.com/logo.png", 13, 10, 7, 46, null, "Team E"),
+        StandingsViewData(6, 2345, null, 12, 12, 6, 42, null, "Team F"),
+        StandingsViewData(7, 6789, "https://example.com/logo.png", 10, 12, 8, 38, null, "Team G"),
+        StandingsViewData(8, 1234, null, 9, 13, 8, 35, null, "Team H"),
+        StandingsViewData(9, 5678, "https://example.com/logo.png", 8, 15, 7, 31, null, "Team I"),
+        StandingsViewData(10, 9012, null, 6, 16, 8, 26, null, "Team J"),
+        StandingsViewData(11, 3456, "https://example.com/logo.png", 5, 18, 7, 22, null, "Team K"),
+        StandingsViewData(12, 7890, "https://example.com/logo.png", 4, 19, 7, 19, null, "Team L"),
+        StandingsViewData(13, 2345, null, 3, 20, 7, 16, null, "Team M"),
+        StandingsViewData(14, 6789, "https://example.com/logo.png", 2, 21, 7, 13, null, "Team N"),
+        StandingsViewData(15, 1234, null, 1, 22, 7, 10, null, "Team O"),
+        StandingsViewData(16, 5678, "https://example.com/logo.png", 0, 23, 7, 7, null, "Team P"),
+        StandingsViewData(17, 9012, null, 0, 23, 7, 7, null, "Team Q"),
+        StandingsViewData(18, 3456, "https://example.com/logo.png", 0, 23, 7, 7, null, "Team R"),
+        StandingsViewData(19, 7890, "https://example.com/logo.png", 0, 23, 7, 7, null, "Team")
     )
 }
