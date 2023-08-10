@@ -30,7 +30,7 @@ import com.example.football.presentation.viewmodel.StandingsViewState
 @Composable
 fun StandingsScreen(viewModel: StandingsViewModel) {
     val nullableViewState by
-    viewModel.standingsViewState.observeAsState()
+        viewModel.standingsViewState.observeAsState()
 
     val viewState = nullableViewState ?: return
     Scaffold { paddingValues ->
@@ -65,16 +65,15 @@ fun RowScope.TableCell(
     Box(
         modifier = modifier
             .weight(weight)
-            .padding(8.dp), contentAlignment = Alignment.Center
+            .padding(8.dp),
+        contentAlignment = Alignment.Center
     ) {
-
         Text(
             text = text,
             style = MaterialTheme.typography.body1
         )
     }
 }
-
 
 @Composable
 fun RowScope.TableHeaderCell(
@@ -85,9 +84,9 @@ fun RowScope.TableHeaderCell(
     Box(
         modifier = modifier
             .weight(weight)
-            .padding(8.dp), contentAlignment = Alignment.Center
+            .padding(8.dp),
+        contentAlignment = Alignment.Center
     ) {
-
         Text(
             text = text,
             style = MaterialTheme.typography.subtitle1
@@ -104,9 +103,8 @@ fun RowScope.TableClubHeaderCell(
     Box(
         modifier = modifier
             .weight(weight)
-            .padding(8.dp),
+            .padding(8.dp)
     ) {
-
         Text(
             text = text,
             style = MaterialTheme.typography.subtitle1
@@ -124,7 +122,7 @@ fun RowScope.ClubTableCell(
         modifier = modifier
             .weight(weight)
             .padding(8.dp),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
             modifier = Modifier
@@ -145,7 +143,8 @@ fun RowScope.ClubTableCell(
             placeholder = painterResource(
                 id = R.drawable.team_logo
             ),
-            contentScale = ContentScale.Fit, modifier = Modifier.size(36.dp)
+            contentScale = ContentScale.Fit,
+            modifier = Modifier.size(36.dp)
         )
         Text(
             text = teamName,
@@ -171,7 +170,8 @@ fun StandingsTable(standingsViewData: List<StandingsViewData>, modifier: Modifie
             Row(
                 Modifier
                     .background(Color.Gray)
-                    .fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 TableClubHeaderCell(
                     text = stringResource(id = R.string.clubs),
