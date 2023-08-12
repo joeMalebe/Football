@@ -4,6 +4,8 @@ import com.example.football.data.repository.SearchRepository
 import com.example.football.data.repository.SearchRepositoryImpl
 import com.example.football.data.repository.StandingsRepository
 import com.example.football.data.repository.StandingsRepositoryImpl
+import com.example.football.data.repository.TopGoalScorerRepository
+import com.example.football.data.repository.TopGoalScorerRepositoryImpl
 import com.example.football.domain.SearchDataMapper
 import com.example.football.domain.SearchDataMapperImpl
 import com.example.football.domain.StandingsViewDataMapper
@@ -74,5 +76,13 @@ class FootballModule {
         ioContext: CoroutineContext
     ): StandingsRepository {
         return StandingsRepositoryImpl(footballService, ioContext)
+    }
+
+    @Provides
+    fun getTopScorersRepository(
+        footballService: FootballService,
+        ioContext: CoroutineContext
+    ): TopGoalScorerRepository {
+        return TopGoalScorerRepositoryImpl(footballService, ioContext)
     }
 }
