@@ -44,7 +44,7 @@ object NetworkModule {
             it.proceed(
                 it.request().newBuilder()
                     .addHeader("x-rapidapi-key", BuildConfig.API_KEY)
-                    .addHeader("x-rapidapi-host", BuildConfig.BASE_URL)
+                    .addHeader("x-rapidapi-host", BuildConfig.HOST)
                     .build()
             )
         }.addInterceptor(interceptor).build()
