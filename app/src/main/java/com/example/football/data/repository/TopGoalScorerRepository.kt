@@ -2,8 +2,8 @@ package com.example.football.data.repository
 
 import com.example.football.FootballService
 import com.example.football.data.model.TopScorersResponse
-import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.withContext
 
 interface TopGoalScorerRepository {
     suspend fun getTopGoalScorer(leagueId: String, season: String): Result<TopScorersResponse>
