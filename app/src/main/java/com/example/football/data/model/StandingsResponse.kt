@@ -11,7 +11,7 @@ data class League(
     @SerialName("logo") val logo: String? = "",
     @SerialName("flag") val flag: String? = "",
     @SerialName("season") val season: Int,
-    @SerialName("standings") val standings: List<List<TeamStandingDto>>
+    @SerialName("standings") val standings: List<List<TeamStandingDto>> = emptyList()
 )
 
 @Serializable
