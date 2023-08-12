@@ -2,151 +2,150 @@ package com.example.football.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-
 @Serializable
 data class TopScorersResponse(
-    val errors: List<String> = emptyList(),
-    val get: String = "",
-    val paging: Paging = Paging(),
-    val parameters: Parameters = Parameters(),
-    val response: List<PlayerData> = emptyList(),
-    val results: Int = 0
+    val errors: List<String>? = null,
+    val get: String? = null,
+    val paging: Paging? = null,
+    val parameters: Parameters? = null,
+    val response: List<PlayerData>? = null,
+    val results: Int? = null
 )
 
 @Serializable
 data class Paging(
-    val current: Int = 0,
-    val total: Int = 0
+    val current: Int? = null,
+    val total: Int? = null
 )
 
 @Serializable
 data class Parameters(
-    val league: String = "",
-    val season: String = ""
+    val league: String? = null,
+    val season: String? = null
 )
 
 @Serializable
 data class PlayerData(
-    val player: Player = Player(),
-    val statistics: List<Statistics> = emptyList()
+    val player: Player? = null,
+    val statistics: List<Statistics>? = null
 )
 
 @Serializable
 data class Player(
-    val age: Int = 0,
-    val birth: Birth = Birth(),
-    val firstname: String = "",
-    val height: String = "",
-    val id: Int = 0,
-    val injured: Boolean = false,
-    val lastname: String = "",
-    val name: String = "",
-    val nationality: String = "",
-    val photo: String = "",
-    val weight: String = ""
+    val age: Int? = null,
+    val birth: Birth? = null,
+    val firstname: String? = null,
+    val height: String? = null,
+    val id: Int? = null,
+    val injured: Boolean? = null,
+    val lastname: String? = null,
+    val name: String? = null,
+    val nationality: String? = null,
+    val photo: String? = null,
+    val weight: String? = null
 )
 
 @Serializable
 data class Birth(
-    val country: String = "",
-    val date: String = "",
-    val place: String = ""
+    val country: String? = null,
+    val date: String? = null,
+    val place: String? = null
 )
 
 @Serializable
 data class Statistics(
-    val cards: CardStats = CardStats(),
-    val dribbles: DribbleStats = DribbleStats(),
-    val duels: DuelStats = DuelStats(),
-    val fouls: FoulStats = FoulStats(),
-    val games: GameStats = GameStats(),
-    val goals: GoalStats = GoalStats(),
-    val league: League,
-    val passes: PassStats = PassStats(),
-    val penalty: PenaltyStats = PenaltyStats(),
-    val shots: ShotStats = ShotStats(),
-    val substitutes: SubstituteStats = SubstituteStats(),
-    val tackles: TackleStats = TackleStats(),
-    val team: Team
+    val cards: CardStats? = null,
+    val dribbles: DribbleStats? = null,
+    val duels: DuelStats? = null,
+    val fouls: FoulStats? = null,
+    val games: GameStats? = null,
+    val goals: GoalStats? = null,
+    val league: League? = null,
+    val passes: PassStats? = null,
+    val penalty: PenaltyStats? = null,
+    val shots: ShotStats? = null,
+    val substitutes: SubstituteStats? = null,
+    val tackles: TackleStats? = null,
+    val team: Team? = null
 )
 
 @Serializable
 data class CardStats(
-    val red: Int = 0,
-    val yellow: Int = 0,
-    @SerialName("yellowred") val yellowRed: Int = 0
+    val red: Int? = null,
+    val yellow: Int? = null,
+    @SerialName("yellowred") val yellowRed: Int? = null
 )
 
 @Serializable
 data class DribbleStats(
-    val attempts: Int = 0,
+    val attempts: Int? = null,
     val past: Int? = null,
-    val success: Int = 0
+    val success: Int? = null
 )
 
 @Serializable
 data class DuelStats(
-    val total: Int = 0,
-    val won: Int = 0
+    val total: Int? = null,
+    val won: Int? = null
 )
 
 @Serializable
 data class FoulStats(
-    val committed: Int = 0,
-    val drawn: Int = 0
+    val committed: Int? = null,
+    val drawn: Int? = null
 )
 
 @Serializable
 data class GameStats(
-    val appearences: Int = 0,
-    val captain: Boolean = false,
-    val lineups: Int = 0,
-    val minutes: Int = 0,
+    val appearences: Int? = null,
+    val captain: Boolean? = null,
+    val lineups: Int? = null,
+    val minutes: Int? = null,
     val number: Int? = null,
-    val position: String = "",
-    val rating: String = ""
+    val position: String? = null,
+    val rating: String? = null
 )
 
 @Serializable
 data class GoalStats(
-    val assists: Int = 0,
-    val conceded: Int = 0,
+    val assists: Int? = null,
+    val conceded: Int? = null,
     val saves: Int? = null,
-    val total: Int = 0
+    val total: Int? = null
 )
 
 @Serializable
 data class PassStats(
-    val accuracy: Int = 0,
-    val key: Int = 0,
-    val total: Int = 0
+    val accuracy: Int? = null,
+    val key: Int? = null,
+    val total: Int? = null
 )
 
 @Serializable
 data class PenaltyStats(
     val commited: Int? = null,
-    val missed: Int = 0,
+    val missed: Int? = null,
     val saved: Int? = null,
-    val scored: Int = 0,
+    val scored: Int? = null,
     val won: Int? = null
 )
 
 @Serializable
 data class ShotStats(
-    val on: Int = 0,
-    val total: Int = 0
+    val on: Int? = null,
+    val total: Int? = null
 )
 
 @Serializable
 data class SubstituteStats(
-    val bench: Int = 0,
-    @SerialName("in") val inCount: Int = 0,
-    val out: Int = 0
+    val bench: Int? = null,
+    @SerialName("in") val inCount: Int? = null,
+    val out: Int? = null
 )
 
 @Serializable
 data class TackleStats(
-    val blocks: Int = 0,
-    val interceptions: Int = 0,
-    val total: Int = 0
+    val blocks: Int? = null,
+    val interceptions: Int? = null,
+    val total: Int? = null
 )
