@@ -67,6 +67,90 @@ class StandingsRepositoryImplTest {
 }
 
 object TestData {
+    val topGoalScorerResponse = TopScorersResponse(
+        response = listOf(
+            PlayerData(
+                player = Player(
+                    id = 1,
+                    name = "Lionel Messi",
+                    photo = "https://media.api-sports.io/football/players/1.png"
+                ),
+                statistics = listOf(
+                    Statistics(
+                        team = Team(
+                            id = 1,
+                            name = "Barcelona",
+                            logo = "https://media.api-sports.io/football/teams/1.png"
+                        ),
+                        goals = GoalStats(
+                            total = 23,
+                            conceded = 0,
+                            assists = 0,
+                            saves = 0,
+                        ),
+                        league = League(
+                            id = 1,
+                            name = "La Liga",
+                            country = "Spain",
+                            logo = "https://media.api-sports.io/football/leagues/1.png",
+                            flag = "https://media.api-sports.io/flags/es.svg",
+                            season = 2020,
+                            standings = listOf(
+                                listOf(
+                                    TeamStandingDto(
+                                        rank = 1,
+                                        team = Team(
+                                            id = 1,
+                                            name = "Barcelona",
+                                            logo = "https://media.api-sports.io/football/teams/1.png"
+                                        ),
+                                        points = 74,
+                                        goalsDiff = 45,
+                                        group = "La Liga",
+                                        form = "WWWLW",
+                                        status = "same",
+                                        description = "Promotion - Champions League (Group Stage)",
+                                        all = TeamStatsDto(
+                                            played = 31,
+                                            win = 23,
+                                            draw = 5,
+                                            lose = 3,
+                                            goals = TeamGoalsDto(
+                                                `for` = 66,
+                                                against = 21
+                                            )
+                                        ),
+                                        home = TeamStatsDto(
+                                            played = 16,
+                                            win = 12,
+                                            draw = 2,
+                                            lose = 2,
+                                            goals = TeamGoalsDto(
+                                                `for` = 34,
+                                                against = 11
+                                            )
+                                        ),
+                                        away = TeamStatsDto(
+                                            played = 15,
+                                            win = 11,
+                                            draw = 3,
+                                            lose = 1,
+                                            goals = TeamGoalsDto(
+                                                `for` = 32,
+                                                against = 10
+                                            )
+                                        ),
+                                        update = "2021-04-06T00:00:00+00:00"
+                                    )
+                                )
+                            ),
+                        )
+                    )
+                )
+            )
+        )
+    )
+
     val standingsResponse = StandingsResponse(
         response =
         listOf(
