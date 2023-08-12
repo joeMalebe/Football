@@ -86,7 +86,7 @@ object TestData {
                             total = 23,
                             conceded = 0,
                             assists = 0,
-                            saves = 0,
+                            saves = 0
                         ),
                         league = League(
                             id = 1,
@@ -143,7 +143,7 @@ object TestData {
                                         update = "2021-04-06T00:00:00+00:00"
                                     )
                                 )
-                            ),
+                            )
                         )
                     )
                 )
