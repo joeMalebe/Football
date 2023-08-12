@@ -12,19 +12,20 @@ import org.mockito.Mock
 import org.mockito.MockitoAnnotations.openMocks
 import org.mockito.kotlin.whenever
 
-
 @OptIn(ExperimentalCoroutinesApi::class)
 class TopGoalScorerRepositoryTest {
 
     @Mock
     lateinit var footballService: FootballService
+
     @OptIn(ExperimentalCoroutinesApi::class)
     val testDispatcher = UnconfinedTestDispatcher(scheduler = TestCoroutineScheduler())
-    lateinit var repository : TopGoalScorerRepository
+    lateinit var repository: TopGoalScorerRepository
+
     @Before
     fun setUp() {
         openMocks(this)
-        repository =  TopGoalScorerRepositoryImpl(footballService, testDispatcher)
+        repository = TopGoalScorerRepositoryImpl(footballService, testDispatcher)
     }
 
     @Test
@@ -36,4 +37,3 @@ class TopGoalScorerRepositoryTest {
         assertEquals(response, Result.success(TestData.topGoalScorerResponse))
     }
 }
-
