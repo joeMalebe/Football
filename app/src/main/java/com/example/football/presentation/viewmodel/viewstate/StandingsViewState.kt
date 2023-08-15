@@ -1,4 +1,4 @@
-package com.example.football.presentation.viewmodel
+package com.example.football.presentation.viewmodel.viewstate
 
 import com.example.football.domain.StandingsViewData
 

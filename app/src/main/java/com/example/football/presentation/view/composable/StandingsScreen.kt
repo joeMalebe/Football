@@ -25,7 +25,7 @@ import coil.request.ImageRequest
 import com.example.football.R
 import com.example.football.domain.StandingsViewData
 import com.example.football.presentation.viewmodel.StandingsViewModel
-import com.example.football.presentation.viewmodel.StandingsViewState
+import com.example.football.presentation.viewmodel.viewstate.StandingsViewState
 
 @Composable
 fun StandingsScreen(viewModel: StandingsViewModel) {
@@ -53,7 +53,7 @@ fun StandingsScreen(viewModel: StandingsViewModel) {
 
 @Composable
 fun Content(modifier: Modifier = Modifier, standingsViewData: List<StandingsViewData>) {
-    StandingsTable(standingsViewData = standingsViewData, modifier = Modifier.padding(16.dp))
+    StandingsTable(standingsViewData = standingsViewData, modifier = modifier.padding(16.dp))
 }
 
 @Composable

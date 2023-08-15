@@ -1,10 +1,9 @@
 package com.example.football.domain
 
-data class TopPlayerViewData(
-    val playerId: String,
+data class TopGoalScorerViewData(
+    val playerId: Int,
     val playerName: String,
     val playerSurname: String,
-    val teamName: String,
     val numberOfGoals: Int,
     val playerImgUrl: String
 ) {
