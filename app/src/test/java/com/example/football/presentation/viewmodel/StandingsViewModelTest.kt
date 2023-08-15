@@ -11,6 +11,7 @@ import com.example.football.domain.StandingsResult
 import com.example.football.domain.StandingsViewDataMapperImpl
 import com.example.football.domain.usecase.StandingsUseCase
 import com.example.football.domain.usecase.StandingsUseCaseImpl
+import com.example.football.presentation.viewmodel.viewstate.StandingsViewState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*

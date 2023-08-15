@@ -10,6 +10,8 @@ import com.example.football.domain.SearchDataMapper
 import com.example.football.domain.SearchDataMapperImpl
 import com.example.football.domain.StandingsViewDataMapper
 import com.example.football.domain.StandingsViewDataMapperImpl
+import com.example.football.domain.usecase.GetTopGoalScorersUseCase
+import com.example.football.domain.usecase.GetTopGoalScorersUseCaseImpl
 import com.example.football.domain.usecase.SearchUseCase
 import com.example.football.domain.usecase.SearchUseCaseImpl
 import com.example.football.domain.usecase.StandingsUseCase
@@ -84,5 +86,12 @@ class FootballModule {
         ioContext: CoroutineContext
     ): TopGoalScorerRepository {
         return TopGoalScorerRepositoryImpl(footballService, ioContext)
+    }
+
+    @Provides
+    fun getTopScorersUseCase(
+        topGoalScorerRepository: TopGoalScorerRepository
+    ): GetTopGoalScorersUseCase {
+        return GetTopGoalScorersUseCaseImpl(topGoalScorerRepository)
     }
 }

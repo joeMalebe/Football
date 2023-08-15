@@ -8,6 +8,7 @@ import com.example.football.domain.StandingsResult
 import com.example.football.domain.StandingsResult.Error
 import com.example.football.domain.StandingsResult.StandingsLoaded
 import com.example.football.domain.usecase.StandingsUseCase
+import com.example.football.presentation.viewmodel.viewstate.StandingsViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
