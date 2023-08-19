@@ -32,6 +32,7 @@ import com.example.football.R
 import com.example.football.domain.CountryViewData
 import com.example.football.domain.LeagueViewData
 import com.example.football.domain.StandingsViewData
+import com.example.football.domain.TopGoalScorerViewData
 import com.example.football.presentation.theme.FootballTheme
 import com.example.football.presentation.viewmodel.HomeScreenViewModel
 
@@ -220,6 +221,26 @@ private fun ContentPreview() {
 }
 
 object PreviewData {
+
+    val topGoalScorersList = listOf(
+        TopGoalScorerViewData(1, "Lionel", "Messi", 35, "https://example.com/messi.jpg"),
+        TopGoalScorerViewData(2, "Cristiano", "Ronaldo", 31, "https://example.com/ronaldo.jpg"),
+        TopGoalScorerViewData(
+            3,
+            "Robert",
+            "Lewandowski",
+            29,
+            "https://example.com/lewandowski.jpg"
+        ),
+        TopGoalScorerViewData(4, "Karim", "Benzema", 27, "https://example.com/benzema.jpg"),
+        TopGoalScorerViewData(5, "Erling", "Haaland", 26, "https://example.com/haaland.jpg"),
+        TopGoalScorerViewData(6, "Kylian", "Mbappe", 24, "https://example.com/mbappe.jpg"),
+        TopGoalScorerViewData(7, "Harry", "Kane", 23, "https://example.com/kane.jpg"),
+        TopGoalScorerViewData(8, "Mohamed", "Salah", 22, "https://example.com/salah.jpg"),
+        TopGoalScorerViewData(9, "Sergio", "Aguero", 20, "https://example.com/aguero.jpg"),
+        TopGoalScorerViewData(10, "Antoine", "Griezmann", 19, "https://example.com/griezmann.jpg")
+    )
+
     val countries = listOf(
         CountryViewData(
             name = "England",
