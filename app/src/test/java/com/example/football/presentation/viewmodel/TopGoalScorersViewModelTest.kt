@@ -8,6 +8,8 @@ import com.example.football.data.repository.TopGoalScorerRepositoryImpl
 import com.example.football.domain.TopGoalScorerViewData
 import com.example.football.domain.usecase.GetTopGoalScorersUseCase
 import com.example.football.domain.usecase.GetTopGoalScorersUseCaseImpl
+import com.example.football.domain.usecase.TopGoalScorersResult
+import com.example.football.presentation.view.composable.PreviewData
 import com.example.football.presentation.viewmodel.viewstate.TopGoalScorersViewState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -33,6 +35,9 @@ class TopGoalScorersViewModelTest {
 
     @Mock
     lateinit var observer: Observer<TopGoalScorersViewState>
+
+    @Mock
+    lateinit var mockUseCase: GetTopGoalScorersUseCase
 
     private val testDispatcher = UnconfinedTestDispatcher(scheduler = TestCoroutineScheduler())
     private lateinit var useCase: GetTopGoalScorersUseCase
@@ -156,6 +161,57 @@ class TopGoalScorersViewModelTest {
                 )
             }
         }
+
+    @Test
+    fun `When isSeeAll is false emit TopGoalScorersLoaded view state with top 5 scorers`() = runTest {
+        whenever(mockUseCase.getTopGoalScorers("1", "2022")).thenReturn(
+            TopGoalScorersResult.Loaded(PreviewData.topGoalScorersList)
+        )
+        val mockViewModel = TopGoalScorersViewModel(mockUseCase, testDispatcher)
+        mockViewModel.topGoalScorerViewState.observeForever(observer)
+
+        mockViewModel.loadTopGoalScorers(leagueId = "1", season = "2022")
+
+        verify(observer, times(1)).onChanged(
+            TopGoalScorersViewState.TopGoalScorersLoaded(PreviewData.topGoalScorersList.take(5))
+        )
+        verify(observer, times(0)).onChanged(
+            TopGoalScorersViewState.TopGoalScorersLoaded(PreviewData.topGoalScorersList)
+        )
+    }
+
+    @Test
+    fun `When onSeeAllClick is called and isSeeAll emit TopGoalScorersLoaded view state with all scorers`() = runTest {
+        whenever(mockUseCase.getTopGoalScorers("1", "2022")).thenReturn(
+            TopGoalScorersResult.Loaded(PreviewData.topGoalScorersList)
+        )
+        val mockViewModel = TopGoalScorersViewModel(mockUseCase, testDispatcher)
+        mockViewModel.topGoalScorerViewState.observeForever(observer)
+
+        mockViewModel.loadTopGoalScorers(leagueId = "1", season = "2022")
+        mockViewModel.onSeeAllClick()
+
+        verify(observer, times(1)).onChanged(
+            TopGoalScorersViewState.TopGoalScorersLoaded(PreviewData.topGoalScorersList.take(5))
+        )
+        verify(observer, times(1)).onChanged(
+            TopGoalScorersViewState.TopGoalScorersLoaded(PreviewData.topGoalScorersList)
+        )
+    }
+
+    @Test
+    fun `When getTopGoalScorers is called with isSeeAll true return all scorers`() {
+        val topGoalScorers = viewModel.getTopGoalScorers(PreviewData.topGoalScorersList, true)
+
+        assertEquals(PreviewData.topGoalScorersList, topGoalScorers)
+    }
+
+    @Test
+    fun `When getTopGoalScorers is called with isSeeAll false return top 5 scorers`() {
+        val topGoalScorers = viewModel.getTopGoalScorers(PreviewData.topGoalScorersList, false)
+
+        assertEquals(PreviewData.topGoalScorersList.take(5), topGoalScorers)
+    }
 }
 
 object TestViewData {

@@ -18,6 +18,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -60,54 +61,19 @@ fun Content(modifier: Modifier = Modifier, standingsViewData: List<StandingsView
 fun RowScope.TableCell(
     text: String,
     weight: Float,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    style: TextStyle = MaterialTheme.typography.body1,
+    contentAlignment: Alignment = Alignment.Center
 ) {
     Box(
         modifier = modifier
             .weight(weight)
             .padding(8.dp),
-        contentAlignment = Alignment.Center
+        contentAlignment = contentAlignment
     ) {
         Text(
             text = text,
-            style = MaterialTheme.typography.body1
-        )
-    }
-}
-
-@Composable
-fun RowScope.TableHeaderCell(
-    text: String,
-    weight: Float,
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier
-            .weight(weight)
-            .padding(8.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = text,
-            style = MaterialTheme.typography.subtitle1
-        )
-    }
-}
-
-@Composable
-fun RowScope.TableClubHeaderCell(
-    text: String,
-    weight: Float,
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier
-            .weight(weight)
-            .padding(8.dp)
-    ) {
-        Text(
-            text = text,
-            style = MaterialTheme.typography.subtitle1
+            style = style
         )
     }
 }
@@ -157,7 +123,7 @@ fun RowScope.ClubTableCell(
 @Composable
 fun StandingsTable(standingsViewData: List<StandingsViewData>, modifier: Modifier = Modifier) {
     // weight for team name column and stats column
-    val columnClubsWeight = .5f // 60%
+    val columnClubsWeight = .4f // 60%
     val columnStatsWeight = .125f // 10%
 
     // The LazyColumn will be our table. Notice the use of the weights below
@@ -173,25 +139,28 @@ fun StandingsTable(standingsViewData: List<StandingsViewData>, modifier: Modifie
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TableClubHeaderCell(
+                TableCell(
                     text = stringResource(id = R.string.clubs),
-                    weight = columnClubsWeight
+                    weight = columnClubsWeight,
+                    style = MaterialTheme.typography.subtitle1,
+                    contentAlignment = Alignment.CenterStart
                 )
-                TableHeaderCell(
+                TableCell(
                     text = stringResource(id = R.string.wins),
                     weight = columnStatsWeight
                 )
-                TableHeaderCell(
+                TableCell(
                     text = stringResource(id = R.string.draws),
                     weight = columnStatsWeight
                 )
-                TableHeaderCell(
+                TableCell(
                     text = stringResource(id = R.string.losses),
                     weight = columnStatsWeight
                 )
-                TableHeaderCell(
+                TableCell(
                     text = stringResource(id = R.string.points),
-                    weight = columnStatsWeight
+                    weight = columnStatsWeight,
+                    contentAlignment = Alignment.CenterEnd
                 )
             }
         }
@@ -203,7 +172,11 @@ fun StandingsTable(standingsViewData: List<StandingsViewData>, modifier: Modifie
                 TableCell(text = team.wins.toString(), weight = columnStatsWeight)
                 TableCell(text = team.draws.toString(), weight = columnStatsWeight)
                 TableCell(text = team.losses.toString(), weight = columnStatsWeight)
-                TableCell(text = team.points.toString(), weight = columnStatsWeight)
+                TableCell(
+                    text = team.points.toString(),
+                    weight = columnStatsWeight,
+                    contentAlignment = Alignment.CenterEnd
+                )
             }
         }
     }

@@ -13,4 +13,8 @@
     <string name="losses">L</string>
     <string name="points">Pts</string>
     <string name="unknown">unknown</string>
+    <string name="top_scorers">Top scorers</string>
+    <string name="see_all">See all</string>
+    <string name="player_name">Player</string>
+    <string name="goals">Goals</string>
 </resources>
