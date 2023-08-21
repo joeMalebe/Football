@@ -1,11 +1,11 @@
 package com.example.football.presentation.view.composable
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,30 +31,32 @@ import com.example.football.presentation.viewmodel.viewstate.StandingsViewState
 @Composable
 fun StandingsScreen(viewModel: StandingsViewModel) {
     val nullableViewState by
-        viewModel.standingsViewState.observeAsState()
+    viewModel.standingsViewState.observeAsState()
 
     val viewState = nullableViewState ?: return
-    Scaffold { paddingValues ->
-        when (viewState) {
-            is StandingsViewState.StandingsLoaded -> {
-                Content(
-                    standingsViewData = viewState.standings,
-                    modifier = Modifier.padding(paddingValues)
-                )
-            }
-            is StandingsViewState.Loading -> {
-                Loading()
-            }
-            else -> {
-                Text(text = "Hello")
-            }
+
+    when (viewState) {
+        is StandingsViewState.StandingsLoadedFully -> {
+            Content(
+                standingsViewData = viewState.standings,
+                modifier = Modifier.padding()
+            )
         }
+
+        is StandingsViewState.Loading -> {
+            Loading()
+        }
+
+        else -> {
+            Text(text = "Hello")
+        }
+
     }
 }
 
 @Composable
 fun Content(modifier: Modifier = Modifier, standingsViewData: List<StandingsViewData>) {
-    StandingsTable(standingsViewData = standingsViewData, modifier = modifier.padding(16.dp))
+    StandingsTable(standingsViewData = standingsViewData, modifier = modifier)
 }
 
 @Composable
@@ -125,6 +127,8 @@ fun StandingsTable(standingsViewData: List<StandingsViewData>, modifier: Modifie
     // weight for team name column and stats column
     val columnClubsWeight = .4f // 60%
     val columnStatsWeight = .125f // 10%
+    val columnStandingsHeaderWeight = .8f // 80%
+    val columnSeeAllHeaderWeight = .2f // 20%
 
     // The LazyColumn will be our table. Notice the use of the weights below
     LazyColumn(
@@ -132,6 +136,28 @@ fun StandingsTable(standingsViewData: List<StandingsViewData>, modifier: Modifie
             .fillMaxWidth()
     ) {
         // Here is the header
+        item {
+            Row(
+                Modifier
+                    .background(Color.Gray)
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TableCell(
+                    text = stringResource(id = R.string.table_standings),
+                    weight = columnStandingsHeaderWeight,
+                    style = MaterialTheme.typography.h6,
+                    contentAlignment = Alignment.CenterStart
+                )
+                TableCell(
+                    text = stringResource(id = R.string.see_all),
+                    weight = columnSeeAllHeaderWeight,
+                    style = MaterialTheme.typography.subtitle1,
+                    contentAlignment = Alignment.CenterEnd,
+                    modifier = Modifier.clickable { }
+                )
+            }
+        }
         item {
             Row(
                 Modifier
@@ -165,7 +191,7 @@ fun StandingsTable(standingsViewData: List<StandingsViewData>, modifier: Modifie
             }
         }
         // Here are all the lines of the table.
-        items(count = standingsViewData.size) { index ->
+        items(count = standingsViewData.take(5).size) { index ->
             val team = standingsViewData[index]
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 ClubTableCell(team = team, weight = columnClubsWeight)

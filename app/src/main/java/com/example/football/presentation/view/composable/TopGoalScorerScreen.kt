@@ -15,7 +15,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -38,24 +37,24 @@ import com.example.football.presentation.viewmodel.viewstate.TopGoalScorersViewS
 @Composable
 fun TopGoalScorerScreen(viewModel: TopGoalScorersViewModel) {
     val nullableViewState by
-        viewModel.topGoalScorerViewState.observeAsState()
+    viewModel.topGoalScorerViewState.observeAsState()
 
     val viewState = nullableViewState ?: return
-    Scaffold { paddingValues ->
-        when (viewState) {
-            is TopGoalScorersViewState.TopGoalScorersLoaded -> {
-                Content(
-                    topGoalScorerViewData = viewState.topGoalScorers,
-                    modifier = Modifier.padding(paddingValues),
-                    onSeeAllClick = { viewModel.onSeeAllClick() }
-                )
-            }
-            is TopGoalScorersViewState.Loading -> {
-                Loading()
-            }
-            else -> {
-                Text(text = "Hello")
-            }
+    when (viewState) {
+        is TopGoalScorersViewState.TopGoalScorersLoaded -> {
+            Content(
+                topGoalScorerViewData = viewState.topGoalScorers,
+                modifier = Modifier.padding(),
+                onSeeAllClick = { viewModel.onSeeAllClick() }
+            )
+        }
+
+        is TopGoalScorersViewState.Loading -> {
+            Loading()
+        }
+
+        else -> {
+            Text(text = "Hello")
         }
     }
 }
@@ -66,7 +65,11 @@ fun Content(
     modifier: Modifier = Modifier,
     onSeeAllClick: () -> Unit
 ) {
-    Box(modifier = modifier.fillMaxWidth().animateContentSize(animationSpec = tween(2000))) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .animateContentSize(animationSpec = tween(2000))
+    ) {
         TopScorersTable(
             goalScorerViewDataList = topGoalScorerViewData,
             onSeeAllClick = onSeeAllClick
@@ -172,7 +175,9 @@ fun TopScorersTable(
         }
 
         // Here are all the lines of the table.
-        itemsIndexed(items = goalScorerViewDataList, key = { _, player -> player.playerId }) { _, player ->
+        itemsIndexed(
+            items = goalScorerViewDataList,
+            key = { _, player -> player.playerId }) { _, player ->
 
             // val player = listItem[index]
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
