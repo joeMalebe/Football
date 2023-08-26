@@ -2,14 +2,18 @@ package com.example.football.presentation.view.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,25 +29,21 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.football.R
 import com.example.football.domain.StandingsViewData
-import com.example.football.presentation.viewmodel.StandingsViewModel
-import com.example.football.presentation.viewmodel.viewstate.StandingsViewState
+import com.example.football.presentation.viewmodel.viewstate.LeagueTableViewState
 
 @Composable
-fun StandingsScreen(viewModel: StandingsViewModel) {
-    val nullableViewState by
-    viewModel.standingsViewState.observeAsState()
-
-    val viewState = nullableViewState ?: return
+fun LeagueTable(viewState: LeagueTableViewState, isSeeAll: Boolean, seeAllClick: (Boolean) -> Unit) {
 
     when (viewState) {
-        is StandingsViewState.StandingsLoadedFully -> {
+        is LeagueTableViewState.StandingsLoaded -> {
             Content(
                 standingsViewData = viewState.standings,
-                modifier = Modifier.padding()
+                modifier = Modifier.padding(), isSeeAll = isSeeAll, seeAllClick =
+                seeAllClick
             )
         }
 
-        is StandingsViewState.Loading -> {
+        is LeagueTableViewState.Loading -> {
             Loading()
         }
 
@@ -55,8 +55,19 @@ fun StandingsScreen(viewModel: StandingsViewModel) {
 }
 
 @Composable
-fun Content(modifier: Modifier = Modifier, standingsViewData: List<StandingsViewData>) {
-    StandingsTable(standingsViewData = standingsViewData, modifier = modifier)
+fun Content(
+    modifier: Modifier = Modifier,
+    standingsViewData: List<StandingsViewData>,
+    isSeeAll: Boolean,
+    seeAllClick: (Boolean) -> Unit,
+) {
+    Box(modifier = modifier.fillMaxWidth()) {
+        StandingsTable(
+            standingsViewData = standingsViewData,
+            isSeeAll = isSeeAll,
+            seeAllClick = seeAllClick
+        )
+    }
 }
 
 @Composable
@@ -123,7 +134,12 @@ fun RowScope.ClubTableCell(
 }
 
 @Composable
-fun StandingsTable(standingsViewData: List<StandingsViewData>, modifier: Modifier = Modifier) {
+fun StandingsTable(
+    standingsViewData: List<StandingsViewData>,
+    modifier: Modifier = Modifier,
+    isSeeAll: Boolean,
+    seeAllClick: (Boolean) -> Unit,
+) {
     // weight for team name column and stats column
     val columnClubsWeight = .4f // 60%
     val columnStatsWeight = .125f // 10%
@@ -154,7 +170,7 @@ fun StandingsTable(standingsViewData: List<StandingsViewData>, modifier: Modifie
                     weight = columnSeeAllHeaderWeight,
                     style = MaterialTheme.typography.subtitle1,
                     contentAlignment = Alignment.CenterEnd,
-                    modifier = Modifier.clickable { }
+                    modifier = Modifier.clickable { seeAllClick(!isSeeAll) }
                 )
             }
         }
@@ -191,8 +207,8 @@ fun StandingsTable(standingsViewData: List<StandingsViewData>, modifier: Modifie
             }
         }
         // Here are all the lines of the table.
-        items(count = standingsViewData.take(5).size) { index ->
-            val team = standingsViewData[index]
+        items(if(isSeeAll) standingsViewData else standingsViewData.take(5)) { team ->
+
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 ClubTableCell(team = team, weight = columnClubsWeight)
                 TableCell(text = team.wins.toString(), weight = columnStatsWeight)
@@ -211,5 +227,5 @@ fun StandingsTable(standingsViewData: List<StandingsViewData>, modifier: Modifie
 @Preview(widthDp = 360, heightDp = 720, showBackground = true)
 @Composable
 fun StandingsContentPreview() {
-    Content(standingsViewData = PreviewData.standings)
+    Content(standingsViewData = PreviewData.standings, seeAllClick = {}, isSeeAll = false)
 }
