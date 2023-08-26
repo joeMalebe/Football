@@ -8,7 +8,7 @@ import com.example.football.domain.StandingsResult
 import com.example.football.domain.StandingsResult.Error
 import com.example.football.domain.StandingsResult.StandingsLoaded
 import com.example.football.domain.usecase.StandingsUseCase
-import com.example.football.presentation.viewmodel.viewstate.StandingsViewState
+import com.example.football.presentation.viewmodel.viewstate.LeagueTableViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -20,25 +20,25 @@ class StandingsViewModel @Inject constructor(
     val ioContext: CoroutineContext
 ) : ViewModel() {
     private val _standingsViewState =
-        MutableLiveData<StandingsViewState>(StandingsViewState.Initial)
-    val standingsViewState: LiveData<StandingsViewState>
+        MutableLiveData<LeagueTableViewState>(LeagueTableViewState.Initial)
+    val standingsViewState: LiveData<LeagueTableViewState>
         get() = _standingsViewState
 
     fun getStandings(leagueId: String) {
         viewModelScope.launch(ioContext) {
-            _standingsViewState.postValue(StandingsViewState.Loading)
+            _standingsViewState.postValue(LeagueTableViewState.Loading)
 
             when (val result = standingsUseCase.getLeagueStandings(leagueId)) {
                 is Error -> {
-                    _standingsViewState.postValue(StandingsViewState.Error)
+                    _standingsViewState.postValue(LeagueTableViewState.Error)
                 }
                 is StandingsLoaded -> {
                     _standingsViewState.postValue(
-                        StandingsViewState.StandingsLoaded(result.standingsViewData)
+                        LeagueTableViewState.StandingsLoaded(result.standingsViewData)
                     )
                 }
                 is StandingsResult.NoStandingsInformation -> {
-                    _standingsViewState.postValue(StandingsViewState.NoInformation)
+                    _standingsViewState.postValue(LeagueTableViewState.NoInformation)
                 }
             }
         }

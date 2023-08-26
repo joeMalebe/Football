@@ -11,7 +11,7 @@ import com.example.football.domain.StandingsResult
 import com.example.football.domain.StandingsViewDataMapperImpl
 import com.example.football.domain.usecase.StandingsUseCase
 import com.example.football.domain.usecase.StandingsUseCaseImpl
-import com.example.football.presentation.viewmodel.viewstate.StandingsViewState
+import com.example.football.presentation.viewmodel.viewstate.LeagueTableViewState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
@@ -40,7 +40,7 @@ class StandingsViewModelTest {
     lateinit var footballService: FootballService
 
     @Mock
-    private lateinit var observer: Observer<StandingsViewState>
+    private lateinit var observer: Observer<LeagueTableViewState>
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -60,16 +60,16 @@ class StandingsViewModelTest {
         whenever(footballService.getStandings("3", "2023")).thenReturn(
             Result.failure(Throwable("errorr"))
         )
-        val argumentCaptor = argumentCaptor<StandingsViewState>()
+        val argumentCaptor = argumentCaptor<LeagueTableViewState>()
         standingsViewModel.standingsViewState.observeForever(observer)
 
         standingsViewModel.getStandings(leagueId = "3")
 
         argumentCaptor.run {
             verify(observer, times(3)).onChanged(this.capture())
-            assertEquals(StandingsViewState.Initial, firstValue)
-            assertEquals(StandingsViewState.Loading, secondValue)
-            assertSame(StandingsViewState.Error, thirdValue)
+            assertEquals(LeagueTableViewState.Initial, firstValue)
+            assertEquals(LeagueTableViewState.Loading, secondValue)
+            assertSame(LeagueTableViewState.Error, thirdValue)
         }
     }
 
@@ -103,16 +103,16 @@ class StandingsViewModelTest {
                 standingsResponse
             )
         )
-        val argumentCaptor = argumentCaptor<StandingsViewState>()
+        val argumentCaptor = argumentCaptor<LeagueTableViewState>()
         standingsViewModel.standingsViewState.observeForever(observer)
 
         standingsViewModel.getStandings("5")
 
         argumentCaptor.run {
             verify(observer, times(3)).onChanged(this.capture())
-            assertSame(StandingsViewState.Initial, firstValue)
-            assertSame(StandingsViewState.Loading, secondValue)
-            assertSame(StandingsViewState.StandingsLoaded::class.java, thirdValue::class.java)
+            assertSame(LeagueTableViewState.Initial, firstValue)
+            assertSame(LeagueTableViewState.Loading, secondValue)
+            assertSame(LeagueTableViewState.StandingsLoaded::class.java, thirdValue::class.java)
         }
     }
 
@@ -123,16 +123,16 @@ class StandingsViewModelTest {
                 StandingsResponse(emptyList())
             )
         )
-        val argumentCaptor = argumentCaptor<StandingsViewState>()
+        val argumentCaptor = argumentCaptor<LeagueTableViewState>()
         standingsViewModel.standingsViewState.observeForever(observer)
 
         standingsViewModel.getStandings("12")
 
         argumentCaptor.run {
             verify(observer, times(3)).onChanged(this.capture())
-            assertSame(StandingsViewState.Initial, firstValue)
-            assertSame(StandingsViewState.Loading, secondValue)
-            assertSame(StandingsViewState.NoInformation, thirdValue)
+            assertSame(LeagueTableViewState.Initial, firstValue)
+            assertSame(LeagueTableViewState.Loading, secondValue)
+            assertSame(LeagueTableViewState.NoInformation, thirdValue)
         }
     }
 
