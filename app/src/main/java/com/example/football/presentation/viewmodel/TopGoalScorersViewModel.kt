@@ -18,7 +18,6 @@ class TopGoalScorersViewModel @Inject constructor(
     private val useCase: GetTopGoalScorersUseCase,
     val ioContext: CoroutineContext
 ) : ViewModel() {
-    private var isSeeAll = false
     private var topGoalScorers: List<TopGoalScorerViewData> = emptyList()
     private val _topGoalScorerViewState: MutableLiveData<TopGoalScorersViewState> =
         MutableLiveData(TopGoalScorersViewState.Initial)
@@ -33,9 +32,7 @@ class TopGoalScorersViewModel @Inject constructor(
                     is TopGoalScorersResult.Loaded -> {
                         topGoalScorers = result.topGoalScorersViewData
                         _topGoalScorerViewState.postValue(
-                            TopGoalScorersViewState.TopGoalScorersLoaded(
-                                getTopGoalScorers(topGoalScorers, isSeeAll)
-                            )
+                            TopGoalScorersViewState.TopGoalScorersLoaded(topGoalScorers)
                         )
                     }
 
@@ -49,25 +46,5 @@ class TopGoalScorersViewModel @Inject constructor(
                 }
             }
         }
-    }
-
-    fun getTopGoalScorers(topGoalScorers: List<TopGoalScorerViewData>, isSeeAll: Boolean) =
-        if (isSeeAll) {
-            topGoalScorers
-        } else {
-            topGoalScorers.take(5)
-        }
-
-    fun onSeeAllClick() {
-        toggleSeeAllResults()
-    }
-
-    private fun toggleSeeAllResults() {
-        isSeeAll = !isSeeAll
-        _topGoalScorerViewState.postValue(
-            TopGoalScorersViewState.TopGoalScorersLoaded(
-                getTopGoalScorers(topGoalScorers, isSeeAll)
-            )
-        )
     }
 }
