@@ -33,12 +33,13 @@ import com.example.football.presentation.viewmodel.viewstate.LeagueTableViewStat
 
 @Composable
 fun LeagueTable(viewState: LeagueTableViewState, isSeeAll: Boolean, seeAllClick: (Boolean) -> Unit) {
-
     when (viewState) {
         is LeagueTableViewState.StandingsLoaded -> {
             Content(
                 standingsViewData = viewState.standings,
-                modifier = Modifier.padding(), isSeeAll = isSeeAll, seeAllClick =
+                modifier = Modifier.padding(),
+                isSeeAll = isSeeAll,
+                seeAllClick =
                 seeAllClick
             )
         }
@@ -50,7 +51,6 @@ fun LeagueTable(viewState: LeagueTableViewState, isSeeAll: Boolean, seeAllClick:
         else -> {
             Text(text = "Hello")
         }
-
     }
 }
 
@@ -59,7 +59,7 @@ fun Content(
     modifier: Modifier = Modifier,
     standingsViewData: List<StandingsViewData>,
     isSeeAll: Boolean,
-    seeAllClick: (Boolean) -> Unit,
+    seeAllClick: (Boolean) -> Unit
 ) {
     Box(modifier = modifier.fillMaxWidth()) {
         StandingsTable(
@@ -138,7 +138,7 @@ fun StandingsTable(
     standingsViewData: List<StandingsViewData>,
     modifier: Modifier = Modifier,
     isSeeAll: Boolean,
-    seeAllClick: (Boolean) -> Unit,
+    seeAllClick: (Boolean) -> Unit
 ) {
     // weight for team name column and stats column
     val columnClubsWeight = .4f // 60%
@@ -207,7 +207,7 @@ fun StandingsTable(
             }
         }
         // Here are all the lines of the table.
-        items(if(isSeeAll) standingsViewData else standingsViewData.take(5)) { team ->
+        items(if (isSeeAll) standingsViewData else standingsViewData.take(5)) { team ->
 
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 ClubTableCell(team = team, weight = columnClubsWeight)

@@ -34,13 +34,13 @@ fun TopScorersTable(
     seeAll: Boolean,
     onSeeAllClick: (Boolean) -> Unit
 ) {
-
     when (viewState) {
         is TopGoalScorersViewState.TopGoalScorersLoaded -> {
             Content(
                 topGoalScorerViewData = viewState.topGoalScorers,
                 modifier = Modifier.padding(),
-                onSeeAllClick = onSeeAllClick, seeAll = seeAll
+                onSeeAllClick = onSeeAllClick,
+                seeAll = seeAll
             )
         }
 
@@ -59,7 +59,7 @@ fun Content(
     topGoalScorerViewData: List<TopGoalScorerViewData>,
     modifier: Modifier = Modifier,
     onSeeAllClick: (Boolean) -> Unit,
-    seeAll : Boolean
+    seeAll: Boolean
 ) {
     Box(modifier = modifier.fillMaxWidth()) {
         TopScorersTable(
@@ -140,7 +140,8 @@ fun TopScorersTable(
                     style = MaterialTheme.typography.subtitle1,
                     contentAlignment = Alignment.CenterEnd,
                     modifier = Modifier.clickable {
-                        onSeeAllClick( !isSeeAll) }
+                        onSeeAllClick(!isSeeAll)
+                    }
                 )
             }
         }
@@ -170,7 +171,7 @@ fun TopScorersTable(
         }
 
         // Here are all the lines of the table.
-       items(if(isSeeAll) goalScorerViewDataList else goalScorerViewDataList.take(5)) {  player ->
+        items(if (isSeeAll) goalScorerViewDataList else goalScorerViewDataList.take(5)) { player ->
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 TablePlayerItemCell(
                     topGoalScorerViewData = player,
@@ -191,5 +192,6 @@ fun TopScorersTable(
 @Preview(showBackground = true, widthDp = 320, heightDp = 640)
 @Composable
 fun TopScorerTablePreview() {
-    Content(topGoalScorerViewData = PreviewData.topGoalScorersList, onSeeAllClick = {}, seeAll =  true)
+    Content(topGoalScorerViewData = PreviewData.topGoalScorersList, onSeeAllClick = {
+    }, seeAll = true)
 }

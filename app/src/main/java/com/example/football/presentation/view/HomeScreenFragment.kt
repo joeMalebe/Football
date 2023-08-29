@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.football.presentation.theme.FootballTheme
 import com.example.football.presentation.view.composable.HomeScreen
 import com.example.football.presentation.viewmodel.HomeScreenViewModel
@@ -32,14 +33,13 @@ class HomeScreenFragment : Fragment() {
             }
         }
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        // viewModel = ViewModelProvider(this).get(HomescreenViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(HomeScreenViewModel::class.java)
         // TODO: Use the ViewModel
     }
 }
