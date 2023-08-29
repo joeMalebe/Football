@@ -26,7 +26,8 @@ class StandingsCombinedViewModel : ViewModel() {
         _standingsCombinedViewState.postValue(
             _standingsCombinedViewState.value?.let {
                 it.setState(
-                    standingsSeeAll = !it.standingsSeeAll, combinedViewState = it.standingsSeeAll
+                    standingsSeeAll = !it.standingsSeeAll,
+                    combinedViewState = it.standingsSeeAll
                 )
             }
         )
@@ -35,7 +36,7 @@ class StandingsCombinedViewModel : ViewModel() {
     fun onLoadingComplete() {
         _standingsCombinedViewState.postValue(
             _standingsCombinedViewState.value?.setState(
-                combinedViewState = true,
+                combinedViewState = true
             )
         )
     }
@@ -63,4 +64,3 @@ data class StandingsCombinedViewState(
             error = error
         )
 }
-

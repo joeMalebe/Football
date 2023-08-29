@@ -10,13 +10,12 @@ import org.mockito.MockitoAnnotations.openMocks
 import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 
-class StandingsCombinedViewModelTest{
+class StandingsCombinedViewModelTest {
 
     val standingsCombinedViewModel = StandingsCombinedViewModel()
 
     @Mock
-    lateinit var observer : Observer<StandingsCombinedViewState>
-
+    lateinit var observer: Observer<StandingsCombinedViewState>
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -39,7 +38,7 @@ class StandingsCombinedViewModelTest{
                 combinedViewState = false
             )
         )
-        verify(observer).onChanged(
+        verify(observer, times(2)).onChanged(
             StandingsCombinedViewState(
                 topGoalScorerSeeAll = false,
                 combinedViewState = true
@@ -73,7 +72,7 @@ class StandingsCombinedViewModelTest{
             )
         )
 
-        verify(observer).onChanged(
+        verify(observer, times(2)).onChanged(
             StandingsCombinedViewState(
                 standingsSeeAll = false,
                 combinedViewState = true
@@ -99,6 +98,6 @@ class StandingsCombinedViewModelTest{
 
         standingsCombinedViewModel.onLoadingComplete()
 
-        verify(observer).onChanged(StandingsCombinedViewState(combinedViewState = true))
+        verify(observer, times(2)).onChanged(StandingsCombinedViewState(combinedViewState = true))
     }
 }

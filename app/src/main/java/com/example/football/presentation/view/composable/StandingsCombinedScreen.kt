@@ -1,8 +1,10 @@
 package com.example.football.presentation.view.composable
 
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.layout.Arrangement.spacedBy
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -31,17 +33,17 @@ fun StandingsCombinedScreen(
     topGoalScorerViewModel: TopGoalScorersViewModel
 ) {
     val nullableStandingsViewState by
-    standingsViewModel.standingsViewState.observeAsState()
+        standingsViewModel.standingsViewState.observeAsState()
 
     val standingsViewState = nullableStandingsViewState ?: LeagueTableViewState.Error
 
     val nullableViewState by
-    topGoalScorerViewModel.topGoalScorerViewState.observeAsState()
+        topGoalScorerViewModel.topGoalScorerViewState.observeAsState()
 
     val topGoalViewState = nullableViewState ?: TopGoalScorersViewState.Error
 
     val nullableCombinedViewState by
-    standingsCombinedViewModel.standingsCombinedViewState.observeAsState()
+        standingsCombinedViewModel.standingsCombinedViewState.observeAsState()
 
     val standingsCombinedViewState =
         nullableCombinedViewState ?: StandingsCombinedViewState(error = true)
@@ -73,41 +75,44 @@ fun StandingsCombinedScreen(
     }
 
     Scaffold(modifier = Modifier.padding(16.dp)) { padding ->
-        StandingsContent(
-            Modifier.padding(paddingValues = padding),
-            standingsCombinedViewState,
-            standingsContent,
-            topScorersContent
-        )
+        Box {
+            StandingsContent(
+                Modifier.padding(paddingValues = padding),
+                standingsCombinedViewState,
+                standingsContent,
+                topScorersContent
+            )
+        }
     }
 }
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun StandingsContent(
     modifier: Modifier = Modifier,
     standingsCombinedViewState: StandingsCombinedViewState,
-    standingsContent: @Composable () -> Unit,
-    topScorersContent: @Composable () -> Unit
+    LeagueTableContent: @Composable () -> Unit,
+    TopScorersContent: @Composable () -> Unit
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
+    AnimatedContent(targetState = standingsCombinedViewState) {
         when {
             standingsCombinedViewState.combinedViewState -> {
-                standingsContent()
-                topScorersContent()
+                Column(
+                    modifier = modifier,
+                    verticalArrangement = spacedBy(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    LeagueTableContent()
+                    TopScorersContent()
+                }
             }
 
             standingsCombinedViewState.topGoalScorerSeeAll -> {
-                topScorersContent()
+                TopScorersContent()
             }
 
             standingsCombinedViewState.standingsSeeAll -> {
-                standingsContent()
+                LeagueTableContent()
             }
 
             else -> {
@@ -123,19 +128,20 @@ fun StandingsCombinedScreenPreview() {
     FootballTheme {
         StandingsContent(
             standingsCombinedViewState = StandingsCombinedViewState(combinedViewState = true),
-            standingsContent = {
+            LeagueTableContent = {
                 Content(
                     standingsViewData = PreviewData.standings,
                     seeAllClick = {},
                     isSeeAll = false
                 )
             },
-            topScorersContent = {
+            TopScorersContent = {
                 Content(
                     topGoalScorerViewData = PreviewData.topGoalScorersList,
                     onSeeAllClick = {},
-                    seeAll = true
+                    seeAll = false
                 )
-            })
+            }
+        )
     }
 }

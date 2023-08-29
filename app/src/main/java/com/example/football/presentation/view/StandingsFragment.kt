@@ -4,19 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.material.Text
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.football.presentation.theme.FootballTheme
-import com.example.football.presentation.view.composable.StandingsScreen
+import com.example.football.presentation.view.composable.StandingsCombinedScreen
+import com.example.football.presentation.viewmodel.StandingsCombinedViewModel
 import com.example.football.presentation.viewmodel.StandingsViewModel
+import com.example.football.presentation.viewmodel.TopGoalScorersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class StandingsFragment : Fragment() {
 
-    private val viewModel by viewModels<StandingsViewModel>()
+    private val standingsViewModel by viewModels<StandingsViewModel>()
+    private val topGoalScorersViewModel by viewModels<TopGoalScorersViewModel>()
+    private val standingsCombinedViewModel by viewModels<StandingsCombinedViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,9 +29,17 @@ class StandingsFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 FootballTheme {
-                    Text(text = "hello Mr")
-                    viewModel.getStandings(arguments?.getString("leagueId") ?: "0")
-                    StandingsScreen(viewModel)
+                    val leagueId = arguments?.getString("leagueId") ?: "0"
+                    standingsViewModel.getStandings(leagueId = leagueId)
+                    topGoalScorersViewModel.loadTopGoalScorers(
+                        leagueId = leagueId,
+                        season = "2020"
+                    )
+                    StandingsCombinedScreen(
+                        standingsCombinedViewModel,
+                        standingsViewModel,
+                        topGoalScorersViewModel
+                    )
                 }
             }
         }
