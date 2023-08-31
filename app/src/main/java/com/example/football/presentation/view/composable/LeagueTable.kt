@@ -30,14 +30,16 @@ import coil.request.ImageRequest
 import com.example.football.R
 import com.example.football.domain.StandingsViewData
 import com.example.football.presentation.viewmodel.viewstate.LeagueTableViewState
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 
 @Composable
-fun LeagueTable(viewState: LeagueTableViewState, isSeeAll: Boolean, seeAllClick: (Boolean) -> Unit) {
+fun LeagueTable(viewState: LeagueTableViewState, isSeeAll: Boolean, modifier: Modifier = Modifier, seeAllClick: (Boolean) -> Unit) {
     when (viewState) {
         is LeagueTableViewState.StandingsLoaded -> {
             Content(
-                standingsViewData = viewState.standings,
-                modifier = Modifier.padding(),
+                standingsViewData = viewState.standings.toImmutableList(),
+                modifier = modifier,
                 isSeeAll = isSeeAll,
                 seeAllClick =
                 seeAllClick
@@ -56,9 +58,9 @@ fun LeagueTable(viewState: LeagueTableViewState, isSeeAll: Boolean, seeAllClick:
 
 @Composable
 fun Content(
-    modifier: Modifier = Modifier,
-    standingsViewData: List<StandingsViewData>,
+    standingsViewData: ImmutableList<StandingsViewData>,
     isSeeAll: Boolean,
+    modifier: Modifier = Modifier,
     seeAllClick: (Boolean) -> Unit
 ) {
     Box(modifier = modifier.fillMaxWidth()) {
@@ -135,9 +137,9 @@ fun RowScope.ClubTableCell(
 
 @Composable
 fun StandingsTable(
-    standingsViewData: List<StandingsViewData>,
-    modifier: Modifier = Modifier,
+    standingsViewData: ImmutableList<StandingsViewData>,
     isSeeAll: Boolean,
+    modifier: Modifier = Modifier,
     seeAllClick: (Boolean) -> Unit
 ) {
     // weight for team name column and stats column

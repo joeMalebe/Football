@@ -25,12 +25,14 @@ import com.example.football.presentation.viewmodel.StandingsViewModel
 import com.example.football.presentation.viewmodel.TopGoalScorersViewModel
 import com.example.football.presentation.viewmodel.viewstate.LeagueTableViewState
 import com.example.football.presentation.viewmodel.viewstate.TopGoalScorersViewState
+import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun StandingsCombinedScreen(
     standingsCombinedViewModel: StandingsCombinedViewModel,
     standingsViewModel: StandingsViewModel,
-    topGoalScorerViewModel: TopGoalScorersViewModel
+    topGoalScorerViewModel: TopGoalScorersViewModel,
+    modifier: Modifier = Modifier
 ) {
     val nullableStandingsViewState by
         standingsViewModel.standingsViewState.observeAsState()
@@ -74,13 +76,13 @@ fun StandingsCombinedScreen(
         }
     }
 
-    Scaffold(modifier = Modifier.padding(16.dp)) { padding ->
+    Scaffold(modifier = modifier.padding(16.dp)) { padding ->
         Box {
             StandingsContent(
-                Modifier.padding(paddingValues = padding),
                 standingsCombinedViewState,
                 standingsContent,
-                topScorersContent
+                topScorersContent,
+                Modifier.padding(paddingValues = padding)
             )
         }
     }
@@ -89,10 +91,10 @@ fun StandingsCombinedScreen(
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun StandingsContent(
-    modifier: Modifier = Modifier,
     standingsCombinedViewState: StandingsCombinedViewState,
     LeagueTableContent: @Composable () -> Unit,
-    TopScorersContent: @Composable () -> Unit
+    TopScorersContent: @Composable () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     AnimatedContent(targetState = standingsCombinedViewState) {
         when {
@@ -137,7 +139,7 @@ fun StandingsCombinedScreenPreview() {
             },
             TopScorersContent = {
                 Content(
-                    topGoalScorerViewData = PreviewData.topGoalScorersList,
+                    topGoalScorerViewData = PreviewData.topGoalScorersList.toImmutableList(),
                     onSeeAllClick = {},
                     seeAll = false
                 )
