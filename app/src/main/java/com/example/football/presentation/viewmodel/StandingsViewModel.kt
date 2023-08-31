@@ -10,9 +10,9 @@ import com.example.football.domain.StandingsResult.StandingsLoaded
 import com.example.football.domain.usecase.StandingsUseCase
 import com.example.football.presentation.viewmodel.viewstate.LeagueTableViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class StandingsViewModel @Inject constructor(

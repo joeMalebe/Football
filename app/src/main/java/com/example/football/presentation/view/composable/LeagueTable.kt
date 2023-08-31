@@ -34,7 +34,12 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
 @Composable
-fun LeagueTable(viewState: LeagueTableViewState, isSeeAll: Boolean, modifier: Modifier = Modifier, seeAllClick: (Boolean) -> Unit) {
+fun LeagueTable(
+    viewState: LeagueTableViewState,
+    isSeeAll: Boolean,
+    modifier: Modifier = Modifier,
+    seeAllClick: (Boolean) -> Unit
+) {
     when (viewState) {
         is LeagueTableViewState.StandingsLoaded -> {
             Content(

@@ -77,7 +77,7 @@ fun Content(
     viewState: HomeScreenViewModel.SearchViewState,
     onSearchTextChange: (String) -> Unit,
     onLeagueItemClicked: (LeagueViewData) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Scaffold(
         modifier = modifier,
@@ -93,7 +93,10 @@ fun Content(
     ) {
         when (viewState) {
             is HomeScreenViewModel.SearchViewState.CountrySearchResults -> {
-                CountriesList(countries = viewState.countries.toImmutableList(), modifier = Modifier.padding(it))
+                CountriesList(
+                    countries = viewState.countries.toImmutableList(),
+                    modifier = Modifier.padding(it)
+                )
             }
             is HomeScreenViewModel.SearchViewState.Loading -> {
                 Loading()
