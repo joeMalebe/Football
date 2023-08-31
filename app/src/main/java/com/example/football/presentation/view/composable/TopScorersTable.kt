@@ -27,18 +27,21 @@ import coil.request.ImageRequest
 import com.example.football.R
 import com.example.football.domain.TopGoalScorerViewData
 import com.example.football.presentation.viewmodel.viewstate.TopGoalScorersViewState
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun TopScorersTable(
     viewState: TopGoalScorersViewState,
     seeAll: Boolean,
+    modifier: Modifier = Modifier,
     onSeeAllClick: (Boolean) -> Unit
 ) {
     when (viewState) {
         is TopGoalScorersViewState.TopGoalScorersLoaded -> {
             Content(
-                topGoalScorerViewData = viewState.topGoalScorers,
-                modifier = Modifier.padding(),
+                topGoalScorerViewData = viewState.topGoalScorers.toImmutableList(),
+                modifier = modifier.padding(),
                 onSeeAllClick = onSeeAllClick,
                 seeAll = seeAll
             )
@@ -56,10 +59,10 @@ fun TopScorersTable(
 
 @Composable
 fun Content(
-    topGoalScorerViewData: List<TopGoalScorerViewData>,
+    topGoalScorerViewData: ImmutableList<TopGoalScorerViewData>,
+    seeAll: Boolean,
     modifier: Modifier = Modifier,
-    onSeeAllClick: (Boolean) -> Unit,
-    seeAll: Boolean
+    onSeeAllClick: (Boolean) -> Unit
 ) {
     Box(modifier = modifier.fillMaxWidth()) {
         TopScorersTable(
@@ -103,10 +106,10 @@ fun RowScope.TablePlayerItemCell(
 
 @Composable
 fun TopScorersTable(
+    goalScorerViewDataList: ImmutableList<TopGoalScorerViewData>,
+    isSeeAll: Boolean,
     modifier: Modifier = Modifier,
-    goalScorerViewDataList: List<TopGoalScorerViewData>,
-    onSeeAllClick: (Boolean) -> Unit,
-    isSeeAll: Boolean
+    onSeeAllClick: (Boolean) -> Unit
 ) {
 // weight for team name column and stats column
     val columnPlayerNameWeight = .8f // 80%
@@ -192,6 +195,6 @@ fun TopScorersTable(
 @Preview(showBackground = true, widthDp = 320, heightDp = 640)
 @Composable
 fun TopScorerTablePreview() {
-    Content(topGoalScorerViewData = PreviewData.topGoalScorersList, onSeeAllClick = {
+    Content(topGoalScorerViewData = PreviewData.topGoalScorersList.toImmutableList(), onSeeAllClick = {
     }, seeAll = true)
 }
