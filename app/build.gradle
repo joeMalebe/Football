@@ -38,6 +38,12 @@ android {
 
     }
 
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
     buildTypes {
         Properties properties = new Properties()
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -90,6 +96,8 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
+    implementation 'androidx.test:runner:1.4.0'
+    implementation 'androidx.test.ext:junit-ktx:1.1.5'
     lintChecks("com.slack.lint.compose:compose-lint-checks:1.2.0")
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
     implementation 'androidx.activity:activity-compose:1.7.0'
@@ -102,8 +110,8 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:$nav_version"
     implementation "com.google.dagger:hilt-android:$hilt_version"
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation "com.squareup.okhttp3:okhttp:4.10.0"
-    implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
+    implementation "com.squareup.okhttp3:okhttp:$ok_http_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$ok_http_version"
     implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -125,7 +133,9 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
     testImplementation 'androidx.arch.core:core-testing:2.2.0'
+    testImplementation "com.squareup.okhttp3:mockwebserver:$ok_http_version"
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
+    testImplementation "org.robolectric:robolectric:4.10.3"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
 
