@@ -26,4 +26,10 @@ interface FootballService {
         @Query("league") leagueId: String,
         @Query("season") season: String
     ): Result<TopScorersResponse>
+
+    @GET("players")
+    suspend fun getPlayer(
+        @Query("id") leagueId: String,
+        @Query("season") season: String
+    ): Result<TopScorersResponse>
 }
