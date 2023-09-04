@@ -12,7 +12,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
-import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -56,8 +56,15 @@ class FootballServiceTest {
         val resourceId = R.raw.player_stats_response
         val playerStatisticsDto = readJsonFromRawResource(context, resourceId)
 
-        Assert.assertEquals(1, playerStatisticsDto?.response?.size)
-        Assert.assertEquals(4, playerStatisticsDto?.response?.first()?.statistics?.size)
+        assertEquals(1, playerStatisticsDto?.response?.size)
+        assertEquals(4, playerStatisticsDto?.response?.first()?.statistics?.size)
+        val player = playerStatisticsDto?.response?.first()!!.player
+        assertEquals(29, player.age)
+        assertEquals("https://media.api-sports.io/football/players/276.png", player.photo)
+        assertEquals("Neymar", player.name)
+        assertEquals("Neymar", player.firstname)
+        assertEquals("da Silva Santos Júnior", player.lastname)
+        assertEquals(276, player.id)
     }
 
     private fun readJsonFromRawResource(context: Context, resourceId: Int): PlayerStatisticsDto? {
