@@ -29,7 +29,7 @@ interface FootballService {
 
     @GET("players")
     suspend fun getPlayer(
-        @Query("id") leagueId: String,
+        @Query("id") playerId: String,
         @Query("season") season: String
     ): Result<TopScorersResponse>
 }
