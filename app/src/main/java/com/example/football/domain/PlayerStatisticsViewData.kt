@@ -1,10 +1,10 @@
 package com.example.football.domain
 
-import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.ImmutableList
 
 data class PlayerStatisticsViewData(
     private val playerInfoViewData: PlayerInfoViewData,
-    private val statisticsViewDate: PersistentList<StatisticsViewDate>
+    private val statisticsViewDate: ImmutableList<StatisticsViewDate>
 )
 
 data class PlayerInfoViewData(
