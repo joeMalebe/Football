@@ -2,6 +2,9 @@ package com.example.football.data.repository
 
 import com.example.football.FootballService
 import com.example.football.data.model.PlayerStatisticsDto
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.withContext
+import kotlin.coroutines.CoroutineContext
 
 interface PlayerStatisticsRepository {
     suspend fun getPlayerStatistics(playerId: String, season: String): Result<PlayerStatisticsDto>
@@ -9,19 +12,19 @@ interface PlayerStatisticsRepository {
 }
 
 internal class PlayerStatisticsRepositoryImpl(
-    private val footballService: FootballService
+    private val footballService: FootballService,
+    private val ioContext: CoroutineContext
 ) : PlayerStatisticsRepository {
     override suspend fun getPlayerStatistics(
         playerId: String,
         season: String
     ): Result<PlayerStatisticsDto> {
-        val response = footballService.getPlayer(playerId, season)
-        if (response.isSuccess) {
-            response.getOrNull()
 
-        } else {
-            Result.failure<PlayerStatisticsDto>(Exception("Error getting player statistics"))
+
+        return withContext(CoroutineScope(ioContext).coroutineContext) {
+            val response = footballService.getPlayer(playerId, season)
+            Result.success(response.getOrNull()!!)
         }
-    }
 
+    }
 }

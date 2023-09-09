@@ -1,5 +1,6 @@
 package com.example.football
 
+import com.example.football.data.model.PlayerStatisticsDto
 import com.example.football.data.model.SearchLeagueResponse
 import com.example.football.data.model.SearchResponse
 import com.example.football.data.model.StandingsResponse
@@ -31,5 +32,5 @@ interface FootballService {
     suspend fun getPlayer(
         @Query("id") playerId: String,
         @Query("season") season: String
-    ): Result<TopScorersResponse>
+    ): Result<PlayerStatisticsDto>
 }
