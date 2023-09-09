@@ -1,6 +1,7 @@
 package com.example.football.presentation.viewmodel
 
 import android.content.Context
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import androidx.test.core.app.ApplicationProvider
 import com.example.football.FootballService
@@ -11,43 +12,47 @@ import com.example.football.domain.PlayerInfoViewData
 import com.example.football.domain.PlayerStatisticsViewData
 import com.example.football.domain.StatisticsViewDate
 import com.example.football.domain.usecase.PlayerStatisticsUseCaseImpl
-import com.example.football.exception.ResultCallAdaptorFactory
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.TestCoroutineScheduler
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
-import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.coroutines.test.setMain
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
-import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations.openMocks
+import org.mockito.kotlin.argumentCaptor
+import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 import org.robolectric.RobolectricTestRunner
-import retrofit2.Retrofit
 
 @RunWith(RobolectricTestRunner::class)
-@OptIn(ExperimentalCoroutinesApi::class, ExperimentalSerializationApi::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 class PlayerStatisticsViewModelTest {
 
+    @Mock
     private lateinit var footballService: FootballService
-    private val playerStatisticsRepository by lazy { PlayerStatisticsRepositoryImpl(footballService) }
+    private val playerStatisticsRepository by lazy { PlayerStatisticsRepositoryImpl(
+        footballService,
+        testDispatcher
+    ) }
     private val playerStatisticsUseCase by lazy {
         PlayerStatisticsUseCaseImpl(
             playerStatisticsRepository
         )
     }
-    private val testDispatcher = UnconfinedTestDispatcher()
-    private val okHttpClient = OkHttpClient()
-    private val mockWebServer = MockWebServer()
+    private val testDispatcher = UnconfinedTestDispatcher(scheduler =  TestCoroutineScheduler())
     private val context = ApplicationProvider.getApplicationContext<Context>()
+    @get:Rule
+    val rule = InstantTaskExecutorRule()
 
     @Mock
     lateinit var observer: Observer<PlayerStatisticsViewState>
@@ -62,30 +67,38 @@ class PlayerStatisticsViewModelTest {
     @Before
     fun setUp() {
         openMocks(this)
-        mockWebServer.start()
-        footballService = Retrofit.Builder().baseUrl(mockWebServer.url("/"))
-            .addConverterFactory(json.asConverterFactory(contentType = "application/json".toMediaType()))
-            .addCallAdapterFactory(ResultCallAdaptorFactory())
-            .client(okHttpClient)
-            .build()
-            .create(FootballService::class.java)
-
+        Dispatchers.setMain(testDispatcher)
     }
 
 
     @Test
-    fun `When player stats loads player data successfully then return success view state`() {
-        val playerStatisticsDto = readJsonFromRawResource(context, R.raw.player_stats_response)
-        mockWebServer.enqueue(
-            MockResponse().setResponseCode(200)
-                .setBody(getJsonStringFromResource(context, R.raw.player_stats_response))
+    fun `When player stats loads player data successfully then return success view state`() = runBlocking {
+        whenever(footballService.getPlayer("1", "2020")).thenReturn(
+            Result.success(
+                readJsonFromRawResource(
+                    context,
+                    R.raw.player_stats_response
+                )!!
+            )
         )
+        val argumentCaptor = argumentCaptor<PlayerStatisticsViewState>()
         playerStatisticsViewModel.playerStatisticsViewState.observeForever(observer)
 
-        playerStatisticsViewModel.getPlayerStatistics(1, "2020")
+        playerStatisticsViewModel.getPlayerStatistics("1", "2020")
 
-        verify(observer).onChanged(PlayerStatisticsViewState.Loading)
-        verify(observer).onChanged(PlayerStatisticsViewState.Success(PreviewData.playerStatistics))
+        argumentCaptor.run {
+            verify(observer, times(2)).onChanged(capture())
+            assertEquals(
+                PlayerStatisticsViewState.Loading,
+                firstValue
+            )
+            assertEquals(
+                PlayerStatisticsViewState.Success(
+                    PreviewData.playerStatistics
+                ),
+                secondValue
+            )
+        }
     }
 
     private fun readJsonFromRawResource(context: Context, resourceId: Int): PlayerStatisticsDto? {
@@ -111,7 +124,7 @@ class PlayerStatisticsViewModelTest {
             age = 29,
             weight = "68 kg",
             imageUrl = "https://media.api-sports.io/football/players/276.png",
-            playerRating = 85
+            playerRating = 80
         ),
         statisticsViewDate = persistentListOf(
             StatisticsViewDate(
@@ -125,7 +138,7 @@ class PlayerStatisticsViewModelTest {
                 dribblesCompleted = 60,
                 fouls = 22,
                 redCards = 1,
-                competition = "Premier League",
+                competition = "Ligue 1",
                 competitionImageUrl = "https://media.api-sports.io/football/leagues/61.png",
                 team = "Paris Saint Germain",
                 teamLogoUrl = "https://media.api-sports.io/football/teams/85.png",
@@ -145,7 +158,7 @@ class PlayerStatisticsViewModelTest {
                 competitionImageUrl = "https://media.api-sports.io/football/leagues/66.png",
                 team = "Paris Saint Germain",
                 teamLogoUrl = "https://media.api-sports.io/football/teams/85.png",
-                yellowCards = 5
+                yellowCards = 7
             ), StatisticsViewDate(
                 games = 5,
                 shots = 13,
@@ -162,6 +175,23 @@ class PlayerStatisticsViewModelTest {
                 team = "Paris Saint Germain",
                 teamLogoUrl = "https://media.api-sports.io/football/teams/85.png",
                 yellowCards = 2
+            ),
+            StatisticsViewDate(
+                games = 2,
+                shots = 0,
+                goals = 3,
+                assists = 0,
+                passes = 0,
+                tackles = 0,
+                duelsWon = 0,
+                dribblesCompleted = 0,
+                fouls = 0,
+                redCards = 0,
+                competition = "Club Friendlies",
+                competitionImageUrl = "",
+                team = "Paris Saint Germain",
+                teamLogoUrl = "https://media.api-sports.io/football/teams/85.png",
+                yellowCards = 0
             )
         )
     )

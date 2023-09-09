@@ -1,5 +1,7 @@
 package com.example.football
 
+import com.example.football.data.repository.PlayerStatisticsRepository
+import com.example.football.data.repository.PlayerStatisticsRepositoryImpl
 import com.example.football.data.repository.SearchRepository
 import com.example.football.data.repository.SearchRepositoryImpl
 import com.example.football.data.repository.StandingsRepository
@@ -12,6 +14,8 @@ import com.example.football.domain.StandingsViewDataMapper
 import com.example.football.domain.StandingsViewDataMapperImpl
 import com.example.football.domain.usecase.GetTopGoalScorersUseCase
 import com.example.football.domain.usecase.GetTopGoalScorersUseCaseImpl
+import com.example.football.domain.usecase.PlayerStatisticsUseCase
+import com.example.football.domain.usecase.PlayerStatisticsUseCaseImpl
 import com.example.football.domain.usecase.SearchUseCase
 import com.example.football.domain.usecase.SearchUseCaseImpl
 import com.example.football.domain.usecase.StandingsUseCase
@@ -93,5 +97,20 @@ class FootballModule {
         topGoalScorerRepository: TopGoalScorerRepository
     ): GetTopGoalScorersUseCase {
         return GetTopGoalScorersUseCaseImpl(topGoalScorerRepository)
+    }
+
+    @Provides
+    fun getPlayerStatisticsRepository(
+        footballService: FootballService,
+        ioContext: CoroutineContext
+    ): PlayerStatisticsRepository {
+        return PlayerStatisticsRepositoryImpl(footballService, ioContext)
+    }
+
+    @Provides
+    fun getPlayerStatisticsUseCase(
+        playerStatisticsRepository: PlayerStatisticsRepository
+    ): PlayerStatisticsUseCase {
+        return PlayerStatisticsUseCaseImpl(playerStatisticsRepository)
     }
 }
