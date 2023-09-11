@@ -7,15 +7,14 @@ import com.example.football.data.repository.PlayerStatisticsRepository
 import com.example.football.domain.PlayerInfoViewData
 import com.example.football.domain.PlayerStatisticsViewData
 import com.example.football.domain.StatisticsViewDate
+import java.math.BigDecimal
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
-import java.math.BigDecimal
 
 const val PERCENTAGE_MULTIPLIER = 10
 
 interface PlayerStatisticsUseCase {
     suspend fun getPlayerStatistics(playerId: String, season: String): PlayerStatisticsResult
-
 }
 
 sealed class PlayerStatisticsResult {
@@ -26,12 +25,14 @@ sealed class PlayerStatisticsResult {
     object NoInformation : PlayerStatisticsResult()
 }
 
-internal class PlayerStatisticsUseCaseImpl(private val playerStatisticsRepository: PlayerStatisticsRepository) :
+internal class PlayerStatisticsUseCaseImpl(
+    private val playerStatisticsRepository: PlayerStatisticsRepository
+) :
     PlayerStatisticsUseCase {
-    private fun mapPlayerStatsDtoToViewData(dto: PlayerStatisticsDto): PlayerStatisticsViewData {
-        val playerDto = dto.response.firstOrNull()!!
+    private fun mapPlayerStatsDtoToViewData(dto: PlayerStatisticsDto): PlayerStatisticsViewData? {
+        val playerDto = dto.response.firstOrNull() ?: return null
         val playerRating =
-            getMaxPlayerRatingfromDifferentCompetiitons(playerDto.statistics)
+            getMaxPlayerRatingFromDifferentCompetitions(playerDto.statistics)
         val playerInfo = mapPlayerInfoDtoToViewData(
             playerDto.player,
             playerRating
@@ -40,7 +41,7 @@ internal class PlayerStatisticsUseCaseImpl(private val playerStatisticsRepositor
         return PlayerStatisticsViewData(playerInfo, statisticsViewDate)
     }
 
-    private fun getMaxPlayerRatingfromDifferentCompetiitons(statistics: List<StatisticDto>) =
+    private fun getMaxPlayerRatingFromDifferentCompetitions(statistics: List<StatisticDto>) =
         statistics.maxOf { it.games.rating?.toBigDecimalOrNull() ?: 0.toBigDecimal() }
 
     private fun mapStatisticsDtoToViewData(dto: List<StatisticDto>): ImmutableList<StatisticsViewDate> {
@@ -90,9 +91,17 @@ internal class PlayerStatisticsUseCaseImpl(private val playerStatisticsRepositor
         season: String
     ): PlayerStatisticsResult {
         val result = playerStatisticsRepository.getPlayerStatistics(playerId, season)
-        return PlayerStatisticsResult.PlayerStats(mapPlayerStatsDtoToViewData(result.getOrNull()!!))
+        if (result.isFailure) {
+            return PlayerStatisticsResult.Error
+        }
+        val playerViewData = mapPlayerStatsDtoToViewData(
+            result.getOrNull() ?: return PlayerStatisticsResult.NoInformation
+        )
+
+        return if (playerViewData == null) {
+            PlayerStatisticsResult.NoInformation
+        } else {
+            PlayerStatisticsResult.PlayerStats(playerViewData)
+        }
     }
-
 }
-
-

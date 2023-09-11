@@ -8,15 +8,15 @@ import com.example.football.domain.PlayerStatisticsViewData
 import com.example.football.domain.usecase.PlayerStatisticsResult
 import com.example.football.domain.usecase.PlayerStatisticsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class PlayerStatisticsViewModel @Inject constructor(
     private val playerStatisticsUseCase: PlayerStatisticsUseCase,
     private val ioContext: CoroutineContext
-):ViewModel() {
+) : ViewModel() {
 
     private val _playerStatisticsViewState = MutableLiveData<PlayerStatisticsViewState>()
     val playerStatisticsViewState: LiveData<PlayerStatisticsViewState>
@@ -25,15 +25,21 @@ class PlayerStatisticsViewModel @Inject constructor(
     fun getPlayerStatistics(playerId: String, season: String) {
         _playerStatisticsViewState.postValue(PlayerStatisticsViewState.Loading)
         viewModelScope.launch(ioContext) {
-            val result = playerStatisticsUseCase.getPlayerStatistics(
-                playerId,
-                season
-            )
-            _playerStatisticsViewState.postValue(
-                PlayerStatisticsViewState.Success(
-                    (result as PlayerStatisticsResult.PlayerStats).playerStatisticsViewData
+            when (val result = playerStatisticsUseCase.getPlayerStatistics(playerId, season)) {
+                is PlayerStatisticsResult.Error -> _playerStatisticsViewState.postValue(
+                    PlayerStatisticsViewState.Error
                 )
-            )
+
+                is PlayerStatisticsResult.NoInformation -> _playerStatisticsViewState.postValue(
+                    PlayerStatisticsViewState.NoInformation
+                )
+
+                is PlayerStatisticsResult.PlayerStats -> _playerStatisticsViewState.postValue(
+                    PlayerStatisticsViewState.Success(
+                        result.playerStatisticsViewData
+                    )
+                )
+            }
         }
     }
 }
@@ -43,4 +49,8 @@ sealed class PlayerStatisticsViewState {
         PlayerStatisticsViewState()
 
     object Loading : PlayerStatisticsViewState()
+
+    object Error : PlayerStatisticsViewState()
+
+    object NoInformation : PlayerStatisticsViewState()
 }

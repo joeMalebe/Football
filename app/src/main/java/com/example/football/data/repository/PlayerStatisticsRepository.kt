@@ -2,13 +2,11 @@ package com.example.football.data.repository
 
 import com.example.football.FootballService
 import com.example.football.data.model.PlayerStatisticsDto
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.withContext
 
 interface PlayerStatisticsRepository {
     suspend fun getPlayerStatistics(playerId: String, season: String): Result<PlayerStatisticsDto>
-
 }
 
 internal class PlayerStatisticsRepositoryImpl(
@@ -19,12 +17,13 @@ internal class PlayerStatisticsRepositoryImpl(
         playerId: String,
         season: String
     ): Result<PlayerStatisticsDto> {
-
-
-        return withContext(CoroutineScope(ioContext).coroutineContext) {
-            val response = footballService.getPlayer(playerId, season)
-            Result.success(response.getOrNull()!!)
+        return withContext(ioContext) {
+            try {
+                val response = footballService.getPlayer(playerId, season)
+                Result.success(response.getOrNull() ?: PlayerStatisticsDto())
+            } catch (exception: Exception) {
+                Result.failure(exception)
+            }
         }
-
     }
 }
