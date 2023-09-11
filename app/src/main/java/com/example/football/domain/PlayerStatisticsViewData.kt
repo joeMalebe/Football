@@ -13,7 +13,7 @@ data class PlayerInfoViewData(
     private val age: Int,
     private val weight: String,
     private val imageUrl: String,
-    private val playerRating: Int,
+    private val playerRating: Int
 )
 
 data class StatisticsViewDate(
@@ -31,5 +31,5 @@ data class StatisticsViewDate(
     private val competitionImageUrl: String,
     private val team: String,
     private val teamLogoUrl: String,
-    private val yellowCards: Int,
+    private val yellowCards: Int
 )
