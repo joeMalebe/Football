@@ -7,7 +7,11 @@
     <fragment
         android:id="@+id/homeScreenFragment"
         android:name="com.example.football.presentation.view.HomeScreenFragment"
-        android:label="@string/football" />
+        android:label="@string/football" >
+        <action
+            android:id="@+id/action_homeScreenFragment_to_standingsFragment"
+            app:destination="@id/standingsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/standingsFragment"
@@ -18,5 +22,21 @@
             android:name="leagueId"
             app:argType="string"
             app:nullable="false" />
+        <action
+            android:id="@+id/action_standingsFragment_to_playerStatsFragment"
+            app:destination="@id/playerStatsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerStatsFragment"
+        android:name="com.example.football.presentation.view.PlayerStatsFragment"
+        android:label="PlayerStatsFragment">
+        <argument
+            android:name="playerId"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="season"
+            android:defaultValue="2023"
+            app:argType="string" />
     </fragment>
 </navigation>

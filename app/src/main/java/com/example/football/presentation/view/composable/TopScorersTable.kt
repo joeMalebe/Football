@@ -74,7 +74,7 @@ fun Content(
 }
 
 @Composable
-fun RowScope.TablePlayerItemCell(
+private fun RowScope.TablePlayerItemCell(
     topGoalScorerViewData: TopGoalScorerViewData,
     weight: Float,
     modifier: Modifier = Modifier
@@ -105,7 +105,7 @@ fun RowScope.TablePlayerItemCell(
 }
 
 @Composable
-fun TopScorersTable(
+private fun TopScorersTable(
     goalScorerViewDataList: ImmutableList<TopGoalScorerViewData>,
     isSeeAll: Boolean,
     modifier: Modifier = Modifier,
@@ -194,7 +194,7 @@ fun TopScorersTable(
 
 @Preview(showBackground = true, widthDp = 320, heightDp = 640)
 @Composable
-fun TopScorerTablePreview() {
+private fun TopScorerTablePreview() {
     Content(topGoalScorerViewData = PreviewData.topGoalScorersList.toImmutableList(), onSeeAllClick = {
     }, seeAll = true)
 }
