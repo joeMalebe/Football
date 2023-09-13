@@ -3,33 +3,33 @@ package com.example.football.domain
 import kotlinx.collections.immutable.ImmutableList
 
 data class PlayerStatisticsViewData(
-    private val playerInfoViewData: PlayerInfoViewData,
-    private val statisticsViewDate: ImmutableList<StatisticsViewDate>
+    val playerInfoViewData: PlayerInfoViewData,
+    val statisticsViewDate: ImmutableList<StatisticsViewDate>
 )
 
 data class PlayerInfoViewData(
-    private val fullName: String,
-    private val surname: String,
-    private val age: Int,
-    private val weight: String,
-    private val imageUrl: String,
-    private val playerRating: Int
+    val fullName: String,
+    val surname: String,
+    val age: Int,
+    val weight: String,
+    val imageUrl: String,
+    val playerRating: Int
 )
 
 data class StatisticsViewDate(
-    private val games: Int,
-    private val shots: Int,
-    private val goals: Int,
-    private val passes: Int,
-    private val tackles: Int,
-    private val assists: Int,
-    private val duelsWon: Int,
-    private val dribblesCompleted: Int,
-    private val fouls: Int,
-    private val redCards: Int,
-    private val competition: String,
-    private val competitionImageUrl: String,
-    private val team: String,
-    private val teamLogoUrl: String,
-    private val yellowCards: Int
+    val games: Int,
+    val shots: Int,
+    val goals: Int,
+    val passes: Int,
+    val tackles: Int,
+    val assists: Int,
+    val duelsWon: Int,
+    val dribblesCompleted: Int,
+    val fouls: Int,
+    val redCards: Int,
+    val competition: String,
+    val competitionImageUrl: String,
+    val team: String,
+    val teamLogoUrl: String,
+    val yellowCards: Int
 )
