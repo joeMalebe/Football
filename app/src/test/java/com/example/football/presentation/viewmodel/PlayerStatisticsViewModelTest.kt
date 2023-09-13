@@ -8,12 +8,8 @@ import com.example.football.FootballService
 import com.example.football.R
 import com.example.football.data.model.PlayerStatisticsDto
 import com.example.football.data.repository.PlayerStatisticsRepositoryImpl
-import com.example.football.domain.PlayerInfoViewData
-import com.example.football.domain.PlayerStatisticsViewData
-import com.example.football.domain.StatisticsViewDate
 import com.example.football.domain.usecase.PlayerStatisticsUseCaseImpl
-import java.lang.RuntimeException
-import kotlinx.collections.immutable.persistentListOf
+import com.example.football.presentation.view.composable.PreviewData.playerStatistics
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineScheduler
@@ -97,7 +93,7 @@ class PlayerStatisticsViewModelTest {
             )
             assertEquals(
                 PlayerStatisticsViewState.Success(
-                    PreviewData.playerStatistics
+                    playerStatistics
                 ),
                 secondValue
             )
@@ -184,88 +180,5 @@ class PlayerStatisticsViewModelTest {
     private fun getJsonStringFromResource(context: Context, resourceId: Int): String {
         val inputStream = context.resources.openRawResource(resourceId)
         return inputStream.bufferedReader().use { it.readText() }
-    }
-
-    object PreviewData {
-        val playerStatistics = PlayerStatisticsViewData(
-            playerInfoViewData = PlayerInfoViewData(
-                fullName = "Neymar da Silva Santos Júnior",
-                surname = "da Silva Santos Júnior",
-                age = 29,
-                weight = "68 kg",
-                imageUrl = "https://media.api-sports.io/football/players/276.png",
-                playerRating = 80
-            ),
-            statisticsViewDate = persistentListOf(
-                StatisticsViewDate(
-                    games = 13,
-                    shots = 39,
-                    goals = 6,
-                    assists = 3,
-                    passes = 610,
-                    tackles = 8,
-                    duelsWon = 122,
-                    dribblesCompleted = 60,
-                    fouls = 22,
-                    redCards = 1,
-                    competition = "Ligue 1",
-                    competitionImageUrl = "https://media.api-sports.io/football/leagues/61.png",
-                    team = "Paris Saint Germain",
-                    teamLogoUrl = "https://media.api-sports.io/football/teams/85.png",
-                    yellowCards = 5
-                ),
-                StatisticsViewDate(
-                    games = 1,
-                    shots = 1,
-                    goals = 0,
-                    assists = 1,
-                    passes = 26,
-                    tackles = 0,
-                    duelsWon = 13,
-                    dribblesCompleted = 7,
-                    fouls = 5,
-                    redCards = 0,
-                    competition = "Coupe de France",
-                    competitionImageUrl = "https://media.api-sports.io/football/leagues/66.png",
-                    team = "Paris Saint Germain",
-                    teamLogoUrl = "https://media.api-sports.io/football/teams/85.png",
-                    yellowCards = 7
-                ),
-                StatisticsViewDate(
-                    games = 5,
-                    shots = 13,
-                    goals = 6,
-                    assists = 0,
-                    passes = 194,
-                    tackles = 3,
-                    duelsWon = 51,
-                    dribblesCompleted = 21,
-                    fouls = 5,
-                    redCards = 0,
-                    competition = "UEFA Champions League",
-                    competitionImageUrl = "https://media.api-sports.io/football/leagues/2.png",
-                    team = "Paris Saint Germain",
-                    teamLogoUrl = "https://media.api-sports.io/football/teams/85.png",
-                    yellowCards = 2
-                ),
-                StatisticsViewDate(
-                    games = 2,
-                    shots = 0,
-                    goals = 3,
-                    assists = 0,
-                    passes = 0,
-                    tackles = 0,
-                    duelsWon = 0,
-                    dribblesCompleted = 0,
-                    fouls = 0,
-                    redCards = 0,
-                    competition = "Club Friendlies",
-                    competitionImageUrl = "",
-                    team = "Paris Saint Germain",
-                    teamLogoUrl = "https://media.api-sports.io/football/teams/85.png",
-                    yellowCards = 0
-                )
-            )
-        )
     }
 }
