@@ -6,16 +6,17 @@ plugins {
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
     id 'kotlinx-serialization'
     id 'org.jlleitschuh.gradle.ktlint'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
     namespace 'com.example.football'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.football"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -85,22 +86,17 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
     implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
-    implementation 'androidx.test:runner:1.4.0'
+    implementation 'androidx.test:runner:1.5.2'
     implementation 'androidx.test.ext:junit-ktx:1.1.5'
     lintChecks("com.slack.lint.compose:compose-lint-checks:1.2.0")
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-    implementation 'androidx.activity:activity-compose:1.7.0'
+    implementation 'androidx.activity:activity-compose:1.7.2'
     implementation "androidx.compose.ui:ui:$compose_ui_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
     implementation "androidx.compose.material:material:$compose_ui_version"
@@ -117,7 +113,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
@@ -128,13 +124,13 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.11.0'
-    testImplementation 'org.mockito.kotlin:mockito-kotlin:4.1.0'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.4.0'
+    testImplementation 'org.mockito.kotlin:mockito-kotlin:5.0.0'
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
     testImplementation 'androidx.arch.core:core-testing:2.2.0'
     testImplementation "com.squareup.okhttp3:mockwebserver:$ok_http_version"
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3'
     testImplementation "org.robolectric:robolectric:4.10.3"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
