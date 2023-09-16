@@ -18,8 +18,11 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,7 +39,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.football.R
@@ -44,19 +46,35 @@ import com.example.football.domain.PlayerStatisticsViewData
 import com.example.football.domain.StatisticsViewDate
 import com.example.football.presentation.theme.FootballTheme
 import com.example.football.presentation.viewmodel.PlayerStatisticsViewModel
+import com.example.football.presentation.viewmodel.PlayerStatisticsViewState
 import kotlin.math.min
 import kotlin.math.sqrt
 import okhttp3.internal.immutableListOf
 
 @Composable
-fun PkayerStatsScreen(
+fun PlayerStatsScreen(
     viewModel: PlayerStatisticsViewModel,
-    findNavController: NavController,
     modifier: Modifier = Modifier
 ) {
+    Scaffold(modifier.padding(16.dp)) { padding ->
+        val viewState by viewModel.playerStatisticsViewState.observeAsState()
+        when (viewState) {
+            is PlayerStatisticsViewState.Success -> {
+                Content(
+                    (viewState as PlayerStatisticsViewState.Success).playerStatisticsViewData,
+                    Modifier.padding(paddingValues = padding)
+                )
+            }
+
+            is PlayerStatisticsViewState.Loading -> {
+                Loading()
+            }
+
+            else -> Text("Hello")
+        }
+    }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun Content(
     playerStatisticsViewData: PlayerStatisticsViewData,

@@ -34,6 +34,7 @@ import kotlinx.collections.immutable.toImmutableList
 fun TopScorersTable(
     viewState: TopGoalScorersViewState,
     seeAll: Boolean,
+    onPlayerClicked: (Int) -> Unit,
     modifier: Modifier = Modifier,
     onSeeAllClick: (Boolean) -> Unit
 ) {
@@ -43,6 +44,7 @@ fun TopScorersTable(
                 topGoalScorerViewData = viewState.topGoalScorers.toImmutableList(),
                 modifier = modifier.padding(),
                 onSeeAllClick = onSeeAllClick,
+                onPlayerClicked = onPlayerClicked,
                 seeAll = seeAll
             )
         }
@@ -61,6 +63,7 @@ fun TopScorersTable(
 fun Content(
     topGoalScorerViewData: ImmutableList<TopGoalScorerViewData>,
     seeAll: Boolean,
+    onPlayerClicked: (Int) -> Unit,
     modifier: Modifier = Modifier,
     onSeeAllClick: (Boolean) -> Unit
 ) {
@@ -68,6 +71,7 @@ fun Content(
         TopScorersTable(
             goalScorerViewDataList = topGoalScorerViewData,
             isSeeAll = seeAll,
+            onPlayerClicked = onPlayerClicked,
             onSeeAllClick = onSeeAllClick
         )
     }
@@ -108,6 +112,7 @@ private fun RowScope.TablePlayerItemCell(
 private fun TopScorersTable(
     goalScorerViewDataList: ImmutableList<TopGoalScorerViewData>,
     isSeeAll: Boolean,
+    onPlayerClicked: (Int) -> Unit,
     modifier: Modifier = Modifier,
     onSeeAllClick: (Boolean) -> Unit
 ) {
@@ -175,7 +180,12 @@ private fun TopScorersTable(
 
         // Here are all the lines of the table.
         items(if (isSeeAll) goalScorerViewDataList else goalScorerViewDataList.take(5)) { player ->
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .clickable { onPlayerClicked(player.playerId) },
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 TablePlayerItemCell(
                     topGoalScorerViewData = player,
                     weight = columnPlayerNameWeight
@@ -195,6 +205,10 @@ private fun TopScorersTable(
 @Preview(showBackground = true, widthDp = 320, heightDp = 640)
 @Composable
 private fun TopScorerTablePreview() {
-    Content(topGoalScorerViewData = PreviewData.topGoalScorersList.toImmutableList(), onSeeAllClick = {
-    }, seeAll = true)
+    Content(
+        topGoalScorerViewData = PreviewData.topGoalScorersList.toImmutableList(),
+        onSeeAllClick = {},
+        onPlayerClicked = {},
+        seeAll = true
+    )
 }
