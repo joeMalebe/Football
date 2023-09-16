@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.football.presentation.theme.FootballTheme
 import com.example.football.presentation.view.composable.StandingsCombinedScreen
 import com.example.football.presentation.viewmodel.StandingsCombinedViewModel
@@ -35,11 +36,18 @@ class StandingsFragment : Fragment() {
                         leagueId = leagueId,
                         season = "2020"
                     )
+
                     StandingsCombinedScreen(
                         standingsCombinedViewModel,
                         standingsViewModel,
                         topGoalScorersViewModel
-                    )
+                    ) { playerId ->
+                        val directions =
+                            StandingsFragmentDirections.actionStandingsFragmentToPlayerStatsFragment(
+                                playerId.toString()
+                            )
+                        findNavController().navigate(directions)
+                    }
                 }
             }
         }

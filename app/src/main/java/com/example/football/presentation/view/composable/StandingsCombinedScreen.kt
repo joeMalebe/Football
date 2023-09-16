@@ -32,7 +32,8 @@ fun StandingsCombinedScreen(
     standingsCombinedViewModel: StandingsCombinedViewModel,
     standingsViewModel: StandingsViewModel,
     topGoalScorerViewModel: TopGoalScorersViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onPlayerClicked: (Int) -> Unit
 ) {
     val nullableStandingsViewState by
         standingsViewModel.standingsViewState.observeAsState()
@@ -60,7 +61,8 @@ fun StandingsCombinedScreen(
     val topScorersContent: @Composable () -> Unit = {
         TopScorersTable(
             viewState = topGoalViewState,
-            seeAll = seeAllTopGoalScorers
+            seeAll = seeAllTopGoalScorers,
+            onPlayerClicked = onPlayerClicked
         ) { isSeeAll ->
             seeAllTopGoalScorers = isSeeAll
             standingsCombinedViewModel.onTopGoalScorerSeeAllClicked()
@@ -96,9 +98,9 @@ fun StandingsContent(
     TopScorersContent: @Composable () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    AnimatedContent(targetState = standingsCombinedViewState) {
+    AnimatedContent(targetState = standingsCombinedViewState, label = "View State") {
         when {
-            standingsCombinedViewState.combinedViewState -> {
+            it.combinedViewState -> {
                 Column(
                     modifier = modifier,
                     verticalArrangement = spacedBy(16.dp),
@@ -109,11 +111,11 @@ fun StandingsContent(
                 }
             }
 
-            standingsCombinedViewState.topGoalScorerSeeAll -> {
+            it.topGoalScorerSeeAll -> {
                 TopScorersContent()
             }
 
-            standingsCombinedViewState.standingsSeeAll -> {
+            it.standingsSeeAll -> {
                 LeagueTableContent()
             }
 
@@ -140,6 +142,7 @@ fun StandingsCombinedScreenPreview() {
             TopScorersContent = {
                 Content(
                     topGoalScorerViewData = PreviewData.topGoalScorersList.toImmutableList(),
+                    onPlayerClicked = {},
                     onSeeAllClick = {},
                     seeAll = false
                 )
