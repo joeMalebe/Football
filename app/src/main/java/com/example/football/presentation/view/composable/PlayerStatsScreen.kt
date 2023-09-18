@@ -1,6 +1,5 @@
 package com.example.football.presentation.view.composable
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -81,9 +80,47 @@ private fun Content(
     modifier: Modifier = Modifier
 ) {
     Column(modifier) {
-        PlayerInfoView(playerStatisticsViewData)
+        PlayerInfoView(playerStatisticsViewData, Modifier.weight(0.1f))
+        // TeamAndCompetitionLogos(playerStatisticsViewData)
+        PlayerStatisticsList(playerStatisticsViewData, Modifier.weight(0.9f))
+    }
+}
 
-        PlayerStatisticsList(playerStatisticsViewData)
+@Composable
+private fun TeamAndCompetitionLogos(
+    teamLogoUrl: String,
+    competitionImageUrl: String
+) {
+    Box(contentAlignment = Alignment.CenterEnd) {
+        AsyncImage(
+            model = ImageRequest.Builder(context = LocalContext.current)
+                .data(teamLogoUrl)
+                .placeholder(R.drawable.team_logo)
+                .crossfade(true)
+                .build(),
+            contentDescription = "team Image",
+            modifier = Modifier
+                .padding(end = 8.dp)
+                .width(40.dp)
+                .height(40.dp)
+                .clip(CircleShape),
+            contentScale = ContentScale.Fit
+        )
+
+        AsyncImage(
+            model = ImageRequest.Builder(context = LocalContext.current)
+                .data(competitionImageUrl)
+                .placeholder(R.drawable.ic_flag_placeholder)
+                .crossfade(true)
+                .build(),
+            contentDescription = "competition Image",
+            modifier = Modifier
+                .padding(end = 48.dp)
+                .width(48.dp)
+                .height(48.dp)
+                .clip(CircleShape),
+            contentScale = ContentScale.Fit
+        )
     }
 }
 
@@ -165,10 +202,25 @@ private fun PlayerRating(rating: String) {
 }
 
 @Composable
-@OptIn(ExperimentalFoundationApi::class)
-private fun PlayerStatisticsList(playerStatisticsViewData: PlayerStatisticsViewData) {
-    LazyColumn() {
+private fun PlayerStatisticsList(
+    playerStatisticsViewData: PlayerStatisticsViewData,
+    modifier: Modifier = Modifier
+) {
+    LazyColumn(modifier) {
         items(playerStatisticsViewData.statisticsViewDate) { stats ->
+            PlayerStats(stats)
+        }
+    }
+}
+
+@Composable
+private fun PlayerStats(stats: StatisticsViewDate) {
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Column {
             Text(
                 text = stats.competition,
                 Modifier.padding(top = 24.dp, bottom = 8.dp),
@@ -183,11 +235,13 @@ private fun PlayerStatisticsList(playerStatisticsViewData: PlayerStatisticsViewD
                 horizontalItemSpacing = 16.dp,
                 modifier = Modifier
                     .height(104.dp)
-                    .fillMaxWidth()
             ) {
                 items(statsLabelAndValue) { item ->
                     Row(Modifier.padding(vertical = 8.dp)) {
-                        Text(text = "${item.first} ", style = MaterialTheme.typography.body2)
+                        Text(
+                            text = "${item.first} ",
+                            style = MaterialTheme.typography.body2
+                        )
                         Text(
                             text = item.second.toString(),
                             style = MaterialTheme.typography.body2,
@@ -197,17 +251,15 @@ private fun PlayerStatisticsList(playerStatisticsViewData: PlayerStatisticsViewD
                 }
             }
         }
+
+        Box {
+            TeamAndCompetitionLogos(
+                teamLogoUrl = stats.teamLogoUrl,
+                competitionImageUrl = stats.competitionImageUrl
+            )
+        }
     }
 }
-
-private fun getStatsData(stats: StatisticsViewDate) = immutableListOf(
-    Pair("Games", stats.games),
-    Pair("Goals scored", stats.goals),
-    Pair("Assists", stats.assists),
-    Pair("Duels won", stats.duelsWon),
-    Pair("Fouls", stats.fouls),
-    Pair("Completed dribbles", stats.dribblesCompleted)
-)
 
 @Preview(showBackground = true)
 @Composable
@@ -220,6 +272,15 @@ private fun Preview() {
         )
     }
 }
+
+private fun getStatsData(stats: StatisticsViewDate) = immutableListOf(
+    Pair("Games", stats.games),
+    Pair("Goals scored", stats.goals),
+    Pair("Assists", stats.assists),
+    Pair("Duels won", stats.duelsWon),
+    Pair("Fouls", stats.fouls),
+    Pair("Completed dribbles", stats.dribblesCompleted)
+)
 
 class HexagonShape : Shape {
 
