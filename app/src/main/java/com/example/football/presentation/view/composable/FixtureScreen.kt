@@ -4,11 +4,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -24,16 +28,30 @@ import coil.request.ImageRequest
 import com.example.football.R
 import com.example.football.domain.FixturesViewData
 import com.example.football.domain.TeamFixtureViewData
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
-fun FixtureScreen(fixtureViewData: FixturesViewData) {
+fun FixtureScreen(fixtureViewData: ImmutableList<FixturesViewData>) {
     Content(fixtureViewData)
 }
 
 @Composable
-private fun Content(fixtureViewData: FixturesViewData, modifier: Modifier = Modifier) {
-    Fixture(fixtureViewData, Modifier.fillMaxWidth())
+private fun Content(fixtureViewData: ImmutableList<FixturesViewData>, modifier: Modifier = Modifier) {
+
+    UpcomingFixtures(fixtureViewData)
+}
+
+@Composable
+private fun UpcomingFixtures(fixtureViewData: ImmutableList<FixturesViewData>) {
+    LazyColumn {
+        items(items = fixtureViewData) { fixture ->
+            Card(elevation = 4.dp) {
+                Fixture(fixture, Modifier.fillMaxWidth())
+            }
+            Spacer(modifier = Modifier.padding(8.dp))
+        }
+    }
 }
 
 @Composable
@@ -43,7 +61,8 @@ private fun Fixture(
 ) {
     Row(
         modifier
-            .height(IntrinsicSize.Min),
+            .height(IntrinsicSize.Min)
+            .padding(vertical = 8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         HomeTeam(fixtureViewData.homeTeam, Modifier.weight(0.4f))
@@ -130,11 +149,11 @@ private fun AwayTeam(
 @Composable
 @Preview(showBackground = true)
 private fun PreviewContent() {
-    Content(TestData.fixture1)
+    Content(TestData.fixtures)
 }
 
 object TestData {
-    val fixture1 = FixturesViewData(
+    private val fixture1 = FixturesViewData(
         TeamFixtureViewData(
             "Paris saint Germain",
             "https://media.api-sports.io/football/teams/85.png",
@@ -170,8 +189,8 @@ object TestData {
 
     val fixture3 = FixturesViewData(
         TeamFixtureViewData(
-            "Team E",
-            "https://media.api-sports.io/football/teams/31.png",
+            "Elite",
+            "https://media.api-sports.io/football/teams/68.png",
             "1",
             "5"
         ),
