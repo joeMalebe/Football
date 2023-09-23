@@ -79,7 +79,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion '1.4.2'
+        kotlinCompilerExtensionVersion '1.4.8'
     }
     packagingOptions {
         resources {
@@ -124,8 +124,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.4.0'
-    testImplementation 'org.mockito.kotlin:mockito-kotlin:5.0.0'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.5.0'
+    testImplementation 'org.mockito.kotlin:mockito-kotlin:5.1.0'
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
     testImplementation 'androidx.arch.core:core-testing:2.2.0'
