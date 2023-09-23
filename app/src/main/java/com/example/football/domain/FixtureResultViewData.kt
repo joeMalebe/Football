@@ -4,7 +4,8 @@ data class FixtureResultViewData(
     val fixtureId: String,
     val homeTeam: TeamFixtureViewData,
     val awayTeam: TeamFixtureViewData,
-    val date: String
+    val date: String,
+    val gameState: String
 )
 
 data class TeamFixtureViewData(
