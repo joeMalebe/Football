@@ -58,9 +58,7 @@ private fun Content(
         MatchResults(
             fixtureResultViewData,
             Modifier
-                .height(150.dp)
-                .width(250.dp)
-                .padding(vertical = 16.dp)
+                .padding(top = 16.dp, bottom = 16.dp, start = 16.dp)
         )
         UpcomingFixtures(fixtureViewData, modifier.padding(16.dp))
     }
