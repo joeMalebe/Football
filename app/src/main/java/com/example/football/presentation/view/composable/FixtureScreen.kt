@@ -1,6 +1,7 @@
 package com.example.football.presentation.view.composable
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -43,24 +44,26 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun FixtureScreen(
     fixtureViewData: ImmutableList<FixturesViewData>,
-    fixtureResultViewData: ImmutableList<FixtureResultViewData>
+    fixtureResultViewData: ImmutableList<FixtureResultViewData>,
+    onFixtureClicked: (fixtureId: String) -> Unit,
 ) {
-    Content(fixtureViewData, fixtureResultViewData)
+    Content(fixtureViewData, fixtureResultViewData, onFixtureClicked)
 }
 
 @Composable
 private fun Content(
     fixtureViewData: ImmutableList<FixturesViewData>,
     fixtureResultViewData: ImmutableList<FixtureResultViewData>,
-    modifier: Modifier = Modifier
+    onFixtureClicked: (fixtureId: String) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column() {
         MatchResults(
             fixtureResultViewData,
             Modifier
-                .padding(top = 16.dp, bottom = 16.dp, start = 16.dp)
-        )
-        UpcomingFixtures(fixtureViewData, modifier.padding(16.dp))
+                .padding(top = 16.dp, bottom = 16.dp, start = 16.dp),
+        onFixtureClicked = onFixtureClicked)
+        UpcomingFixtures(fixtureViewData, modifier.padding(16.dp), onFixtureClicked = onFixtureClicked)
     }
 }
 
@@ -69,7 +72,8 @@ private fun Content(
 private fun MatchResults(
     fixtureResultViewData: ImmutableList<FixtureResultViewData>,
     modifier: Modifier = Modifier,
-    logoSize: Dp = 72.dp
+    logoSize: Dp = 72.dp,
+    onFixtureClicked: (fixtureId: String) -> Unit
 ) {
     val state = rememberPagerState(initialPageOffsetFraction = 0f) { fixtureResultViewData.size }
     HorizontalPager(
@@ -85,6 +89,7 @@ private fun MatchResults(
             modifier = Modifier
                 .height(180.dp)
                 .width(250.dp)
+                .clickable { onFixtureClicked(match.fixtureId) }
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -157,11 +162,12 @@ private fun MatchScore(
 @Composable
 private fun UpcomingFixtures(
     fixtureViewData: ImmutableList<FixturesViewData>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onFixtureClicked: (fixtureId: String) -> Unit
 ) {
     LazyColumn(modifier = modifier) {
         items(items = fixtureViewData) { fixture ->
-            Card(elevation = 4.dp) {
+            Card(elevation = 4.dp, modifier = Modifier.clickable { onFixtureClicked(fixture.fixtureId)  }) {
                 Fixture(fixture, Modifier.fillMaxWidth())
             }
             Spacer(modifier = Modifier.padding(8.dp))
@@ -264,11 +270,11 @@ private fun AwayTeam(
 @Composable
 @Preview(showBackground = true)
 private fun PreviewContent() {
-    Content(TestData.fixtures, TestData.fixtureResults)
+    Content(TestData.fixtures, TestData.fixtureResults, {})
 }
 
 object TestData {
-    private val fixture1 = FixturesViewData(
+    private val fixture1 = FixturesViewData("2",
         TeamFixtureViewData(
             "Paris saint Germain",
             "https://media.api-sports.io/football/teams/85.png",
@@ -285,7 +291,7 @@ object TestData {
         "15:00"
     )
 
-    val fixture2 = FixturesViewData(
+    val fixture2 = FixturesViewData("4",
         TeamFixtureViewData(
             "Morocco",
             "https://media.api-sports.io/football/teams/31.png",
@@ -302,7 +308,7 @@ object TestData {
         "14:30"
     )
 
-    val fixture3 = FixturesViewData(
+    val fixture3 = FixturesViewData("5",
         TeamFixtureViewData(
             "Elite",
             "https://media.api-sports.io/football/teams/68.png",
@@ -319,7 +325,7 @@ object TestData {
         "16:15"
     )
 
-    val fixture4 = FixturesViewData(
+    val fixture4 = FixturesViewData("7",
         TeamFixtureViewData(
             "Copenhagen",
             "https://media.api-sports.io/football/teams/400.png",
@@ -336,7 +342,7 @@ object TestData {
         "18:45"
     )
 
-    val fixture5 = FixturesViewData(
+    val fixture5 = FixturesViewData("12",
         TeamFixtureViewData(
             "Paris saint Germain",
             "https://media.api-sports.io/football/teams/85.png",
@@ -353,7 +359,7 @@ object TestData {
         "20:00"
     )
 
-    val fixture6 = FixturesViewData(
+    val fixture6 = FixturesViewData("74",
         TeamFixtureViewData(
             "Paris saint Germain",
             "https://media.api-sports.io/football/teams/85.png",
@@ -365,7 +371,7 @@ object TestData {
         "19:30"
     )
 
-    val fixture7 = FixturesViewData(
+    val fixture7 = FixturesViewData("233",
         TeamFixtureViewData(
             "Paris saint Germain",
             "https://media.api-sports.io/football/teams/85.png",
@@ -382,7 +388,7 @@ object TestData {
         "17:45"
     )
 
-    val fixture8 = FixturesViewData(
+    val fixture8 = FixturesViewData("421",
         TeamFixtureViewData(
             "Saudi Arabia",
             "https://media.api-sports.io/football/teams/23.png",
