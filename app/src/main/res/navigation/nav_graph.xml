@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/homeScreenFragment"
         android:name="com.example.football.presentation.view.HomeScreenFragment"
-        android:label="@string/football" >
+        android:label="@string/football">
         <action
             android:id="@+id/action_homeScreenFragment_to_standingsFragment"
             app:destination="@id/standingsFragment" />
@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_standingsFragment_to_playerStatsFragment"
             app:destination="@id/playerStatsFragment" />
+        <action
+            android:id="@+id/action_standingsFragment_to_fixturesFragment"
+            app:destination="@id/fixturesFragment" />
     </fragment>
     <fragment
         android:id="@+id/playerStatsFragment"
@@ -38,5 +41,28 @@
             android:name="season"
             android:defaultValue="2023"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/fixtureStatisticsFragment"
+        android:name="com.example.football.presentation.view.FixtureStatisticsFragment"
+        android:label="fragment_fixture_statisticsFragment">
+
+        <argument
+            android:name="fixtureId"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/fixturesFragment"
+        android:name="com.example.football.presentation.view.FixturesFragment"
+        android:label="fragment_fixture_Fragment">
+
+        <argument
+            android:name="teamId"
+            app:argType="string"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_fixturesFragment_to_fixtureStatisticsFragment"
+            app:destination="@id/fixtureStatisticsFragment" />
     </fragment>
 </navigation>
