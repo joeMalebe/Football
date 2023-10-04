@@ -8,7 +8,6 @@ import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun FixtureStatisticsScreen(modifier: Modifier = Modifier) {
-
 }
 
 @Composable

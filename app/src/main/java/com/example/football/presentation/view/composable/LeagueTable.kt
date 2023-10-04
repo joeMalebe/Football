@@ -37,6 +37,7 @@ import kotlinx.collections.immutable.toImmutableList
 fun LeagueTable(
     viewState: LeagueTableViewState,
     isSeeAll: Boolean,
+    onTeamClicked: (Int) -> Unit,
     modifier: Modifier = Modifier,
     seeAllClick: (Boolean) -> Unit
 ) {
@@ -46,6 +47,7 @@ fun LeagueTable(
                 standingsViewData = viewState.standings.toImmutableList(),
                 modifier = modifier,
                 isSeeAll = isSeeAll,
+                onTeamClicked = onTeamClicked,
                 seeAllClick =
                 seeAllClick
             )
@@ -65,6 +67,7 @@ fun LeagueTable(
 fun Content(
     standingsViewData: ImmutableList<StandingsViewData>,
     isSeeAll: Boolean,
+    onTeamClicked: (Int) -> Unit,
     modifier: Modifier = Modifier,
     seeAllClick: (Boolean) -> Unit
 ) {
@@ -72,6 +75,7 @@ fun Content(
         StandingsTable(
             standingsViewData = standingsViewData,
             isSeeAll = isSeeAll,
+            onTeamClicked = onTeamClicked,
             seeAllClick = seeAllClick
         )
     }
@@ -102,7 +106,8 @@ fun RowScope.TableCell(
 fun RowScope.ClubTableCell(
     team: StandingsViewData,
     weight: Float,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onTeamClicked: (Int) -> Unit
 ) {
     Row(
         modifier = modifier
@@ -135,7 +140,7 @@ fun RowScope.ClubTableCell(
         Text(
             text = teamName,
             style = MaterialTheme.typography.body1,
-            modifier = Modifier.padding(start = 6.dp)
+            modifier = Modifier.padding(start = 6.dp).clickable { onTeamClicked(team.teamId) }
         )
     }
 }
@@ -144,6 +149,7 @@ fun RowScope.ClubTableCell(
 fun StandingsTable(
     standingsViewData: ImmutableList<StandingsViewData>,
     isSeeAll: Boolean,
+    onTeamClicked: (Int) -> Unit,
     modifier: Modifier = Modifier,
     seeAllClick: (Boolean) -> Unit
 ) {
@@ -217,7 +223,11 @@ fun StandingsTable(
         items(if (isSeeAll) standingsViewData else standingsViewData.take(5)) { team ->
 
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                ClubTableCell(team = team, weight = columnClubsWeight)
+                ClubTableCell(
+                    team = team,
+                    weight = columnClubsWeight,
+                    onTeamClicked = onTeamClicked
+                )
                 TableCell(text = team.wins.toString(), weight = columnStatsWeight)
                 TableCell(text = team.draws.toString(), weight = columnStatsWeight)
                 TableCell(text = team.losses.toString(), weight = columnStatsWeight)
@@ -234,5 +244,6 @@ fun StandingsTable(
 @Preview(widthDp = 360, heightDp = 720, showBackground = true)
 @Composable
 fun StandingsContentPreview() {
-    Content(standingsViewData = PreviewData.standings, seeAllClick = {}, isSeeAll = false)
+    Content(standingsViewData = PreviewData.standings, seeAllClick = {
+    }, isSeeAll = false, onTeamClicked = {})
 }

@@ -1,7 +1,6 @@
 package com.example.football.presentation.view.composable
 
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,6 +31,7 @@ fun StandingsCombinedScreen(
     standingsCombinedViewModel: StandingsCombinedViewModel,
     standingsViewModel: StandingsViewModel,
     topGoalScorerViewModel: TopGoalScorersViewModel,
+    onTeamClicked: (Int) -> Unit,
     modifier: Modifier = Modifier,
     onPlayerClicked: (Int) -> Unit
 ) {
@@ -71,7 +71,8 @@ fun StandingsCombinedScreen(
     val standingsContent: @Composable () -> Unit = {
         LeagueTable(
             viewState = standingsViewState,
-            isSeeAll = seeWholeLeagueTable
+            isSeeAll = seeWholeLeagueTable,
+            onTeamClicked = onTeamClicked
         ) { isSeeAll ->
             seeWholeLeagueTable = isSeeAll
             standingsCombinedViewModel.onStandingsSeeAllClicked()
@@ -90,12 +91,11 @@ fun StandingsCombinedScreen(
     }
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun StandingsContent(
     standingsCombinedViewState: StandingsCombinedViewState,
-    LeagueTableContent: @Composable () -> Unit,
-    TopScorersContent: @Composable () -> Unit,
+    leagueTableContent: @Composable () -> Unit,
+    topScorersContent: @Composable () -> Unit,
     modifier: Modifier = Modifier
 ) {
     AnimatedContent(targetState = standingsCombinedViewState, label = "View State") {
@@ -106,17 +106,17 @@ fun StandingsContent(
                     verticalArrangement = spacedBy(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    LeagueTableContent()
-                    TopScorersContent()
+                    leagueTableContent()
+                    topScorersContent()
                 }
             }
 
             it.topGoalScorerSeeAll -> {
-                TopScorersContent()
+                topScorersContent()
             }
 
             it.standingsSeeAll -> {
-                LeagueTableContent()
+                leagueTableContent()
             }
 
             else -> {
@@ -132,14 +132,15 @@ fun StandingsCombinedScreenPreview() {
     FootballTheme {
         StandingsContent(
             standingsCombinedViewState = StandingsCombinedViewState(combinedViewState = true),
-            LeagueTableContent = {
+            leagueTableContent = {
                 Content(
                     standingsViewData = PreviewData.standings,
                     seeAllClick = {},
-                    isSeeAll = false
+                    isSeeAll = false,
+                    onTeamClicked = {}
                 )
             },
-            TopScorersContent = {
+            topScorersContent = {
                 Content(
                     topGoalScorerViewData = PreviewData.topGoalScorersList.toImmutableList(),
                     onPlayerClicked = {},

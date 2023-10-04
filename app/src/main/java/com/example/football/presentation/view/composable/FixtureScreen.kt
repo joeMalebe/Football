@@ -45,7 +45,7 @@ import kotlinx.collections.immutable.persistentListOf
 fun FixtureScreen(
     fixtureViewData: ImmutableList<FixturesViewData>,
     fixtureResultViewData: ImmutableList<FixtureResultViewData>,
-    onFixtureClicked: (fixtureId: String) -> Unit,
+    onFixtureClicked: (fixtureId: String) -> Unit
 ) {
     Content(fixtureViewData, fixtureResultViewData, onFixtureClicked)
 }
@@ -55,15 +55,20 @@ private fun Content(
     fixtureViewData: ImmutableList<FixturesViewData>,
     fixtureResultViewData: ImmutableList<FixtureResultViewData>,
     onFixtureClicked: (fixtureId: String) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Column() {
         MatchResults(
             fixtureResultViewData,
             Modifier
                 .padding(top = 16.dp, bottom = 16.dp, start = 16.dp),
-        onFixtureClicked = onFixtureClicked)
-        UpcomingFixtures(fixtureViewData, modifier.padding(16.dp), onFixtureClicked = onFixtureClicked)
+            onFixtureClicked = onFixtureClicked
+        )
+        UpcomingFixtures(
+            fixtureViewData,
+            modifier.padding(16.dp),
+            onFixtureClicked = onFixtureClicked
+        )
     }
 }
 
@@ -167,7 +172,12 @@ private fun UpcomingFixtures(
 ) {
     LazyColumn(modifier = modifier) {
         items(items = fixtureViewData) { fixture ->
-            Card(elevation = 4.dp, modifier = Modifier.clickable { onFixtureClicked(fixture.fixtureId)  }) {
+            Card(
+                elevation = 4.dp,
+                modifier = Modifier.clickable {
+                    onFixtureClicked(fixture.fixtureId)
+                }
+            ) {
                 Fixture(fixture, Modifier.fillMaxWidth())
             }
             Spacer(modifier = Modifier.padding(8.dp))
@@ -274,7 +284,8 @@ private fun PreviewContent() {
 }
 
 object TestData {
-    private val fixture1 = FixturesViewData("2",
+    private val fixture1 = FixturesViewData(
+        "2",
         TeamFixtureViewData(
             "Paris saint Germain",
             "https://media.api-sports.io/football/teams/85.png",
@@ -291,7 +302,8 @@ object TestData {
         "15:00"
     )
 
-    val fixture2 = FixturesViewData("4",
+    val fixture2 = FixturesViewData(
+        "4",
         TeamFixtureViewData(
             "Morocco",
             "https://media.api-sports.io/football/teams/31.png",
@@ -308,7 +320,8 @@ object TestData {
         "14:30"
     )
 
-    val fixture3 = FixturesViewData("5",
+    val fixture3 = FixturesViewData(
+        "5",
         TeamFixtureViewData(
             "Elite",
             "https://media.api-sports.io/football/teams/68.png",
@@ -325,7 +338,8 @@ object TestData {
         "16:15"
     )
 
-    val fixture4 = FixturesViewData("7",
+    val fixture4 = FixturesViewData(
+        "7",
         TeamFixtureViewData(
             "Copenhagen",
             "https://media.api-sports.io/football/teams/400.png",
@@ -342,7 +356,8 @@ object TestData {
         "18:45"
     )
 
-    val fixture5 = FixturesViewData("12",
+    val fixture5 = FixturesViewData(
+        "12",
         TeamFixtureViewData(
             "Paris saint Germain",
             "https://media.api-sports.io/football/teams/85.png",
@@ -359,7 +374,8 @@ object TestData {
         "20:00"
     )
 
-    val fixture6 = FixturesViewData("74",
+    val fixture6 = FixturesViewData(
+        "74",
         TeamFixtureViewData(
             "Paris saint Germain",
             "https://media.api-sports.io/football/teams/85.png",
@@ -371,7 +387,8 @@ object TestData {
         "19:30"
     )
 
-    val fixture7 = FixturesViewData("233",
+    val fixture7 = FixturesViewData(
+        "233",
         TeamFixtureViewData(
             "Paris saint Germain",
             "https://media.api-sports.io/football/teams/85.png",
@@ -388,7 +405,8 @@ object TestData {
         "17:45"
     )
 
-    val fixture8 = FixturesViewData("421",
+    val fixture8 = FixturesViewData(
+        "421",
         TeamFixtureViewData(
             "Saudi Arabia",
             "https://media.api-sports.io/football/teams/23.png",

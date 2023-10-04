@@ -12,6 +12,10 @@ import kotlinx.collections.immutable.persistentListOf
 
 class FixturesFragment : Fragment() {
 
+    val navArgs by lazy {
+        FixturesFragmentArgs.fromBundle(requireArguments())
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -21,7 +25,6 @@ class FixturesFragment : Fragment() {
             setContent {
                 FootballTheme {
                     FixtureScreen(persistentListOf(), persistentListOf()) {
-
                     }
                 }
             }

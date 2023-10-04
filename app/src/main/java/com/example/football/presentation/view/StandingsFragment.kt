@@ -40,14 +40,22 @@ class StandingsFragment : Fragment() {
                     StandingsCombinedScreen(
                         standingsCombinedViewModel,
                         standingsViewModel,
-                        topGoalScorersViewModel
-                    ) { playerId ->
-                        val directions =
-                            StandingsFragmentDirections.actionStandingsFragmentToPlayerStatsFragment(
-                                playerId.toString()
-                            )
-                        findNavController().navigate(directions)
-                    }
+                        topGoalScorersViewModel,
+                        onTeamClicked = { teamId ->
+                            val directions =
+                                StandingsFragmentDirections.actionStandingsFragmentToFixturesFragment(
+                                    teamId.toString()
+                                )
+                            findNavController().navigate(directions)
+                        },
+                        onPlayerClicked = { playerId ->
+                            val directions =
+                                StandingsFragmentDirections.actionStandingsFragmentToPlayerStatsFragment(
+                                    playerId.toString()
+                                )
+                            findNavController().navigate(directions)
+                        }
+                    )
                 }
             }
         }
