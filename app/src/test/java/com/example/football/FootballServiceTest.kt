@@ -3,6 +3,7 @@ package com.example.football
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.example.football.data.model.PlayerStatisticsDto
+import com.example.football.data.model.fixtures.FixtureResponseDto
 import com.example.football.exception.ResultCallAdaptorFactory
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -54,7 +55,7 @@ class FootballServiceTest {
     @Test
     fun `player_stats_response json decodes to PlayerStatisticsDto`() {
         val resourceId = R.raw.player_stats_response
-        val playerStatisticsDto = readJsonFromRawResource(context, resourceId)
+        val playerStatisticsDto = readJsonFromRawResource<PlayerStatisticsDto>(context, resourceId)
 
         assertEquals(1, playerStatisticsDto?.response?.size)
         assertEquals(4, playerStatisticsDto?.response?.first()?.statistics?.size)
@@ -67,11 +68,22 @@ class FootballServiceTest {
         assertEquals(276, player.id)
     }
 
-    private fun readJsonFromRawResource(context: Context, resourceId: Int): PlayerStatisticsDto? {
+    @Test
+    fun `fixture response json decodes to fixture dto`() {
+        val resourceId = R.raw.fixtures_response
+        val responseDto = readJsonFromRawResource<FixtureResponseDto>(context, resourceId)
+
+        assertEquals(5, responseDto?.response?.size)
+        assertEquals(1035125, responseDto?.response?.first()?.fixture?.id)
+        assertEquals("Sheffield Utd", responseDto?.response?.first()?.teams?.home?.name)
+        assertEquals("Manchester United", responseDto?.response?.first()?.teams?.away?.name)
+    }
+
+    private inline fun <reified T> readJsonFromRawResource(context: Context, resourceId: Int): T? {
         return try {
             val inputStream = context.resources.openRawResource(resourceId)
             val jsonText = inputStream.bufferedReader().use { it.readText() }
-            json.decodeFromString<PlayerStatisticsDto>(jsonText)
+            json.decodeFromString<T>(jsonText)
         } catch (e: Exception) {
             e.printStackTrace()
             null
