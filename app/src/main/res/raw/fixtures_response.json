@@ -1,0 +1,357 @@
+{
+  "get": "fixtures",
+  "parameters": {
+    "team": "33",
+    "next": "5",
+    "season": "2023"
+  },
+  "errors": [
+  ],
+  "results": 5,
+  "paging": {
+    "current": 1,
+    "total": 1
+  },
+  "response": [
+    {
+      "fixture": {
+        "id": 1035125,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2023-10-21T19:00:00+00:00",
+        "timestamp": 1697914800,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 581,
+          "name": "Bramall Lane",
+          "city": "Sheffield"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null
+        }
+      },
+      "league": {
+        "id": 39,
+        "name": "Premier League",
+        "country": "England",
+        "logo": "https://media-4.api-sports.io/football/leagues/39.png",
+        "flag": "https://media-4.api-sports.io/flags/gb.svg",
+        "season": 2023,
+        "round": "Regular Season - 9"
+      },
+      "teams": {
+        "home": {
+          "id": 62,
+          "name": "Sheffield Utd",
+          "logo": "https://media-4.api-sports.io/football/teams/62.png",
+          "winner": null
+        },
+        "away": {
+          "id": 33,
+          "name": "Manchester United",
+          "logo": "https://media-4.api-sports.io/football/teams/33.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1126178,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2023-10-24T19:00:00+00:00",
+        "timestamp": 1698174000,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 556,
+          "name": "Old Trafford",
+          "city": "Manchester"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null
+        }
+      },
+      "league": {
+        "id": 2,
+        "name": "UEFA Champions League",
+        "country": "World",
+        "logo": "https://media-4.api-sports.io/football/leagues/2.png",
+        "flag": null,
+        "season": 2023,
+        "round": "Group A - 3"
+      },
+      "teams": {
+        "home": {
+          "id": 33,
+          "name": "Manchester United",
+          "logo": "https://media-4.api-sports.io/football/teams/33.png",
+          "winner": null
+        },
+        "away": {
+          "id": 400,
+          "name": "FC Copenhagen",
+          "logo": "https://media-4.api-sports.io/football/teams/400.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1035134,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2023-10-29T14:30:00+00:00",
+        "timestamp": 1698589800,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 556,
+          "name": "Old Trafford",
+          "city": "Manchester"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null
+        }
+      },
+      "league": {
+        "id": 39,
+        "name": "Premier League",
+        "country": "England",
+        "logo": "https://media-4.api-sports.io/football/leagues/39.png",
+        "flag": "https://media-4.api-sports.io/flags/gb.svg",
+        "season": 2023,
+        "round": "Regular Season - 10"
+      },
+      "teams": {
+        "home": {
+          "id": 33,
+          "name": "Manchester United",
+          "logo": "https://media-4.api-sports.io/football/teams/33.png",
+          "winner": null
+        },
+        "away": {
+          "id": 50,
+          "name": "Manchester City",
+          "logo": "https://media-4.api-sports.io/football/teams/50.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1136339,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2023-10-31T00:00:00+00:00",
+        "timestamp": 1698710400,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 556,
+          "name": "Old Trafford",
+          "city": "Manchester"
+        },
+        "status": {
+          "long": "Time to be defined",
+          "short": "TBD",
+          "elapsed": null
+        }
+      },
+      "league": {
+        "id": 48,
+        "name": "League Cup",
+        "country": "England",
+        "logo": "https://media-4.api-sports.io/football/leagues/48.png",
+        "flag": "https://media-4.api-sports.io/flags/gb.svg",
+        "season": 2023,
+        "round": "Round of 16"
+      },
+      "teams": {
+        "home": {
+          "id": 33,
+          "name": "Manchester United",
+          "logo": "https://media-4.api-sports.io/football/teams/33.png",
+          "winner": null
+        },
+        "away": {
+          "id": 34,
+          "name": "Newcastle",
+          "logo": "https://media-4.api-sports.io/football/teams/34.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1035140,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2023-11-04T12:30:00+00:00",
+        "timestamp": 1699101000,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 535,
+          "name": "Craven Cottage",
+          "city": "London"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null
+        }
+      },
+      "league": {
+        "id": 39,
+        "name": "Premier League",
+        "country": "England",
+        "logo": "https://media-4.api-sports.io/football/leagues/39.png",
+        "flag": "https://media-4.api-sports.io/flags/gb.svg",
+        "season": 2023,
+        "round": "Regular Season - 11"
+      },
+      "teams": {
+        "home": {
+          "id": 36,
+          "name": "Fulham",
+          "logo": "https://media-4.api-sports.io/football/teams/36.png",
+          "winner": null
+        },
+        "away": {
+          "id": 33,
+          "name": "Manchester United",
+          "logo": "https://media-4.api-sports.io/football/teams/33.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    }
+  ]
+}
