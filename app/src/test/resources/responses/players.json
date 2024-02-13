@@ -1,0 +1,1854 @@
+{
+  "get": "players\/topscorers",
+  "parameters": {
+    "league": "140",
+    "season": "2020"
+  },
+  "errors": [],
+  "results": 20,
+  "paging": {
+    "current": 0,
+    "total": 1
+  },
+  "response": [{
+    "player": {
+      "id": 154,
+      "name": "L. Messi",
+      "firstname": "Lionel Andr\u00e9s",
+      "lastname": "Messi Cuccittini",
+      "age": 37,
+      "birth": {
+        "date": "1987-06-24",
+        "place": "Rosario",
+        "country": "Argentina"
+      },
+      "nationality": "Argentina",
+      "height": "170 cm",
+      "weight": "72 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/154.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 529,
+        "name": "Barcelona",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/529.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 35,
+        "lineups": 33,
+        "minutes": 3022,
+        "number": null,
+        "position": "Attacker",
+        "rating": "8.342857",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 2,
+        "out": 1,
+        "bench": 2
+      },
+      "shots": {
+        "total": 141,
+        "on": 91
+      },
+      "goals": {
+        "total": 30,
+        "conceded": 0,
+        "assists": 9,
+        "saves": null
+      },
+      "passes": {
+        "total": 2246,
+        "key": 81,
+        "accuracy": 54
+      },
+      "tackles": {
+        "total": 19,
+        "blocks": null,
+        "interceptions": 6
+      },
+      "duels": {
+        "total": 501,
+        "won": 286
+      },
+      "dribbles": {
+        "attempts": 247,
+        "success": 160,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 99,
+        "committed": 22
+      },
+      "cards": {
+        "yellow": 4,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 3,
+        "missed": 2,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 759,
+      "name": "K. Benzema",
+      "firstname": "Karim Mostafa",
+      "lastname": "Benzema",
+      "age": 37,
+      "birth": {
+        "date": "1987-12-19",
+        "place": "Lyon",
+        "country": "France"
+      },
+      "nationality": "France",
+      "height": "185 cm",
+      "weight": "81 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/759.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 541,
+        "name": "Real Madrid",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/541.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 34,
+        "lineups": 33,
+        "minutes": 2902,
+        "number": null,
+        "position": "Attacker",
+        "rating": "7.452941",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 1,
+        "out": 9,
+        "bench": 1
+      },
+      "shots": {
+        "total": 98,
+        "on": 55
+      },
+      "goals": {
+        "total": 23,
+        "conceded": 0,
+        "assists": 9,
+        "saves": null
+      },
+      "passes": {
+        "total": 1209,
+        "key": 38,
+        "accuracy": 30
+      },
+      "tackles": {
+        "total": 8,
+        "blocks": 2,
+        "interceptions": 8
+      },
+      "duels": {
+        "total": 222,
+        "won": 97
+      },
+      "dribbles": {
+        "attempts": 62,
+        "success": 39,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 25,
+        "committed": 17
+      },
+      "cards": {
+        "yellow": 2,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 1,
+        "missed": 0,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 1707,
+      "name": "Gerard Moreno",
+      "firstname": "Gerard",
+      "lastname": "Moreno Balaguer\u00f3",
+      "age": 32,
+      "birth": {
+        "date": "1992-04-07",
+        "place": "Santa Perp\u00e8tua de Mogoda",
+        "country": "Spain"
+      },
+      "nationality": "Spain",
+      "height": "180 cm",
+      "weight": "77 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/1707.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 533,
+        "name": "Villarreal",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/533.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 33,
+        "lineups": 30,
+        "minutes": 2682,
+        "number": null,
+        "position": "Attacker",
+        "rating": "7.566666",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 3,
+        "out": 11,
+        "bench": 3
+      },
+      "shots": {
+        "total": 78,
+        "on": 47
+      },
+      "goals": {
+        "total": 23,
+        "conceded": 0,
+        "assists": 7,
+        "saves": null
+      },
+      "passes": {
+        "total": 1056,
+        "key": 44,
+        "accuracy": 22
+      },
+      "tackles": {
+        "total": 24,
+        "blocks": 4,
+        "interceptions": 15
+      },
+      "duels": {
+        "total": 448,
+        "won": 215
+      },
+      "dribbles": {
+        "attempts": 114,
+        "success": 71,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 58,
+        "committed": 44
+      },
+      "cards": {
+        "yellow": 3,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 10,
+        "missed": 0,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 157,
+      "name": "L. Su\u00e1rez",
+      "firstname": "Luis Alberto",
+      "lastname": "Su\u00e1rez D\u00edaz",
+      "age": 37,
+      "birth": {
+        "date": "1987-01-24",
+        "place": "Salto",
+        "country": "Uruguay"
+      },
+      "nationality": "Uruguay",
+      "height": "182 cm",
+      "weight": "86 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/157.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 530,
+        "name": "Atletico Madrid",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/530.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 32,
+        "lineups": 30,
+        "minutes": 2521,
+        "number": null,
+        "position": "Attacker",
+        "rating": "7.215625",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 2,
+        "out": 17,
+        "bench": 2
+      },
+      "shots": {
+        "total": 87,
+        "on": 43
+      },
+      "goals": {
+        "total": 21,
+        "conceded": 0,
+        "assists": 3,
+        "saves": null
+      },
+      "passes": {
+        "total": 574,
+        "key": 27,
+        "accuracy": 12
+      },
+      "tackles": {
+        "total": 11,
+        "blocks": null,
+        "interceptions": 5
+      },
+      "duels": {
+        "total": 189,
+        "won": 90
+      },
+      "dribbles": {
+        "attempts": 33,
+        "success": 13,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 40,
+        "committed": 21
+      },
+      "cards": {
+        "yellow": 6,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 3,
+        "missed": 0,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 47422,
+      "name": "Y. En-Nesyri",
+      "firstname": "Youssef",
+      "lastname": "En-Nesyri",
+      "age": 27,
+      "birth": {
+        "date": "1997-06-01",
+        "place": "F\u00e8s",
+        "country": "Morocco"
+      },
+      "nationality": "Morocco",
+      "height": "188 cm",
+      "weight": "73 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/47422.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 536,
+        "name": "Sevilla",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/536.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 38,
+        "lineups": 23,
+        "minutes": 2312,
+        "number": null,
+        "position": "Attacker",
+        "rating": "6.934210",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 15,
+        "out": 16,
+        "bench": 15
+      },
+      "shots": {
+        "total": 68,
+        "on": 29
+      },
+      "goals": {
+        "total": 18,
+        "conceded": 0,
+        "assists": null,
+        "saves": null
+      },
+      "passes": {
+        "total": 377,
+        "key": 15,
+        "accuracy": 6
+      },
+      "tackles": {
+        "total": 17,
+        "blocks": null,
+        "interceptions": 8
+      },
+      "duels": {
+        "total": 325,
+        "won": 163
+      },
+      "dribbles": {
+        "attempts": 36,
+        "success": 15,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 35,
+        "committed": 26
+      },
+      "cards": {
+        "yellow": 2,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 0,
+        "missed": 0,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 2864,
+      "name": "A. Isak",
+      "firstname": "Alexander",
+      "lastname": "Isak",
+      "age": 25,
+      "birth": {
+        "date": "1999-09-21",
+        "place": "Stockholm",
+        "country": "Sweden"
+      },
+      "nationality": "Sweden",
+      "height": "192 cm",
+      "weight": "77 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/2864.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 548,
+        "name": "Real Sociedad",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/548.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 34,
+        "lineups": 30,
+        "minutes": 2361,
+        "number": null,
+        "position": "Attacker",
+        "rating": "6.988235",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 4,
+        "out": 25,
+        "bench": 8
+      },
+      "shots": {
+        "total": 63,
+        "on": 42
+      },
+      "goals": {
+        "total": 17,
+        "conceded": 0,
+        "assists": 2,
+        "saves": null
+      },
+      "passes": {
+        "total": 428,
+        "key": 10,
+        "accuracy": 9
+      },
+      "tackles": {
+        "total": 9,
+        "blocks": 1,
+        "interceptions": 3
+      },
+      "duels": {
+        "total": 273,
+        "won": 118
+      },
+      "dribbles": {
+        "attempts": 67,
+        "success": 38,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 33,
+        "committed": 26
+      },
+      "cards": {
+        "yellow": 4,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 0,
+        "missed": 1,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 47445,
+      "name": "Iago Aspas",
+      "firstname": "Iago",
+      "lastname": "Aspas Juncal",
+      "age": 37,
+      "birth": {
+        "date": "1987-08-01",
+        "place": "Moa\u00f1a",
+        "country": "Spain"
+      },
+      "nationality": "Spain",
+      "height": "176 cm",
+      "weight": "67 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/47445.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 538,
+        "name": "Celta Vigo",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/538.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 33,
+        "lineups": 33,
+        "minutes": 2871,
+        "number": null,
+        "position": "Attacker",
+        "rating": "7.490909",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 0,
+        "out": 8,
+        "bench": 1
+      },
+      "shots": {
+        "total": 43,
+        "on": 27
+      },
+      "goals": {
+        "total": 14,
+        "conceded": 0,
+        "assists": 13,
+        "saves": null
+      },
+      "passes": {
+        "total": 1224,
+        "key": 64,
+        "accuracy": 29
+      },
+      "tackles": {
+        "total": 11,
+        "blocks": 2,
+        "interceptions": 16
+      },
+      "duels": {
+        "total": 281,
+        "won": 140
+      },
+      "dribbles": {
+        "attempts": 85,
+        "success": 60,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 53,
+        "committed": 24
+      },
+      "cards": {
+        "yellow": 9,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 5,
+        "missed": 0,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 47467,
+      "name": "Jos\u00e9 Luis Morales",
+      "firstname": "Jos\u00e9 Luis",
+      "lastname": "Morales Nogales",
+      "age": 37,
+      "birth": {
+        "date": "1987-07-23",
+        "place": "Madrid",
+        "country": "Spain"
+      },
+      "nationality": "Spain",
+      "height": "180 cm",
+      "weight": "70 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/47467.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 539,
+        "name": "Levante",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/539.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 38,
+        "lineups": 30,
+        "minutes": 2454,
+        "number": null,
+        "position": "Attacker",
+        "rating": "6.907894",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 8,
+        "out": 24,
+        "bench": 8
+      },
+      "shots": {
+        "total": 47,
+        "on": 27
+      },
+      "goals": {
+        "total": 13,
+        "conceded": 0,
+        "assists": 3,
+        "saves": null
+      },
+      "passes": {
+        "total": 623,
+        "key": 34,
+        "accuracy": 12
+      },
+      "tackles": {
+        "total": 18,
+        "blocks": null,
+        "interceptions": 11
+      },
+      "duels": {
+        "total": 224,
+        "won": 80
+      },
+      "dribbles": {
+        "attempts": 73,
+        "success": 31,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 18,
+        "committed": 17
+      },
+      "cards": {
+        "yellow": 3,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 0,
+        "missed": 1,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 56,
+      "name": "A. Griezmann",
+      "firstname": "Antoine",
+      "lastname": "Griezmann",
+      "age": 33,
+      "birth": {
+        "date": "1991-03-21",
+        "place": "M\u00e2con",
+        "country": "France"
+      },
+      "nationality": "France",
+      "height": "176 cm",
+      "weight": "73 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/56.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 529,
+        "name": "Barcelona",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/529.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 36,
+        "lineups": 32,
+        "minutes": 2619,
+        "number": null,
+        "position": "Attacker",
+        "rating": "7.213888",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 4,
+        "out": 20,
+        "bench": 6
+      },
+      "shots": {
+        "total": 62,
+        "on": 34
+      },
+      "goals": {
+        "total": 13,
+        "conceded": 0,
+        "assists": 7,
+        "saves": null
+      },
+      "passes": {
+        "total": 1315,
+        "key": 42,
+        "accuracy": 31
+      },
+      "tackles": {
+        "total": 37,
+        "blocks": 1,
+        "interceptions": 12
+      },
+      "duels": {
+        "total": 204,
+        "won": 115
+      },
+      "dribbles": {
+        "attempts": 37,
+        "success": 26,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 34,
+        "committed": 13
+      },
+      "cards": {
+        "yellow": 4,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 1,
+        "missed": 1,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 47013,
+      "name": "Rafa Mir",
+      "firstname": "Rafael",
+      "lastname": "Mir Vicente",
+      "age": 27,
+      "birth": {
+        "date": "1997-06-18",
+        "place": "Murcia",
+        "country": "Spain"
+      },
+      "nationality": "Spain",
+      "height": "191 cm",
+      "weight": "86 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/47013.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 726,
+        "name": "Huesca",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/726.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 38,
+        "lineups": 32,
+        "minutes": 2880,
+        "number": null,
+        "position": "Attacker",
+        "rating": "6.889473",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 6,
+        "out": 8,
+        "bench": 6
+      },
+      "shots": {
+        "total": 104,
+        "on": 46
+      },
+      "goals": {
+        "total": 13,
+        "conceded": 0,
+        "assists": 1,
+        "saves": null
+      },
+      "passes": {
+        "total": 423,
+        "key": 9,
+        "accuracy": 6
+      },
+      "tackles": {
+        "total": 15,
+        "blocks": 2,
+        "interceptions": 15
+      },
+      "duels": {
+        "total": 374,
+        "won": 152
+      },
+      "dribbles": {
+        "attempts": 26,
+        "success": 14,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 20,
+        "committed": 62
+      },
+      "cards": {
+        "yellow": 2,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 2,
+        "missed": 1,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 753,
+      "name": "Marcos Llorente",
+      "firstname": "Marcos",
+      "lastname": "Llorente Moreno",
+      "age": 29,
+      "birth": {
+        "date": "1995-01-30",
+        "place": "Madrid",
+        "country": "Spain"
+      },
+      "nationality": "Spain",
+      "height": "184 cm",
+      "weight": "74 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/753.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 530,
+        "name": "Atletico Madrid",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/530.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 37,
+        "lineups": 33,
+        "minutes": 2959,
+        "number": null,
+        "position": "Midfielder",
+        "rating": "7.202702",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 4,
+        "out": 7,
+        "bench": 4
+      },
+      "shots": {
+        "total": 41,
+        "on": 22
+      },
+      "goals": {
+        "total": 12,
+        "conceded": 0,
+        "assists": 11,
+        "saves": null
+      },
+      "passes": {
+        "total": 1243,
+        "key": 45,
+        "accuracy": 28
+      },
+      "tackles": {
+        "total": 71,
+        "blocks": 3,
+        "interceptions": 29
+      },
+      "duels": {
+        "total": 365,
+        "won": 167
+      },
+      "dribbles": {
+        "attempts": 66,
+        "success": 39,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 38,
+        "committed": 58
+      },
+      "cards": {
+        "yellow": 6,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 0,
+        "missed": 0,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 47396,
+      "name": "Kike Garc\u00eda",
+      "firstname": "Enrique",
+      "lastname": "Garc\u00eda Mart\u00ednez",
+      "age": 35,
+      "birth": {
+        "date": "1989-11-25",
+        "place": "Motilla del Palancar",
+        "country": "Spain"
+      },
+      "nationality": "Spain",
+      "height": "186 cm",
+      "weight": "79 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/47396.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 545,
+        "name": "Eibar",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/545.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 37,
+        "lineups": 36,
+        "minutes": 3105,
+        "number": null,
+        "position": "Attacker",
+        "rating": "7.159459",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 1,
+        "out": 18,
+        "bench": 1
+      },
+      "shots": {
+        "total": 75,
+        "on": 34
+      },
+      "goals": {
+        "total": 12,
+        "conceded": 0,
+        "assists": 2,
+        "saves": null
+      },
+      "passes": {
+        "total": 831,
+        "key": 26,
+        "accuracy": 15
+      },
+      "tackles": {
+        "total": 24,
+        "blocks": 1,
+        "interceptions": 7
+      },
+      "duels": {
+        "total": 692,
+        "won": 337
+      },
+      "dribbles": {
+        "attempts": 54,
+        "success": 36,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 92,
+        "committed": 68
+      },
+      "cards": {
+        "yellow": 3,
+        "yellowred": 1,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 0,
+        "missed": 0,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 934,
+      "name": "Santi Mina",
+      "firstname": "Santiago",
+      "lastname": "Mina Lorenzo",
+      "age": 28,
+      "birth": {
+        "date": "1995-12-07",
+        "place": "Vigo",
+        "country": "Spain"
+      },
+      "nationality": "Spain",
+      "height": "185 cm",
+      "weight": "79 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/934.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 538,
+        "name": "Celta Vigo",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/538.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 34,
+        "lineups": 29,
+        "minutes": 2422,
+        "number": null,
+        "position": "Attacker",
+        "rating": "6.882352",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 5,
+        "out": 14,
+        "bench": 6
+      },
+      "shots": {
+        "total": 41,
+        "on": 22
+      },
+      "goals": {
+        "total": 12,
+        "conceded": 0,
+        "assists": 3,
+        "saves": null
+      },
+      "passes": {
+        "total": 600,
+        "key": 15,
+        "accuracy": 13
+      },
+      "tackles": {
+        "total": 31,
+        "blocks": 3,
+        "interceptions": 6
+      },
+      "duels": {
+        "total": 452,
+        "won": 203
+      },
+      "dribbles": {
+        "attempts": 25,
+        "success": 10,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 62,
+        "committed": 63
+      },
+      "cards": {
+        "yellow": 4,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 1,
+        "missed": 0,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 47471,
+      "name": "Roger",
+      "firstname": "Roger",
+      "lastname": "Mart\u00ed Salvador",
+      "age": 33,
+      "birth": {
+        "date": "1991-01-03",
+        "place": "Torrent",
+        "country": "Spain"
+      },
+      "nationality": "Spain",
+      "height": "179 cm",
+      "weight": "74 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/47471.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 539,
+        "name": "Levante",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/539.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 33,
+        "lineups": 26,
+        "minutes": 2209,
+        "number": null,
+        "position": "Attacker",
+        "rating": "6.881818",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 7,
+        "out": 18,
+        "bench": 10
+      },
+      "shots": {
+        "total": 40,
+        "on": 23
+      },
+      "goals": {
+        "total": 12,
+        "conceded": 0,
+        "assists": 4,
+        "saves": null
+      },
+      "passes": {
+        "total": 501,
+        "key": 18,
+        "accuracy": 10
+      },
+      "tackles": {
+        "total": 11,
+        "blocks": 3,
+        "interceptions": 4
+      },
+      "duels": {
+        "total": 201,
+        "won": 70
+      },
+      "dribbles": {
+        "attempts": 19,
+        "success": 14,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 25,
+        "committed": 43
+      },
+      "cards": {
+        "yellow": 4,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 2,
+        "missed": 2,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 46746,
+      "name": "A. Budimir",
+      "firstname": "Ante",
+      "lastname": "Budimir",
+      "age": 33,
+      "birth": {
+        "date": "1991-07-22",
+        "place": "Zenica",
+        "country": "Bosnia and Herzegovina"
+      },
+      "nationality": "Croatia",
+      "height": "190 cm",
+      "weight": "75 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/46746.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 727,
+        "name": "Osasuna",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/727.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 30,
+        "lineups": 18,
+        "minutes": 1622,
+        "number": null,
+        "position": "Attacker",
+        "rating": "6.865517",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 12,
+        "out": 11,
+        "bench": 13
+      },
+      "shots": {
+        "total": 38,
+        "on": 22
+      },
+      "goals": {
+        "total": 11,
+        "conceded": 0,
+        "assists": null,
+        "saves": null
+      },
+      "passes": {
+        "total": 391,
+        "key": 9,
+        "accuracy": 8
+      },
+      "tackles": {
+        "total": 20,
+        "blocks": 4,
+        "interceptions": 2
+      },
+      "duels": {
+        "total": 364,
+        "won": 198
+      },
+      "dribbles": {
+        "attempts": 26,
+        "success": 13,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 31,
+        "committed": 30
+      },
+      "cards": {
+        "yellow": 3,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 0,
+        "missed": 0,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 18907,
+      "name": "Joselu",
+      "firstname": "Jos\u00e9 Luis",
+      "lastname": "Sanmart\u00edn Mato",
+      "age": 34,
+      "birth": {
+        "date": "1990-03-27",
+        "place": "Stuttgart",
+        "country": "Germany"
+      },
+      "nationality": "Spain",
+      "height": "192 cm",
+      "weight": "80 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/18907.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 542,
+        "name": "Alaves",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/542.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 37,
+        "lineups": 34,
+        "minutes": 3037,
+        "number": null,
+        "position": "Attacker",
+        "rating": "7.100000",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 3,
+        "out": 14,
+        "bench": 3
+      },
+      "shots": {
+        "total": 71,
+        "on": 33
+      },
+      "goals": {
+        "total": 11,
+        "conceded": 0,
+        "assists": 3,
+        "saves": null
+      },
+      "passes": {
+        "total": 1012,
+        "key": 30,
+        "accuracy": 16
+      },
+      "tackles": {
+        "total": 27,
+        "blocks": 3,
+        "interceptions": 15
+      },
+      "duels": {
+        "total": 607,
+        "won": 379
+      },
+      "dribbles": {
+        "attempts": 55,
+        "success": 28,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 74,
+        "committed": 43
+      },
+      "cards": {
+        "yellow": 1,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 2,
+        "missed": 2,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 47348,
+      "name": "Borja Iglesias",
+      "firstname": "Borja",
+      "lastname": "Iglesias Quint\u00e1s",
+      "age": 31,
+      "birth": {
+        "date": "1993-01-17",
+        "place": "Santiago de Compostela",
+        "country": "Spain"
+      },
+      "nationality": "Spain",
+      "height": "187 cm",
+      "weight": "86 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/47348.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 543,
+        "name": "Real Betis",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/543.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 28,
+        "lineups": 15,
+        "minutes": 1412,
+        "number": null,
+        "position": "Attacker",
+        "rating": "6.811111",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 13,
+        "out": 12,
+        "bench": 20
+      },
+      "shots": {
+        "total": 28,
+        "on": 16
+      },
+      "goals": {
+        "total": 11,
+        "conceded": 0,
+        "assists": null,
+        "saves": null
+      },
+      "passes": {
+        "total": 271,
+        "key": 6,
+        "accuracy": 6
+      },
+      "tackles": {
+        "total": 1,
+        "blocks": 2,
+        "interceptions": 3
+      },
+      "duels": {
+        "total": 155,
+        "won": 62
+      },
+      "dribbles": {
+        "attempts": 21,
+        "success": 10,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 21,
+        "committed": 20
+      },
+      "cards": {
+        "yellow": 2,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 5,
+        "missed": 0,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 47323,
+      "name": "Mikel Oyarzabal",
+      "firstname": "Mikel",
+      "lastname": "Oyarzabal Ugarte",
+      "age": 27,
+      "birth": {
+        "date": "1997-04-21",
+        "place": "Eibar",
+        "country": "Spain"
+      },
+      "nationality": "Spain",
+      "height": "181 cm",
+      "weight": "78 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/47323.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 548,
+        "name": "Real Sociedad",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/548.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 33,
+        "lineups": 30,
+        "minutes": 2430,
+        "number": null,
+        "position": "Attacker",
+        "rating": "7.181818",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 3,
+        "out": 24,
+        "bench": 3
+      },
+      "shots": {
+        "total": 46,
+        "on": 27
+      },
+      "goals": {
+        "total": 11,
+        "conceded": 0,
+        "assists": 8,
+        "saves": null
+      },
+      "passes": {
+        "total": 816,
+        "key": 52,
+        "accuracy": 19
+      },
+      "tackles": {
+        "total": 30,
+        "blocks": 5,
+        "interceptions": 15
+      },
+      "duels": {
+        "total": 267,
+        "won": 111
+      },
+      "dribbles": {
+        "attempts": 50,
+        "success": 23,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 40,
+        "committed": 24
+      },
+      "cards": {
+        "yellow": 1,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 6,
+        "missed": 1,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 930,
+      "name": "Carlos Soler",
+      "firstname": "Carlos",
+      "lastname": "Soler Barrag\u00e1n",
+      "age": 27,
+      "birth": {
+        "date": "1997-01-02",
+        "place": "Valencia",
+        "country": "Spain"
+      },
+      "nationality": "Spain",
+      "height": "180 cm",
+      "weight": "76 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/930.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 532,
+        "name": "Valencia",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/532.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 32,
+        "lineups": 31,
+        "minutes": 2737,
+        "number": null,
+        "position": "Midfielder",
+        "rating": "7.300000",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 1,
+        "out": 4,
+        "bench": 2
+      },
+      "shots": {
+        "total": 27,
+        "on": 17
+      },
+      "goals": {
+        "total": 11,
+        "conceded": 0,
+        "assists": 8,
+        "saves": null
+      },
+      "passes": {
+        "total": 1431,
+        "key": 45,
+        "accuracy": 38
+      },
+      "tackles": {
+        "total": 41,
+        "blocks": 11,
+        "interceptions": 23
+      },
+      "duels": {
+        "total": 220,
+        "won": 121
+      },
+      "dribbles": {
+        "attempts": 39,
+        "success": 25,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 37,
+        "committed": 26
+      },
+      "cards": {
+        "yellow": 7,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 7,
+        "missed": 2,
+        "saved": null
+      }
+    }]
+  }, {
+    "player": {
+      "id": 53,
+      "name": "\u00c1. Correa",
+      "firstname": "\u00c1ngel Mart\u00edn",
+      "lastname": "Correa Mart\u00ednez",
+      "age": 29,
+      "birth": {
+        "date": "1995-03-09",
+        "place": "Rosario",
+        "country": "Argentina"
+      },
+      "nationality": "Argentina",
+      "height": "171 cm",
+      "weight": "68 kg",
+      "injured": false,
+      "photo": "https:\/\/media.api-sports.io\/football\/players\/53.png"
+    },
+    "statistics": [{
+      "team": {
+        "id": 530,
+        "name": "Atletico Madrid",
+        "logo": "https:\/\/media.api-sports.io\/football\/teams\/530.png"
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/140.png",
+        "flag": "https:\/\/media.api-sports.io\/flags\/es.svg",
+        "season": 2020
+      },
+      "games": {
+        "appearences": 38,
+        "lineups": 29,
+        "minutes": 2409,
+        "number": null,
+        "position": "Attacker",
+        "rating": "6.936842",
+        "captain": false
+      },
+      "substitutes": {
+        "in": 9,
+        "out": 26,
+        "bench": 9
+      },
+      "shots": {
+        "total": 41,
+        "on": 23
+      },
+      "goals": {
+        "total": 9,
+        "conceded": 0,
+        "assists": 8,
+        "saves": null
+      },
+      "passes": {
+        "total": 854,
+        "key": 38,
+        "accuracy": 18
+      },
+      "tackles": {
+        "total": 38,
+        "blocks": 1,
+        "interceptions": 22
+      },
+      "duels": {
+        "total": 324,
+        "won": 131
+      },
+      "dribbles": {
+        "attempts": 90,
+        "success": 53,
+        "past": null
+      },
+      "fouls": {
+        "drawn": 30,
+        "committed": 37
+      },
+      "cards": {
+        "yellow": 3,
+        "yellowred": 0,
+        "red": 0
+      },
+      "penalty": {
+        "won": null,
+        "commited": null,
+        "scored": 0,
+        "missed": 0,
+        "saved": null
+      }
+    }]
+  }]
+}
