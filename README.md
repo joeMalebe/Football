@@ -1,5 +1,6 @@
 # Football
 
+App that fetches football stats and displays them in different views.
 
 Search leagues             |  League standings         |
 :-------------------------:|:-------------------------:
