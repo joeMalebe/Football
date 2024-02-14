@@ -12,6 +12,8 @@ import com.example.football.domain.StandingsViewDataMapperImpl
 import com.example.football.domain.usecase.StandingsUseCase
 import com.example.football.domain.usecase.StandingsUseCaseImpl
 import com.example.football.presentation.viewmodel.viewstate.LeagueTableViewState
+import java.util.Calendar
+import java.util.Calendar.YEAR
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
@@ -35,6 +37,7 @@ class StandingsViewModelTest {
     private lateinit var standingsRepository: StandingsRepository
     private val standingsViewDataMapper = StandingsViewDataMapperImpl()
     private val testDispatcher = UnconfinedTestDispatcher(scheduler = TestCoroutineScheduler())
+    private val year = Calendar.getInstance().get(YEAR).toString()
 
     @Mock
     lateinit var footballService: FootballService
@@ -57,7 +60,7 @@ class StandingsViewModelTest {
 
     @Test
     fun `When getting standings fails then return error view state`() = runTest {
-        whenever(footballService.getStandings("3", "2023")).thenReturn(
+        whenever(footballService.getStandings("3", year)).thenReturn(
             Result.failure(Throwable("errorr"))
         )
         val argumentCaptor = argumentCaptor<LeagueTableViewState>()
@@ -75,19 +78,19 @@ class StandingsViewModelTest {
 
     @Test
     fun `When football service fails then return error standings Result`() = runTest {
-        whenever(footballService.getStandings("3", "2023")).thenReturn(
+        whenever(footballService.getStandings("3", year)).thenReturn(
             Result.failure(Throwable("Error"))
         )
 
         val sut = standingsUseCase.getLeagueStandings("3")
 
         assertEquals(StandingsResult.Error, sut)
-        verify(footballService).getStandings("3", "2023")
+        verify(footballService).getStandings("3", year)
     }
 
     @Test
     fun `When football service throws an exception then return error standings result`() = runTest {
-        whenever(footballService.getStandings("3", "2023")).thenThrow(
+        whenever(footballService.getStandings("3", year)).thenThrow(
             java.lang.RuntimeException("error")
         )
 
@@ -98,7 +101,7 @@ class StandingsViewModelTest {
 
     @Test
     fun `When get standings is successful then emit standings loaded state`() = runTest {
-        whenever(footballService.getStandings("5", "2023")).thenReturn(
+        whenever(footballService.getStandings("5", year)).thenReturn(
             Result.success(
                 standingsResponse
             )
@@ -118,7 +121,7 @@ class StandingsViewModelTest {
 
     @Test
     fun `When get standings has no standings data then emit no information state`() = runTest {
-        whenever(footballService.getStandings("12", "2023")).thenReturn(
+        whenever(footballService.getStandings("12", year)).thenReturn(
             Result.success(
                 StandingsResponse(emptyList())
             )
